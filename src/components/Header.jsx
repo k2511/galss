@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Search, User, ShoppingBag, Menu, Heart } from 'lucide-react'
 import { toggleLoginModal } from '../features/user/userSlice'
 import { toggleCart } from '../features/cart/cartSlice'
-
+import logo from '../assets/img/logo.svg'
 
 const nav = [
   "Eyeglasses", "Sunglasses", "Brands", "Contacts", "Lenses", "Stores", "Sale"

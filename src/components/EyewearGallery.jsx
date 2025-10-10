@@ -1,56 +1,161 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Eye1 from "../assets/EyeGallery/Eye1.jpg";
+import Eye2 from "../assets/EyeGallery/Eye2.jpg";
+import Eye3 from "../assets/EyeGallery/Eye3.jpg";
+import Eye4 from "../assets/EyeGallery/Eye4.jpg";
+import Eye5 from "../assets/EyeGallery/Eye5.jpg";
+import Eye6 from "../assets/EyeGallery/Eye6.jpg";
+import Eye7 from "../assets/EyeGallery/Eye7.jpg";
+import Eye8 from "../assets/EyeGallery/Eye8.jpg";
+import Eye9 from "../assets/EyeGallery/Eye9.jpg";
+import Eye10 from "../assets/EyeGallery/Eye10.jpg";
+import Eye11 from "../assets/EyeGallery/Eye11.jpg";
+import Eye12 from "../assets/EyeGallery/Eye12.jpg";
+import Eye13 from "../assets/EyeGallery/Eye13.jpg";
+import Eye14 from "../assets/EyeGallery/Eye14.jpg";
+import Eye15 from "../assets/EyeGallery/Eye15.jpg";
+import Eye16 from "../assets/EyeGallery/Eye16.jpg";
+import Eye17 from "../assets/EyeGallery/Eye17.jpg";
+import Eye18 from "../assets/EyeGallery/Eye18.jpg";
+import Eye19 from "../assets/EyeGallery/Eye19.jpg";
+import Eye20 from "../assets/EyeGallery/Eye20.jpg";
+import Eye21 from "../assets/EyeGallery/Eye21.jpg";
+import Eye22 from "../assets/EyeGallery/Eye22.jpg";
+
 
 const EyewearGallery = () => {
   const brands = [
-    'Ray-Ban', 'Oakley', 'Persol', 'COACH', 'VERSACE', 
-    'BURBERRY', 'MICHAEL KORS', 'TUMI', 'All Brand'
+    "Ray-Ban",
+    "Oakley",
+    "Persol",
+    "COACH",
+    "VERSACE",
+    "BURBERRY",
+    "MICHAEL KORS",
+    "TUMI",
+    "All Brand",
   ];
 
   const recentlyViewed = [
     {
-      name: 'Coach HC6065 Tortoise, Purple, M...',
-      price: '$274 including lenses',
-      image: '/api/placeholder/200/80'
+      name: "Muse Eloquence Tortoise, Beige.",
+      price: "$98 including lenses",
+      image: Eye1,
     },
     {
-      name: 'Coach HC6048 Brooklyn Tortoise,...',
-      price: '$216 including lenses',
-      image: '/api/placeholder/200/80'
+      name: "Amelia E. Veronique Multicolor, Pink, Blue",
+      price: "$94 including lenses",
+      image: Eye2,
     },
     {
-      name: 'Coach HC6078 Teal Tortoise',
-      price: '$234 including lenses',
-      image: '/api/placeholder/200/80'
+      name: "Amelia E. Nettle Tortoise",
+      price: "$112 including lenses",
+      image: Eye3,
     },
     {
-      name: 'Coach HC6089 Blue, Beige, Glitter',
-      price: '$246 including lenses',
-      image: '/api/placeholder/200/80'
-    }
+      name: "Muse Hopper Tortoise",
+      price: "$88 including lenses",
+      image: Eye4,
+    },
+    {
+      name: "Muse Campbell Clear",
+      price: "$88 including lenses",
+      image: Eye9,
+    },
+    {
+      name: "Ottoto Bellona Tortoise, Gold",
+      price: "$84 including lenses",
+      image: Eye6,
+    },
+    {
+      name: "Amelia E. Bocian Tortoise, Beige",
+      price: "$104 including lenses",
+      image: Eye7,
+    },
+    {
+      name: "Quay All Nighter Tortoise, Beige",
+      price: "$84 including lenses",
+      image: Eye8,
+    },
+    {
+      name: "Muse Rocky Blue, Tortoise",
+      price: "$120 including lenses",
+      image: Eye5,
+    },
   ];
 
   const recommended = [
     {
-      name: 'Coach HC6054 Elise Tortoise',
-      price: '$240 including lenses',
-      image: '/api/placeholder/200/80'
+      name: "Muse Nova Tortoise, Beige",
+      price: "$98 including lenses",
+      image: Eye10,
     },
     {
-      name: 'Coach HC6237U Tortoise',
-      price: '$246 including lenses',
-      image: '/api/placeholder/200/80'
+      name: "Muse Makayla Tortoise, Beige",
+      price: "$94 including lenses",
+      image: Eye11,
+    },
+    // {
+    //   name: "Quay All Nighter Tortoise, Beige",
+    //   price: "$120 including lenses",
+    //   image: Eye11,
+    // },
+    {
+      name: "RAEN Pozy Tortoise, Beige",
+      price: "$189.95 including lenses",
+      image: Eye12,
     },
     {
-      name: 'Coach HC6230D Tortoise',
-      price: '$246 including lenses',
-      image: '/api/placeholder/200/80'
+      name: "Police Clue 5 VPLM03M Tortoise, Beige",
+      price: "$250 including lenses",
+      image: Eye13,
     },
     {
-      name: 'Coach HC6259U Purple',
-      price: '$246 including lenses',
-      image: '/api/placeholder/200/80'
-    }
+      name: "Amelia E. Skyline Tortoise, Beige",
+      price: "$84 including lenses",
+      image: Eye14,
+    },
+    {
+      name: "Amelia E. Aquene Tortoise, Beige",
+      price: "$86 including lenses",
+      image: Eye15,
+    },
+    {
+      name: "Michael Kors MK4030 Vivianna II Tortoise, Beige",
+      price: "$228 including lenses",
+      image: Eye16,
+    },
+      {
+      name: "Le Specs Airy Canary II Tortoise, Beige",
+      price: "$137 including lenses",
+      image: Eye17,
+    },
+      {
+      name: "Botaniq BIS-7005 Tortoise, Beige",
+      price: "$154 including lenses",
+      image: Eye18,
+    },
+      {
+      name: "Tom Ford TF1031 Juliette Tortoise, Beige",
+      price: "$410 including lenses",
+      image: Eye19,
+    },
+      {
+      name: "Miu Miu SMU 03US Tortoise, Beige",
+      price: "$389 including lenses",
+      image: Eye20,
+    },
+      {
+      name: "Amelia E. Moonlit Tortoise, Beige",
+      price: "$98 including lenses",
+      image: Eye21,
+    },
+    {
+      name: "Muse Nancy Gray, Tortoise",
+      price: "$98 including lenses",
+      image: Eye22,
+    },
   ];
 
   const [recentScrollPos, setRecentScrollPos] = useState(0);
@@ -58,32 +163,35 @@ const EyewearGallery = () => {
 
   const scrollCarousel = (direction, type) => {
     const scrollAmount = 280;
-    if (type === 'recent') {
-      const newPos = direction === 'left' 
-        ? Math.max(0, recentScrollPos - scrollAmount)
-        : recentScrollPos + scrollAmount;
+    if (type === "recent") {
+      const newPos =
+        direction === "left"
+          ? Math.max(0, recentScrollPos - scrollAmount)
+          : recentScrollPos + scrollAmount;
       setRecentScrollPos(newPos);
     } else {
-      const newPos = direction === 'left'
-        ? Math.max(0, recommendScrollPos - scrollAmount)
-        : recommendScrollPos + scrollAmount;
+      const newPos =
+        direction === "left"
+          ? Math.max(0, recommendScrollPos - scrollAmount)
+          : recommendScrollPos + scrollAmount;
       setRecommendScrollPos(newPos);
     }
   };
 
   const ProductCard = ({ product }) => (
     <div className="flex-shrink-0 w-64 px-2">
-      <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-        <div className="bg-gray-50 rounded-lg p-6 mb-3 flex items-center justify-center h-32">
-          <svg width="160" height="60" viewBox="0 0 160 60" className="text-gray-800">
-            <ellipse cx="40" cy="30" rx="22" ry="25" fill="none" stroke="currentColor" strokeWidth="3"/>
-            <ellipse cx="120" cy="30" rx="22" ry="25" fill="none" stroke="currentColor" strokeWidth="3"/>
-            <path d="M 62 30 Q 80 25 98 30" fill="none" stroke="currentColor" strokeWidth="3"/>
-            <path d="M 18 30 L 5 28" stroke="currentColor" strokeWidth="3"/>
-            <path d="M 142 30 L 155 28" stroke="currentColor" strokeWidth="3"/>
-          </svg>
+      <div className="rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+        <div className="rounded-lg p-6 mb-3 flex items-center justify-center h-32">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="object-contain h-full"
+          />
         </div>
-        <h3 className="text-sm font-medium text-gray-900 mb-1 truncate">{product.name}</h3>
+
+        <h3 className="text-sm font-medium text-gray-900 mb-1 truncate">
+          {product.name}
+        </h3>
         <p className="text-xs text-gray-600">{product.price}</p>
       </div>
     </div>
@@ -129,15 +237,15 @@ const EyewearGallery = () => {
           </h2>
           <div className="relative">
             <button
-              onClick={() => scrollCarousel('left', 'recent')}
+              onClick={() => scrollCarousel("left", "recent")}
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50"
               disabled={recentScrollPos === 0}
             >
               <ChevronLeft className="w-6 h-6 text-gray-700" />
             </button>
-            
+
             <div className="overflow-hidden mx-12">
-              <div 
+              <div
                 className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${recentScrollPos}px)` }}
               >
@@ -148,7 +256,7 @@ const EyewearGallery = () => {
             </div>
 
             <button
-              onClick={() => scrollCarousel('right', 'recent')}
+              onClick={() => scrollCarousel("right", "recent")}
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow"
             >
               <ChevronRight className="w-6 h-6 text-gray-700" />
@@ -163,15 +271,15 @@ const EyewearGallery = () => {
           </h2>
           <div className="relative">
             <button
-              onClick={() => scrollCarousel('left', 'recommend')}
+              onClick={() => scrollCarousel("left", "recommend")}
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50"
               disabled={recommendScrollPos === 0}
             >
               <ChevronLeft className="w-6 h-6 text-gray-700" />
             </button>
-            
+
             <div className="overflow-hidden mx-12">
-              <div 
+              <div
                 className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${recommendScrollPos}px)` }}
               >
@@ -182,7 +290,7 @@ const EyewearGallery = () => {
             </div>
 
             <button
-              onClick={() => scrollCarousel('right', 'recommend')}
+              onClick={() => scrollCarousel("right", "recommend")}
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow"
             >
               <ChevronRight className="w-6 h-6 text-gray-700" />

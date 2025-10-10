@@ -9,11 +9,13 @@ import BrandShowcase from './components/BrandShowcase'
 import NewsletterSignup from './components/NewsletterSignup'
 import Footer from './components/Footer'
 import './index.css'
+import TopBar from './components/TopBar'
 
 function App() {
   return (
     <Provider store={store}>
       <div className="min-h-screen bg-white">
+        <TopBar/>
         <Header />
         <main>
           <HeroSection />

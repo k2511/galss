@@ -9,7 +9,7 @@ const FramingYourWorldSection = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-100 rounded-lg p-6 md:p-8">
           <img 
-            src="https://via.placeholder.com/400x200/6B7280/FFFFFF?text=Perfect+Pair" 
+            src="https://optimaxweb.glassesusa.com/image/upload/f_auto,q_auto/mf-homepage/client/mobileImg/aboutUsImage_cca5acf802d299cb4741.jpg" 
             alt="Finding perfect pair" 
             className="w-full rounded-lg mb-4"
           />
@@ -30,7 +30,7 @@ const FramingYourWorldSection = () => (
         </div>
         <div className="bg-gray-100 rounded-lg p-6 md:p-8">
           <img 
-            src="https://via.placeholder.com/400x200/1E40AF/FFFFFF?text=Visit+Store" 
+            src="https://optimaxweb.glassesusa.com/image/upload/f_auto,q_auto/mf-homepage/client/mobileImg/storeImage_78523d191af767121158.jpg" 
             alt="Visit our store" 
             className="w-full rounded-lg mb-4"
           />

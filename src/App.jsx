@@ -14,10 +14,13 @@ import SummerPicksSection from "./components/SummerPicksSection";
 import PerfectEyewearSection from "./components/PerfectEyewearSection";
 import InsuranceSection from "./components/InsuranceSection";
 import FramingYourWorldSection from "./components/FramingYourWorldSection";
-import ClearedSection from "./components/ClearedSection";
-import BrandShowcaseSection from "./components/BrandShowcaseSection";
-import CustomerReviewsSection from "./components/CustomerReviewsSection";
+
 import Footer from "./components/Footer";
+import GlassSection from "./components/GlassSection";
+import CollectionCards from "./components/CollectionCards";
+import TrustpilotSection from "./components/TrustpilotSection";
+import FeaturedAndFilters from "./components/FeaturedAndFilters";
+import GuaranteeSection from "./components/GuaranteeSection ";
 
 function App() {
   return (
@@ -36,11 +39,12 @@ function App() {
     <PerfectEyewearSection />
     <InsuranceSection />
     <FramingYourWorldSection />
-    <ClearedSection />
-    <BrandShowcaseSection />
-    <CustomerReviewsSection />
-
-
+    <GlassSection/>
+    <CollectionCards/>
+    <TrustpilotSection/>
+     <FeaturedAndFilters/>
+     <GuaranteeSection/>
+ 
         </main>
       <Footer/>
       </div>

@@ -32,21 +32,20 @@ function App() {
           <HeroSection />
           <EyewearGallery />
           <CategorySection />
-      
+
           <VirtualTryOnSection />
-    <PopularBrandsSection />
-    <SummerPicksSection />
-    <PerfectEyewearSection />
-    <InsuranceSection />
-    <FramingYourWorldSection />
-    <GlassSection/>
-    <CollectionCards/>
-    <TrustpilotSection/>
-     <FeaturedAndFilters/>
-     <GuaranteeSection/>
- 
+          <PopularBrandsSection />
+          <SummerPicksSection />
+          <PerfectEyewearSection />
+          <InsuranceSection />
+          <FramingYourWorldSection />
+          <GlassSection />
+          <CollectionCards />
+          <TrustpilotSection />
+          <FeaturedAndFilters />
+          <GuaranteeSection />
         </main>
-      <Footer/>
+        <Footer />
       </div>
     </Provider>
   );

@@ -137,7 +137,7 @@ function FooterAccordion({ title, links, open, toggleOpen }) {
     <div className="border-b border-gray-700 md:border-none">
       <button
         className="w-full flex justify-between items-center py-3 md:py-1 text-base font-medium md:font-semibold md:text-lg focus:outline-none md:cursor-default"
-        onClick={toggleOpen}
+        onClick={() => window.innerWidth < 768 && toggleOpen()}
       >
         {title}
         <span className="md:hidden">{open ? "−" : "+"}</span>
@@ -164,7 +164,6 @@ const Footer = () => {
   const [openIndexes, setOpenIndexes] = useState(
     Array(linkSections.length).fill(false)
   );
-
   const handleAccordion = (idx) => {
     setOpenIndexes((prev) =>
       prev.map((opened, i) => (i === idx ? !opened : false))
@@ -188,7 +187,6 @@ const Footer = () => {
           </div>
         ))}
       </div>
-
       {/* Footer main grid */}
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-6 gap-8 mb-8">
         {/* Newsletter */}
@@ -226,7 +224,6 @@ const Footer = () => {
             ))}
           </div>
         </div>
-
         {/* Link groups */}
         <div className="col-span-4 grid grid-cols-1 md:grid-cols-4 gap-8">
           {linkSections.map((group, idx) => (
@@ -240,7 +237,6 @@ const Footer = () => {
           ))}
         </div>
       </div>
-
       {/* Trust badges and payment icons */}
       <div className="max-w-7xl mx-auto px-4 flex flex-wrap gap-6 items-center justify-center mb-6">
         {trustBadges.map((badge, idx) => (
@@ -257,7 +253,6 @@ const Footer = () => {
           <img key={idx} src={icon.src} alt={icon.alt} className="h-8" />
         ))}
       </div>
-
       {/* Bottom legal and links */}
       <div className="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-2">
         <div className="flex gap-4 mb-1 md:mb-0">
@@ -276,3 +271,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

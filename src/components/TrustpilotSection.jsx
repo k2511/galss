@@ -356,7 +356,11 @@
 
 
 import React, { useState, useRef } from "react";
-import Trust1 from "../assets/Trust/Trust1.jpg"; // Ensure this path is correct
+import Trust1 from "../assets/Trust/Trust1.jpg";
+import Trust2 from "../assets/Trust/Trust2.jpg";
+import Trust3 from "../assets/Trust/Trust3.jpg";
+import Trust4 from "../assets/Trust/Trust4.jpg";
+import Trust5 from "../assets/Trust/Trust5.jpg"; // Ensure this path is correct
 
 const reviews = [
   {
@@ -369,7 +373,7 @@ const reviews = [
   },
   {
     name: "Mila",
-    img: "https://your-image-url-2.jpg",
+    img: Trust2,
     rating: 5,
     comment:
       "So happy with my purchase, these glasses are so cute and I still get so many compliments when I wear them. I was surprised how good they fit as soon as I put them on.",
@@ -377,7 +381,7 @@ const reviews = [
   },
   {
     name: "Bballcoachdp",
-    img: "https://your-image-url-3.jpg",
+    img: Trust3,
     rating: 5,
     comment:
       "Bought these a few weeks ago and added the photochromatic lenses. Could not be happier from the look, comfort or the ease of ordering.",
@@ -385,15 +389,15 @@ const reviews = [
   },
   {
     name: "Shae",
-    img: "https://your-image-url-4.jpg",
+    img: Trust4,
     rating: 5,
     comment:
       "This is my first pair of glasses from GlassesUSA and I’ve always wanted a pair that were larger than what I’m used to because they are so cute!!",
     verified: true,
   },
   {
-    name: "Alex",
-    img: "https://your-image-url-5.jpg",
+    name: "Cris",
+    img: Trust5,
     rating: 5,
     comment: "Love the fit and style of these glasses, truly a great purchase!",
     verified: true,

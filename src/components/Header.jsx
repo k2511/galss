@@ -46,8 +46,8 @@
 //               ) : (
 //                 <Link
 //                   key={item.name}
-//                   to={`/${item.name.toLowerCase()}`}
-//                   className={`text-base font-normal ${item.name === "Sale" ? "text-red-600" : "text-black"} hover:text-blue-600`}
+//                   to={/${item.name.toLowerCase()}}
+//                   className={text-base font-normal ${item.name === "Sale" ? "text-red-600" : "text-black"} hover:text-blue-600}
 //                 >
 //                   {item.name}
 //                 </Link>
@@ -106,6 +106,7 @@ import SunglassesDropdown from "../innerPages/SunglassesDropdown";
 import ContactDropdown from "../innerPages/ContactsDropdown";
 import LensesDropdown from "../innerPages/LensesDropdown";
 import StoreDropdown from "../innerPages/StoreDropdown";
+import BrandsDropdown from "../innerPages/BrandsDropdown"
 import SalesDropdown from "../innerPages/SalesDropdown";
 
 
@@ -134,7 +135,7 @@ const Header = () => {
           </Link>
 
           {/* Navigation */}
-          <nav className="flex flex-1 items-center space-x-5 relative">
+          <nav className="flex flex-1 space-x-5 relative">
             {nav.map((item) =>
               item.name === "Eyeglasses" ? (
                 <DropdownMenu
@@ -159,6 +160,18 @@ const Header = () => {
                   }
                 >
                   <SunglassesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Brands" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Brands
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <BrandsDropdown />
                 </DropdownMenu>
               ) : item.name === "Contacts" ? (
                 <DropdownMenu
@@ -225,7 +238,7 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex items-center min-w-0 space-x-3">
+          <div className="flex  space-x-3">
             {/* Search Bar */}
             <div className="flex items-center bg-gray-100 rounded-[24px] px-5 py-2 w-[300px] max-w-[330px]">
               <Search size={20} className="text-gray-400 mr-2" />
@@ -273,5 +286,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

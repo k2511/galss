@@ -1,76 +1,13 @@
-// EyeglassesDropdown.jsx
-import React from "react";
-import { Link } from "react-router-dom";
-import menuImage from "../assets/img/stores.jpg"; // Place the image used in your screenshot here
+import React from 'react'
 
-const EyeglassesDropdown = () => (
-  <div className="absolute left-0 top-full w-full max-w-5xl bg-white shadow-lg border rounded-xl mt-2 flex px-6 py-8 z-50">
-    {/* Women */}
-    <div className="flex-1">
-      <h3 className="font-bold text-lg mb-4">Women</h3>
-      <ul className="space-y-2">
-        <li><Link to="#">Shop All Eyeglasses</Link></li>
-        <li><Link to="#">Best Sellers</Link></li>
-        <li><Link to="#">Designer Eyeglasses</Link></li>
-        <li><Link to="#">On Sale</Link></li>
-        <li><Link to="#">Designer Outlet</Link></li>
-        <li><Link to="#">Girls' Eyeglasses</Link></li>
-        <li><Link to="#">Next Day Delivery</Link></li>
-      </ul>
+const Eyeglasses = () => {
+  return (
+    <div className="p-8 text-center">
+      <h1 className="text-3xl font-semibold text-blue-600">Eyeglasses Page</h1>
+      <p className="mt-4 text-gray-600">Welcome to the Eyeglasses collection.</p>
     </div>
-    {/* Men */}
-    <div className="flex-1">
-      <h3 className="font-bold text-lg mb-4">Men</h3>
-      <ul className="space-y-2">
-        <li><Link to="#">Shop All Eyeglasses</Link></li>
-        <li><Link to="#">Best Sellers</Link></li>
-        <li><Link to="#">Designer Eyeglasses</Link></li>
-        <li><Link to="#">On Sale</Link></li>
-        <li><Link to="#">Designer Outlet</Link></li>
-        <li><Link to="#">Boys' Eyeglasses</Link></li>
-        <li><Link to="#">Next Day Delivery</Link></li>
-      </ul>
-    </div>
-    {/* Progressive */}
-    <div className="flex-1">
-      <h3 className="font-bold text-lg mb-4">Progressive</h3>
-      <ul className="space-y-2">
-        <li><Link to="#">Shop All Progressives</Link></li>
-        <li><Link to="#">Women's Progressives</Link></li>
-        <li><Link to="#">Men's Progressives</Link></li>
-        <li><Link to="#">Bifocal Lenses</Link></li>
-      </ul>
-    </div>
-    {/* Featured */}
-    <div className="flex-1">
-      <h3 className="font-bold text-lg mb-4">Featured</h3>
-      <ul className="space-y-2">
-        <li>
-          <Link to="#" className="font-semibold text-blue-600">
-            <span className="italic font-bold">Pair</span>fect Match™ Quiz
-          </Link>
-        </li>
-        <li><Link to="#">Blue Light Glasses</Link></li>
-        <li><Link to="#">Sports Glasses</Link></li>
-        <li><Link to="#">Safety Glasses</Link></li>
-        <li><Link to="#">Kids' Glasses</Link></li>
-        <li><Link to="#">Readers</Link></li>
-        <li><Link to="#">Rimless Glasses</Link></li>
-        <li><Link to="#">Transitions® Lenses</Link></li>
-      </ul>
-    </div>
-    {/* Image Section */}
-    <div className="flex-shrink-0 ml-8 w-80">
-      <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
-        <img src={menuImage} alt="View Our Stores" className="w-full h-40 object-cover" />
-        <div className="px-3 py-4 text-center border-t">
-          <Link to="#" className="text-lg text-black hover:text-blue-600 font-medium">
-            View Our Stores
-          </Link>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+  )
+}
 
-export default EyeglassesDropdown;
+export default Eyeglasses
+

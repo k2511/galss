@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import menuImage from "../assets/EyeGlassees/ourStore.avif";
 
 const EyeglassesDropdown = () => (
-  <div className="absolute left-0 top-full w-full max-w-6xl bg-white shadow-lg border border-gray-100 rounded-2xl mt-2 flex px-10 py-10 z-50">
+  <div className="absolute left-0 top-full max-w-6xl bg-white shadow-lg border border-gray-100 rounded-2xl mt-2 flex px-10 py-10 z-50">
     {/* Women */}
     <div className="flex-1 min-w-[160px]">
       <h3 className="font-semibold text-base mb-4">Women</h3>

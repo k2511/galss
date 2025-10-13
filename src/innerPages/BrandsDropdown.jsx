@@ -86,11 +86,16 @@ const BrandTile = ({ brand }) => {
 
 const BrandsDropdown = () => {
   return (
-    <div className="absolute left-0 top-full bg-white shadow-lg border-t border-gray-100 mt-0 z-50">
+    <div className="fixed top-35 left-0 w-screen  bg-white shadow-md border-gray-200
+  origin-top transition-transform duration-300 ease-in-out z-50
+  scale-y-100 opacity-100">
       <div className="max-w-[1420px] mx-auto px-10 py-8">
         <div className="flex gap-8">
           {/* LEFT SECTION - Premium Brands */}
-          <div className="flex gap-8 pr-8 border-r border-gray-200" style={{ flex: "0 0 65%" }}>
+          <div
+            className="flex gap-8 pr-8 border-r border-gray-200"
+            style={{ flex: "0 0 65%" }}
+          >
             {/* Brand Logo Grid */}
             <div style={{ flex: "0 0 340px" }}>
               <h3 className="font-semibold text-base mb-5">Premium Brands</h3>
@@ -132,7 +137,10 @@ const BrandsDropdown = () => {
                     </li>
                   ))}
                   <li>
-                    <Link to="#" className="font-medium underline hover:text-blue-600">
+                    <Link
+                      to="#"
+                      className="font-medium underline hover:text-blue-600"
+                    >
                       Brands A-Z
                     </Link>
                   </li>
@@ -143,7 +151,9 @@ const BrandsDropdown = () => {
 
           {/* RIGHT SECTION - Luxury Boutique */}
           <div className="flex-1 pl-4">
-            <h3 className="font-semibold text-base mb-5 w-52">Ottica - Luxury Boutique</h3>
+            <h3 className="font-semibold text-base mb-5 w-52">
+              Ottica - Luxury Boutique
+            </h3>
             <div className="grid grid-cols-2 gap-3">
               {LUXURY_BRANDS.map((brand) => (
                 <BrandTile key={brand.name} brand={brand} />

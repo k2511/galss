@@ -4,8 +4,10 @@ import saleImg1 from "../assets/Sunglasses/saleImg1.avif";
 import saleImg2 from "../assets/Sunglasses/saleImg1.avif";
 
 const SunglassesDropdown = () => (
-  <div className="absolute left-0 top-full full bg-white shadow-lg border-t border-gray-100 mt-0 z-50">
-    <div className="flex justify-between px-20 py-10 rounded-b-2xl">
+  <div className="fixed top-35 left-0 w-screen  bg-white shadow-md border-gray-200
+  origin-top transition-transform duration-300 ease-in-out z-50
+  scale-y-100 opacity-100">
+    <div className="max-w-[1420px] mx-auto flex justify-between px-10 py-10 rounded-b-2xl">
       {/* Women */}
       <div className="flex-1 min-w-[180px]">
         <h3 className="font-semibold text-base mb-4">Women</h3>

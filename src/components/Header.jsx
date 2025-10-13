@@ -106,6 +106,8 @@ import SunglassesDropdown from "../innerPages/SunglassesDropdown";
 import ContactDropdown from "../innerPages/ContactsDropdown";
 import LensesDropdown from "../innerPages/LensesDropdown";
 import StoreDropdown from "../innerPages/StoreDropdown";
+import SalesDropdown from "../innerPages/SalesDropdown";
+
 
 const nav = [
   { name: "Eyeglasses" },
@@ -193,6 +195,18 @@ const Header = () => {
                   }
                 >
                   <StoreDropdown />
+                </DropdownMenu>
+              ) : item.name === "Sale" ? (
+                <DropdownMenu
+                  key={item.name}         
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer text-red-600 hover:text-blue-600">
+                      Sale
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <SalesDropdown />
                 </DropdownMenu>
               ) : (
                 <Link

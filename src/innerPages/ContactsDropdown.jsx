@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ContactDropdown = () => (
-  <div className="absolute left-0 top-full bg-white shadow-lg border-t border-gray-100 mt-0 z-50">
+  <div className="fixed top-35 left-0 w-screen  bg-white shadow-md border-gray-200
+  origin-top transition-transform duration-300 ease-in-out z-50
+  scale-y-100 opacity-100">
     <div className="max-w-[1420px] mx-auto flex justify-between px-10 py-10 rounded-b-2xl">
       {/* Lens Types */}
       <div className="flex-1 min-w-[180px]">

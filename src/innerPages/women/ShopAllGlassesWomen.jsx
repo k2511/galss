@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import TopBar from "../../components/TopBar";
 import GuaranteeSection from "../../components/GuaranteeSection ";
 import Footer from "../../components/Footer";
 
@@ -38,8 +36,7 @@ const ShopAllGlassesWomen = () => {
 
   return (
     <div>
-      <TopBar />
-      <Header />
+
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Promo Banner */}
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-4 px-4 flex justify-between items-center mb-8 rounded-lg">

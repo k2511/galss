@@ -56,9 +56,10 @@
 
 
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import TopBar from "./components/TopBar";
@@ -75,49 +76,46 @@ import GlassSection from "./components/GlassSection";
 import CollectionCards from "./components/CollectionCards";
 import TrustpilotSection from "./components/TrustpilotSection";
 import FeaturedAndFilters from "./components/FeaturedAndFilters";
-import GuaranteeSection from "./components/GuaranteeSection ";
-import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen"; 
+import GuaranteeSection from "./components/GuaranteeSection";
+import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
 
 import "./index.css";
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <div className="min-h-screen bg-white">
-          <TopBar />
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <main>
-                    <HeroSection />
-                    <EyewearGallery />
-                    <CategorySection />
-                    <VirtualTryOnSection />
-                    <PopularBrandsSection />
-                    <SummerPicksSection />
-                    <PerfectEyewearSection />
-                    <InsuranceSection />
-                    <FramingYourWorldSection />
-                    <GlassSection />
-                    <CollectionCards />
-                    <TrustpilotSection />
-                    <FeaturedAndFilters />
-                     <GuaranteeSection />
-                  </main>
-                  <Footer />
-                </>
-              }
-            />
-            <Route path="/ShopAllGlassesWomen" element={<ShopAllGlassesWomen />} />
-          </Routes>
-        </div>
-      </Router>
-    </Provider>
+    <div className="min-h-screen bg-white">
+      <TopBar />
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <main>
+                <HeroSection />
+                <EyewearGallery />
+                <CategorySection />
+                <VirtualTryOnSection />
+                <PopularBrandsSection />
+                <SummerPicksSection />
+                <PerfectEyewearSection />
+                <InsuranceSection />
+                <FramingYourWorldSection />
+                <GlassSection />
+                <CollectionCards />
+                <TrustpilotSection />
+                <FeaturedAndFilters />
+                <GuaranteeSection />
+              </main>
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/ShopAllGlassesWomen" element={<ShopAllGlassesWomen />} />
+      </Routes>
+    </div>
   );
 }
 
 export default App;
+

@@ -71,9 +71,9 @@ const PromoBanner = () => {
         </button>
       </div>
 
-      {/* 🖼️ Main Banner - Full width without side gaps for maximum image width */}
+      {/* 🖼️ Main Banner - Full width with small side gaps */}
       <div
-        className="relative flex items-center justify-end bg-cover bg-center h-[380px]"
+        className="relative flex items-center justify-end bg-cover bg-center h-[380px] px-4" // Added px-4 for small left/right gaps
         style={{
           backgroundImage: `url(${BannerImg})`,
         }}
@@ -81,8 +81,8 @@ const PromoBanner = () => {
         {/* Soft overlay */}
         <div className="absolute inset-0 bg-gradient-to-l from-[#f7f2eb]/90 to-transparent"></div>
 
-        {/* Banner text content - Adjusted padding for balance with full width */}
-        <div className="relative text-right pr-20 max-w-xl">
+        {/* Banner text content - Adjusted padding for balance */}
+        <div className="relative text-right pr-16 max-w-xl"> {/* Reduced pr-20 to pr-16 for better fit with side gaps */}
           <p className="text-xl font-medium text-gray-800">Styles to Fall for</p>
           <h1 className="text-6xl font-bold text-gray-900 mt-2">30% Off</h1>
           <p className="text-lg text-gray-700 mt-3">+ Free Shipping</p>
@@ -92,8 +92,8 @@ const PromoBanner = () => {
         </div>
       </div>
 
-      {/* 📦 Bottom Info Bar - Kept small gaps for readability */}
-      <div className="bg-gray-800 text-white flex flex-wrap justify-center items-center gap-8 py-4 text-sm font-medium px-4">
+      {/* 📦 Bottom Info Bar */}
+      <div className="bg-gray-800 text-white flex flex-wrap justify-center items-center gap-8 py-4 text-sm font-medium px-4"> {/* Added px-4 for consistent side gaps */}
         <div className="flex items-center gap-2">
           <Truck size={18} /> Free Shipping
         </div>

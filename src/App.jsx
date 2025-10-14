@@ -1,4 +1,5 @@
 import React from "react";
+// import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { Routes, Route } from "react-router-dom"; // Removed BrowserRouter import
@@ -18,7 +19,9 @@ import GlassSection from "./components/GlassSection";
 import CollectionCards from "./components/CollectionCards";
 import TrustpilotSection from "./components/TrustpilotSection";
 import FeaturedAndFilters from "./components/FeaturedAndFilters";
+
 import GuaranteeSection from "./components/GuaranteeSection "; // Make sure this path is correct
+
 import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
 
 import "./index.css";
@@ -61,23 +64,5 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -12,7 +12,7 @@ const EyeglassesDropdown = () => (
       <div className="flex-1 min-w-[180px]">
         <h3 className="font-semibold text-base mb-4">Women</h3>
         <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-          <li><Link to="#">Shop All Eyeglasses</Link></li>
+          <li><Link to="/ShopAllGlassesWomen">Shop All Eyeglasses</Link></li>
           <li><Link to="#">Best Sellers</Link></li>
           <li><Link to="#">Designer Eyeglasses</Link></li>
           <li><Link to="#">On Sale</Link></li>

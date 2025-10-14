@@ -1,117 +1,288 @@
-import React, { useState, useEffect } from "react";
+// import React from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { Search, User, ShoppingBag, Menu, Heart, ChevronDown } from 'lucide-react';
+// import { toggleLoginModal } from '../features/user/userSlice';
+// import { toggleCart } from '../features/cart/cartSlice';
+// import { Link } from 'react-router-dom';
+// import logo from '../assets/img/logo.svg';
+// import DropdownMenu from '../components/DropdownMenu';
+// import EyeglassesDropdown from '../innerPages/EyeglassesDropdown';
+
+// const nav = [
+//   { name: "Eyeglasses" },
+//   { name: "Sunglasses" },
+//   { name: "Brands" },
+//   { name: "Contacts" },
+//   { name: "Lenses" },
+//   { name: "Stores" },
+//   { name: "Sale" }
+// ];
+
+// const Header = () => {
+//   const dispatch = useDispatch();
+//   const { totalQuantity } = useSelector((state) => state.cart);
+
+//   return (
+//     <>
+//       {/* Desktop Header */}
+//       <header className="w-full bg-white border-b shadow-sm px-0 py-0 hidden md:flex relative z-50">
+//         <div className="max-w-[1420px] mx-auto w-full flex items-center justify-between h-[62px] px-8">
+//           <Link to="/">
+//             <img src={logo} alt="logo" className="h-7 min-w-[150px] mr-8" />
+//           </Link>
+//           <nav className="flex flex-1 items-center space-x-5 relative">
+//             {nav.map((item) => (
+//               item.name === "Eyeglasses" ? (
+//                 <DropdownMenu
+//                   key={item.name}
+//                   trigger={
+//                     <>
+//                       <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">Eyeglasses<ChevronDown size={16} className="ml-1" /></span>
+//                     </>
+//                   }
+//                 >
+//                   <EyeglassesDropdown />
+//                 </DropdownMenu>
+//               ) : (
+//                 <Link
+//                   key={item.name}
+//                   to={/${item.name.toLowerCase()}}
+//                   className={text-base font-normal ${item.name === "Sale" ? "text-red-600" : "text-black"} hover:text-blue-600}
+//                 >
+//                   {item.name}
+//                 </Link>
+//               )
+//             ))}
+//           </nav>
+//           {/* ... your icons, search, etc ... */}
+//           <div className="flex items-center min-w-0 space-x-3">
+//             <div className="flex items-center bg-gray-100 rounded-[24px] px-5 py-2 w-[300px] max-w-[330px]">
+//               <Search size={20} className="text-gray-400 mr-2" />
+//               <input type="text" placeholder="I'm Searching For..." className="bg-transparent outline-none w-full text-base" />
+//             </div>
+//             <button className="p-2 hover:bg-gray-100 rounded-lg">
+//               <Heart size={20} className="text-gray-600" />
+//             </button>
+//             <button onClick={() => dispatch(toggleCart())} className="relative p-2 hover:bg-gray-100 rounded-lg">
+//               <ShoppingBag size={20} className="text-gray-600" />
+//               {totalQuantity > 0 && (
+//                 <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">{totalQuantity}</span>
+//               )}
+//             </button>
+//             <span className="mx-3 h-7 w-px bg-gray-200" />
+//             <button onClick={() => dispatch(toggleLoginModal())} className="flex items-center p-1 hover:bg-gray-100 rounded-lg">
+//               <User size={21} className="text-gray-700" />
+//               <span className="ml-2 text-base text-black">Hi, Kshitij</span>
+//             </button>
+//           </div>
+//         </div>
+//       </header>
+//       {/* Your mobile header (unchanged) */}
+//     </>
+//   );
+// };
+
+// export default Header;
+
+
+
+
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
-  Truck,
-  RotateCcw,
-  ShieldCheck,
-  CreditCard,
-  ChevronLeft,
-  ChevronRight,
+  Search,
+  User,
+  ShoppingBag,
+  Heart,
+  ChevronDown,
 } from "lucide-react";
+import { toggleLoginModal } from "../features/user/userSlice";
+import { toggleCart } from "../features/cart/cartSlice";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/logo.svg";
+import DropdownMenu from "../components/DropdownMenu";
+import EyeglassesDropdown from "../innerPages/EyeglassesDropdown";
+import SunglassesDropdown from "../innerPages/SunglassesDropdown";
+import ContactDropdown from "../innerPages/ContactsDropdown";
+import LensesDropdown from "../innerPages/LensesDropdown";
+import StoreDropdown from "../innerPages/StoreDropdown";
+import BrandsDropdown from "../innerPages/BrandsDropdown"
+import SalesDropdown from "../innerPages/SalesDropdown";
 
-// ✅ Replace this image with your uploaded one (place in /src/assets/Hero/)
-import BannerImg from "../assets/Hero/Hero1.jpg"; // rename your uploaded file to bannerimg.png
 
-const PromoBanner = () => {
-  // 🔁 Top bar messages
-  const offers = [
-    {
-      title: "Save 30% Off Frames",
-      code: "SAVE30",
-      details: "More Details",
-    },
-    {
-      title: "Buy One Get One Free",
-      code: "BOGFREE",
-      details: "More Details",
-    },
-  ];
+const nav = [
+  { name: "Eyeglasses" },
+  { name: "Sunglasses" },
+  { name: "Brands" },
+  { name: "Contacts" },
+  { name: "Lenses" },
+  { name: "Stores" },
+  { name: "Sale" },
+];
 
-  const [index, setIndex] = useState(0);
-
-  const handlePrev = () =>
-    setIndex((prev) => (prev === 0 ? offers.length - 1 : prev - 1));
-  const handleNext = () =>
-    setIndex((prev) => (prev === offers.length - 1 ? 0 : prev + 1));
-
-  // ⏱ Auto slide every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % offers.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [offers.length]);
+const Header = () => {
+  const dispatch = useDispatch();
+  const { totalQuantity } = useSelector((state) => state.cart);
 
   return (
-    <div className="w-full">
-      {/* 🔝 Top Offer Bar with slider */}
-      <div className="bg-[#000B2A] w-full text-white text-center text-sm py-2 font-medium flex items-center justify-center gap-3 relative overflow-hidden">
-        {/* Left arrow */}
-        <button
-          onClick={handlePrev}
-          className="absolute left-3 hover:text-gray-300 transition-colors"
-        >
-          <ChevronLeft size={18} />
-        </button>
+    <>
+      {/* Desktop Header */}
+      <header className="w-full bg-white border-b shadow-sm hidden md:flex relative z-50">
+        <div className="max-w-[1420px] mx-auto w-full flex items-center justify-between h-[62px] px-8">
+          {/* Logo */}
+          <Link to="/">
+            <img src={logo} alt="logo" className="h-7 min-w-[150px] mr-8" />
+          </Link>
 
-        {/* Offer text */}
-        <div className="transition-all duration-500 ease-in-out">
-          {offers[index].title} &nbsp; | &nbsp; Code:{" "}
-          <span className="font-bold">{offers[index].code}</span> &nbsp; | &nbsp;
-          <a href="#" className="underline">
-            {offers[index].details}
-          </a>
-        </div>
+          {/* Navigation */}
+          <nav className="flex flex-1 space-x-5 relative">
+            {nav.map((item) =>
+              item.name === "Eyeglasses" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Eyeglasses
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <EyeglassesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Sunglasses" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Sunglasses
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <SunglassesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Brands" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Brands
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <BrandsDropdown />
+                </DropdownMenu>
+              ) : item.name === "Contacts" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Contacts
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <ContactDropdown />
+                </DropdownMenu>
+              ) : item.name === "Lenses" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Lenses
+                      <ChevronDown size={16} className="ml-1" />      
+                    </span>
+                  }
+                >
+                  <LensesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Stores" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                      Stores
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <StoreDropdown />
+                </DropdownMenu>
+              ) : item.name === "Sale" ? (
+                <DropdownMenu
+                  key={item.name}         
+                  trigger={
+                    <span className="flex items-center text-base font-normal cursor-pointer text-red-600 hover:text-blue-600">
+                      Sale
+                      <ChevronDown size={16} className="ml-1" />
+                    </span>
+                  }
+                >
+                  <SalesDropdown />
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={`/${item.name.toLowerCase()}`}
+                  className={`text-base font-normal ${
+                    item.name === "Sale"
+                      ? "text-red-600"
+                      : "text-black hover:text-blue-600"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
+          </nav>
 
-        {/* Right arrow */}
-        <button
-          onClick={handleNext}
-          className="absolute right-3 hover:text-gray-300 transition-colors"
-        >
-          <ChevronRight size={18} />
-        </button>
-      </div>
+          {/* Right Icons (Search, Wishlist, Cart, User) */}
+          <div className="flex  space-x-3">
+            {/* Search Bar */}
+            <div className="flex items-center bg-gray-100 rounded-[24px] px-5 py-2 w-[300px] max-w-[330px]">
+              <Search size={20} className="text-gray-400 mr-2" />
+              <input
+                type="text"
+                placeholder="I'm Searching For..."
+                className="bg-transparent outline-none w-full text-base"
+              />
+            </div>
 
-      {/* 🖼️ Main Banner - Full width without side gaps for maximum image width */}
-      <div
-        className="relative flex items-center justify-end bg-cover bg-center h-[380px]"
-        style={{
-          backgroundImage: `url(${BannerImg})`,
-        }}
-      >
-        {/* Soft overlay */}
-        <div className="absolute inset-0 bg-gradient-to-l from-[#f7f2eb]/90 to-transparent"></div>
+            {/* Wishlist */}
+            <button className="p-2 hover:bg-gray-100 rounded-lg">
+              <Heart size={20} className="text-gray-600" />
+            </button>
 
-        {/* Banner text content - Adjusted padding for balance with full width */}
-        <div className="relative text-right pr-20 max-w-xl">
-          <p className="text-xl font-medium text-gray-800">Styles to Fall for</p>
-          <h1 className="text-6xl font-bold text-gray-900 mt-2">30% Off</h1>
-          <p className="text-lg text-gray-700 mt-3">+ Free Shipping</p>
-          <p className="text-sm text-gray-500 mt-2">
-            Available with <span className="font-semibold">Transitions</span>
-          </p>
-        </div>
-      </div>
+            {/* Cart */}
+            <button
+              onClick={() => dispatch(toggleCart())}
+              className="relative p-2 hover:bg-gray-100 rounded-lg"
+            >
+              <ShoppingBag size={20} className="text-gray-600" />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {totalQuantity}
+                </span>
+              )}
+            </button>
 
-      {/* 📦 Bottom Info Bar - Kept small gaps for readability */}
-      <div className="bg-gray-800 text-white flex flex-wrap justify-center items-center gap-8 py-4 text-sm font-medium px-4">
-        <div className="flex items-center gap-2">
-          <Truck size={18} /> Free Shipping
+            {/* Divider */}
+            <span className="mx-3 h-7 w-px bg-gray-200" />
+
+            {/* User/Login */}
+            <button
+              onClick={() => dispatch(toggleLoginModal())}
+              className="flex items-center p-1 hover:bg-gray-100 rounded-lg"
+            >
+              <User size={21} className="text-gray-700" />
+              <span className="ml-2 text-base text-black">Hi, Kshitij</span>
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <RotateCcw size={18} /> 45-Days Free Returns
-        </div>
-        <div className="flex items-center gap-2">
-          <ShieldCheck size={18} /> 365-Days of Warranty
-        </div>
-        <div className="flex items-center gap-2">
-          <CreditCard size={18} /> Buy now pay later
-        </div>
-        <div className="flex items-center gap-1 text-green-400">
-          ★★★★★ <span className="text-white">110,923+</span>
-        </div>
-      </div>
-    </div>
+      </header>
+    </>
   );
 };
 
-export default PromoBanner;
+export default Header;

@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import TopBar from "../../components/TopBar";
 import GuaranteeSection from "../../components/GuaranteeSection ";
 import Footer from "../../components/Footer";
+import PromoBanner from "../../components/PromoBanner";
 
 const ShopAllGlassesWomen = () => {
   const products = [
@@ -38,15 +37,12 @@ const ShopAllGlassesWomen = () => {
 
   return (
     <div>
-      <TopBar />
-      <Header />
+
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Promo Banner */}
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-4 px-4 flex justify-between items-center mb-8 rounded-lg">
-          <div className="flex items-center space-x-4">
-            <span className="text-2xl font-bold">30% Off</span>
-            <span className="text-lg">Frames + Free Shipping</span>
-            <span className="text-sm">with Try-On</span>
+        <div className=" text-white py-4 px-4 flex justify-between items-center mb-2 rounded-lg">
+          <div className="">
+            <PromoBanner/>
           </div>
           <Link to="#" className="text-sm underline hover:no-underline">Shop Now</Link>
         </div>

@@ -123,26 +123,36 @@
 //   const brandLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 //   const products = [
-//     { id: 1, name: "Ray-Ban RX5228", image: img1, price: "$222", nextDay: true, premium: true},
-//     { id: 2, name: "Amelia E. Imani", color: "Black", image: "2", price: "$53", sale: true },
-//     { id: 3, name: "Amelia E. Nettle", color: "Tortoise", image: "3", price: "$88" },
-//     { id: 4, name: "Muse C", color: "Blue", image: "https://via.placeholder.com/250x250/000080/FFFFFF?text=Muse+C", price: "$79" },
-//     { id: 5, name: "Maureen K", color: "Pink", image: "https://via.placeholder.com/250x250/FF69B4/FFFFFF?text=Maureen+K", price: "$85" },
-//     { id: 6, name: "Otto B", color: "Brown", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Otto+B", price: "$92" },
-//     { id: 7, name: "Areli L", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Areli+L", price: "$89" },
-//     { id: 8, name: "Marcela P", color: "White", image: "https://via.placeholder.com/250x250/FFFFFF/000000?text=Marcela+P", price: "$95" },
-//     { id: 9, name: "Hugo P", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Hugo+P", price: "$88" },
-//     { id: 10, name: "Areli V", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Areli+V", price: "$89" },
-//     { id: 11, name: "Otto S", color: "Clear", image: "https://via.placeholder.com/250x250/FFFFFF/000000?text=Otto+S", price: "$92" },
-//     { id: 12, name: "Areli EU", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Areli+EU", price: "$89" },
-//     { id: 13, name: "Aretha C", color: "Gray", image: "https://via.placeholder.com/250x250/A9A9A9/FFFFFF?text=Aretha+C", price: "$98" },
-//     { id: 14, name: "Areli P", color: "Purple", image: "https://via.placeholder.com/250x250/9932CC/FFFFFF?text=Areli+P", price: "$89" },
-//     { id: 15, name: "Otto T", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Otto+T", price: "$92" },
-//     { id: 16, name: "Muse A", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Muse+A", price: "$79" },
-//     { id: 17, name: "Lynna", color: "Blue", image: "https://via.placeholder.com/250x250/0000FF/FFFFFF?text=Lynna", price: "$95" },
-//     { id: 18, name: "Otava W", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Otava+W", price: "$98" },
-//     { id: 19, name: "Muse Arizona", color: "Brown", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Muse+Arizona", price: "$79" },
-//     { id: 20, name: "Anika K", color: "Blue", image: "https://via.placeholder.com/250x250/0000CD/FFFFFF?text=Anika+K", price: "$102" }
+//     { 
+//       id: 1, 
+//       name: "Muse Decade", 
+//       originalPrice: null,
+//       salePrice: 39,
+//       image: "https://via.placeholder.com/250x250/transparent/white?text=Muse+Decade",
+//       colors: 3,
+//       isSale: true,
+//       isPremium: false
+//     },
+//     { 
+//       id: 2, 
+//       name: "Muse Eloquence", 
+//       originalPrice: null,
+//       salePrice: 98,
+//       image: "https://via.placeholder.com/250x250/transparent/white?text=Muse+Eloquence",
+//       colors: 4,
+//       isSale: false,
+//       isPremium: true
+//     },
+//     { 
+//       id: 3, 
+//       name: "Michael Kors MK4067 Sant.", 
+//       originalPrice: 272,
+//       salePrice: 47,
+//       image: "https://via.placeholder.com/250x250/transparent/white?text=MK4067+Sant.",
+//       colors: 2,
+//       isSale: true,
+//       isPremium: false
+//     }
 //   ];
 
 //   const toggleFilter = (filter) => {
@@ -171,7 +181,7 @@
 //         {filterKey === 'shape' && (
 //           <>
 //             <div className="mb-6">
-//               {/* <h4 className="font-semibold mb-4 text-gray-700">Frame Shape</h4> */}
+//               <h4 className="font-semibold mb-4 text-gray-700">Frame Shape</h4>
 //               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
 //                 {data.options.map((opt, i) => (
 //                   <button 
@@ -423,6 +433,122 @@
 //           cursor: pointer;
 //           border: none;
 //         }
+
+//         .sale-badge {
+//           position: absolute;
+//           top: 8px;
+//           left: 8px;
+//           background: #ef4444;
+//           color: white;
+//           padding: 4px 8px;
+//           border-radius: 4px;
+//           font-size: 12px;
+//           font-weight: bold;
+//         }
+
+//         .premium-badge {
+//           position: absolute;
+//           top: 8px;
+//           right: 8px;
+//           background: #fbbf24;
+//           color: #000;
+//           padding: 4px 8px;
+//           border-radius: 4px;
+//           font-size: 12px;
+//           font-weight: bold;
+//         }
+
+//         .heart-icon {
+//           position: absolute;
+//           top: 8px;
+//           right: 8px;
+//           background: white;
+//           border-radius: 50%;
+//           width: 32px;
+//           height: 32px;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           opacity: 0;
+//           transition: opacity 0.3s;
+//           cursor: pointer;
+//         }
+
+//         .product-card:hover .heart-icon {
+//           opacity: 1;
+//         }
+
+//         .color-swatches {
+//           display: flex;
+//           gap: 4px;
+//           margin: 8px 0;
+//         }
+
+//         .color-swatch {
+//           width: 20px;
+//           height: 20px;
+//           border-radius: 50%;
+//           border: 1px solid #ddd;
+//           cursor: pointer;
+//         }
+
+//         .delivery-badge {
+//           background: #10b981;
+//           color: white;
+//           padding: 2px 6px;
+//           border-radius: 4px;
+//           font-size: 12px;
+//           margin-right: 8px;
+//         }
+
+//         .price-sale {
+//           display: flex;
+//           align-items: baseline;
+//           gap: 8px;
+//         }
+
+//         .original-price {
+//           text-decoration: line-through;
+//           color: #9ca3af;
+//           font-size: 14px;
+//         }
+
+//         .sale-price {
+//           font-size: 18px;
+//           font-weight: bold;
+//           color: #ef4444;
+//         }
+
+//         .regular-price {
+//           font-size: 18px;
+//           font-weight: bold;
+//           color: #000;
+//         }
+
+//         .action-buttons {
+//           display: none;
+//           gap: 8px;
+//           margin-top: 8px;
+//         }
+
+//         .product-card:hover .action-buttons {
+//           display: flex;
+//         }
+
+//         .action-btn {
+//           flex: 1;
+//           padding: 6px 12px;
+//           border: 1px solid #d1d5db;
+//           background: white;
+//           border-radius: 6px;
+//           font-size: 12px;
+//           cursor: pointer;
+//           transition: background 0.3s;
+//         }
+
+//         .action-btn:hover {
+//           background: #f3f4f6;
+//         }
 //       `}</style>
 
 //       {/* PromoBanner */}
@@ -463,7 +589,7 @@
 //               </button>
 //             ))}
 //           </div>
-          
+        
 //           {activeFilter && (
 //             <div className="w-full mb-4 border-t border-gray-200 pt-4 bg-white rounded-md p-4 shadow-inner">
 //               <FilterDropdown 
@@ -473,7 +599,7 @@
 //               />
 //             </div>
 //           )}
-          
+        
 //           <div className={`flex items-center gap-4 text-sm ${activeFilter ? 'justify-end mt-4 pt-2 border-t border-gray-200' : ''}`}>
 //             <button className="flex items-center gap-1 text-gray-700 hover:text-gray-900">
 //               Most Relevant <ChevronDown size={14} />
@@ -485,58 +611,43 @@
 //           </div>
 //         </div>
 
+//         {/* Title */}
+//         <h1 className="text-3xl font-bold text-gray-900 mb-6">Women's Eyeglasses (374)</h1>
 
-//       {/* Products Grid */}
-//          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-6 mb-12">
-//            {products.map((product) => (
-//             <div key={product.id} className="relative border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all group">
-              
-//               {/* Top-left badges */}
-//               {product.top10 && (
-//                 <div className="absolute top-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded">
-//                   Top 10
-//                 </div>
-//               )}
-//               {product.sale && (
-//                 <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-//                   Sale
-//                 </div>
-//               )}
-
-//               {/* Bottom-left badge for Premium */}
-//               {product.premium && (
-//                 <div className="relative bottom-2 left-2 top-3 bg-yellow-400 text-black text-xs font-semibold px-6 py-4 rounded">
-//                   Premium
-//                 </div>
-//               )}
-
-//               <div className="relative bg-gray-100">
-//                 <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
-//                 <button className="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
-//                   ❤️
-//                 </button>
+//         {/* Products Grid */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+//           {products.map((product) => (
+//             <div key={product.id} className="product-card border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative">
+//               <div className="relative bg-gray-100 p-4">
+//                 <img src={product.image} alt={product.name} className="w-full h-48 object-cover mx-auto" />
+//                 {product.isSale && <div className="sale-badge">Sale</div>}
+//                 {product.isPremium && <div className="premium-badge">Premium</div>}
+//                 <div className="heart-icon">❤️</div>
 //               </div>
-
-//               <div className="p-4 bg-white">
-//                 <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-1">{product.name}</h3>
-//                 <p className="text-xs text-gray-500 mb-2">{product.color}</p>
-
-//                 <div className="flex justify-between items-center mb-3">
-//                   <div className="flex items-center gap-2">
-//                     {product.oldPrice && (
-//                       <span className="text-sm text-gray-400 line-through">{product.oldPrice}</span>
-//                     )}
-//                     <span className="text-lg font-semibold text-gray-900">{product.price}</span>
-//                   </div>
-
-//                   {product.nextDay && (
-//                     <span className="text-xs text-green-600 font-medium">Next-Day Delivery</span>
-//                   )}
+//               <div className="p-4">
+//                 <div className="flex items-center justify-between mb-2">
+//                   <span className="text-xs text-gray-500">{product.colors} colors</span>
+//                   <span className="delivery-badge">Next-Day Delivery</span>
 //                 </div>
-
-//                 <button className="w-full bg-blue-600 text-white py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
-//                   Add to Cart
-//                 </button>
+//                 <h3 className="text-sm font-medium text-gray-900 mb-2">{product.name}</h3>
+//                 <div className="price-sale mb-3">
+//                   {product.originalPrice && (
+//                     <span className="original-price">${product.originalPrice}</span>
+//                   )}
+//                   <span className={product.originalPrice ? 'sale-price' : 'regular-price'}>
+//                     ${product.salePrice}
+//                   </span>
+//                   <span className="text-xs text-gray-500">including lenses</span>
+//                 </div>
+//                 <div className="color-swatches">
+//                   <div className="color-swatch" style={{ backgroundColor: '#8B4513' }}></div>
+//                   <div className="color-swatch" style={{ backgroundColor: '#000000' }}></div>
+//                   <div className="color-swatch" style={{ backgroundColor: '#FFC0CB' }}></div>
+//                 </div>
+//                 <div className="action-buttons">
+//                   <button className="action-btn">Similar Frames</button>
+//                   <button className="action-btn">Live Try On</button>
+//                 </div>
 //               </div>
 //             </div>
 //           ))}
@@ -559,16 +670,200 @@
 
 
 
+//******************************************************************* */
+//************************* API USES***********************************/
+//******************************************************************* */
+
+
+// import React, { useState, useEffect } from "react";
+// import { ChevronDown, X } from "lucide-react";
+// import PromoBanner from "../../components/PromoBanner";
+// import Footer from "../../components/Footer";
+// import axios from "axios";
+
+// const ShopAllGlassesWomen = () => {
+//   const [activeFilter, setActiveFilter] = useState(null);
+//   const [selectedBrandLetter, setSelectedBrandLetter] = useState(null);
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   const topTabs = [
+//     "Designer Glasses",
+//     "Rx Sunglasses",
+//     "On Sale",
+//     "Bestsellers",
+//     "RayBan",
+//   ];
+
+//   const toggleFilter = (filter) => {
+//     setActiveFilter(activeFilter === filter ? null : filter);
+//     setSelectedBrandLetter(null);
+//   };
+
+//   // ✅ Fetching glasses data from a public API
+//   useEffect(() => {
+//     const fetchProducts = async () => {
+//       try {
+//         // 👇 Replace this API with your real backend if available
+//         const response = await axios.get(
+//           "https://dummyjson.com/products/category/sunglasses"
+//         );
+
+//         // Transform API response for your UI
+//         const transformed = response.data.products.map((item) => ({
+//           id: item.id,
+//           name: item.title,
+//           image: item.thumbnail,
+//           salePrice: item.price,
+//           originalPrice: item.discountPercentage
+//             ? Math.round(item.price * (1 + item.discountPercentage / 100))
+//             : null,
+//           colors: Math.floor(Math.random() * 5) + 1,
+//           isSale: Math.random() > 0.5,
+//           isPremium: Math.random() > 0.7,
+//         }));
+
+//         setProducts(transformed);
+//       } catch (error) {
+//         console.error("Error fetching glasses:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchProducts();
+//   }, []);
+
+//   return (
+//     <div className="bg-white min-h-screen">
+//       {/* Promo Banner */}
+//       <PromoBanner />
+
+//       <div className="max-w-7xl mx-auto px-4 py-8">
+//         {/* Top Tabs */}
+//         <div className="flex flex-wrap gap-3 mb-6">
+//           {topTabs.map((tab, i) => (
+//             <button
+//               key={i}
+//               className="border border-gray-200 rounded-full px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+//             >
+//               {tab}
+//             </button>
+//           ))}
+//         </div>
+
+//         {/* Title */}
+//         <h1 className="text-3xl font-bold text-gray-900 mb-6">
+//           Women's Eyeglasses
+//         </h1>
+
+//         {/* Loader */}
+//         {loading && (
+//           <div className="text-center py-20 text-gray-500 text-lg">
+//             Loading glasses...
+//           </div>
+//         )}
+
+//         {/* Products Grid */}
+//         {!loading && (
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+//             {products.map((product) => (
+//               <div
+//                 key={product.id}
+//                 className="product-card border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative"
+//               >
+//                 <div className="relative bg-gray-100 p-4">
+//                   <img
+//                     src={product.image}
+//                     alt={product.name}
+//                     className="w-full h-48 object-cover mx-auto"
+//                   />
+//                   {product.isSale && (
+//                     <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+//                       SALE
+//                     </div>
+//                   )}
+//                   {product.isPremium && (
+//                     <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">
+//                       PREMIUM
+//                     </div>
+//                   )}
+//                 </div>
+
+//                 <div className="p-4">
+//                   <div className="flex items-center justify-between mb-2">
+//                     <span className="text-xs text-gray-500">
+//                       {product.colors} colors
+//                     </span>
+//                     <span className="bg-green-500 text-white px-2 py-1 rounded text-xs">
+//                       Next-Day Delivery
+//                     </span>
+//                   </div>
+
+//                   <h3 className="text-sm font-medium text-gray-900 mb-2">
+//                     {product.name}
+//                   </h3>
+
+//                   <div className="flex items-baseline gap-2 mb-2">
+//                     {product.originalPrice && (
+//                       <span className="line-through text-gray-400 text-sm">
+//                         ${product.originalPrice}
+//                       </span>
+//                     )}
+//                     <span className="text-red-500 font-semibold text-lg">
+//                       ${product.salePrice}
+//                     </span>
+//                   </div>
+
+//                   <p className="text-xs text-gray-500 mb-2">
+//                     including lenses
+//                   </p>
+
+//                   {/* Action Buttons */}
+//                   <div className="flex gap-2 mt-2">
+//                     <button className="flex-1 border border-gray-300 rounded-md py-2 text-xs hover:bg-gray-100">
+//                       Similar Frames
+//                     </button>
+//                     <button className="flex-1 border border-gray-300 rounded-md py-2 text-xs hover:bg-gray-100">
+//                       Live Try On
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         )}
+
+//         {/* Load More */}
+//         {!loading && (
+//           <div className="text-center mb-12">
+//             <button className="bg-blue-600 text-white px-10 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">
+//               Showing {products.length} of {products.length} - View More
+//             </button>
+//           </div>
+//         )}
+//       </div>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default ShopAllGlassesWomen;
 
 
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { ChevronDown, X } from "lucide-react";
 
 const ShopAllGlassesWomen = () => {
   const [activeFilter, setActiveFilter] = useState(null);
   const [selectedBrandLetter, setSelectedBrandLetter] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const topTabs = ["Designer Glasses", "Rx Sunglasses", "On Sale", "Bestsellers", "RayBan"];
 
@@ -806,28 +1101,39 @@ const ShopAllGlassesWomen = () => {
 
   const brandLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-  const products = [
-    { id: 1, name: "Ray-Ban RX5228", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Ray-Ban", price: "$222", nextDay: true, premium: true },
-    { id: 2, name: "Amelia E. Imani", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Amelia+E.+Imani", price: "$53", sale: true },
-    { id: 3, name: "Amelia E. Nettle", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Amelia+E.+Nettle", price: "$88" },
-    { id: 4, name: "Muse C", color: "Blue", image: "https://via.placeholder.com/250x250/000080/FFFFFF?text=Muse+C", price: "$79" },
-    { id: 5, name: "Maureen K", color: "Pink", image: "https://via.placeholder.com/250x250/FF69B4/FFFFFF?text=Maureen+K", price: "$85" },
-    { id: 6, name: "Otto B", color: "Brown", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Otto+B", price: "$92" },
-    { id: 7, name: "Areli L", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Areli+L", price: "$89" },
-    { id: 8, name: "Marcela P", color: "White", image: "https://via.placeholder.com/250x250/FFFFFF/000000?text=Marcela+P", price: "$95" },
-    { id: 9, name: "Hugo P", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Hugo+P", price: "$88" },
-    { id: 10, name: "Areli V", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Areli+V", price: "$89" },
-    { id: 11, name: "Otto S", color: "Clear", image: "https://via.placeholder.com/250x250/FFFFFF/000000?text=Otto+S", price: "$92" },
-    { id: 12, name: "Areli EU", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Areli+EU", price: "$89" },
-    { id: 13, name: "Aretha C", color: "Gray", image: "https://via.placeholder.com/250x250/A9A9A9/FFFFFF?text=Aretha+C", price: "$98" },
-    { id: 14, name: "Areli P", color: "Purple", image: "https://via.placeholder.com/250x250/9932CC/FFFFFF?text=Areli+P", price: "$89" },
-    { id: 15, name: "Otto T", color: "Black", image: "https://via.placeholder.com/250x250/000000/FFFFFF?text=Otto+T", price: "$92" },
-    { id: 16, name: "Muse A", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Muse+A", price: "$79" },
-    { id: 17, name: "Lynna", color: "Blue", image: "https://via.placeholder.com/250x250/0000FF/FFFFFF?text=Lynna", price: "$95" },
-    { id: 18, name: "Otava W", color: "Tortoise", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Otava+W", price: "$98" },
-    { id: 19, name: "Muse Arizona", color: "Brown", image: "https://via.placeholder.com/250x250/8B4513/FFFFFF?text=Muse+Arizona", price: "$79" },
-    { id: 20, name: "Anika K", color: "Blue", image: "https://via.placeholder.com/250x250/0000CD/FFFFFF?text=Anika+K", price: "$102" }
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          "https://dummyjson.com/products/category/sunglasses"
+        );
+
+        const transformed = response.data.products.map((item) => {
+          const discount = item.discountPercentage || 0;
+          const original = discount > 0 ? Math.round(item.price / (1 - discount / 100)) : null;
+          return {
+            id: item.id,
+            name: item.title,
+            image: item.thumbnail,
+            salePrice: item.price,
+            originalPrice: original,
+            colors: Math.floor(Math.random() * 5) + 1,
+            isSale: discount > 0,
+            isPremium: Math.random() > 0.7,
+          };
+        });
+
+        setProducts(transformed);
+        setTotalProducts(response.data.total);
+      } catch (error) {
+        console.error("Error fetching glasses:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const toggleFilter = (filter) => {
     setActiveFilter(activeFilter === filter ? null : filter);
@@ -1110,6 +1416,122 @@ const ShopAllGlassesWomen = () => {
           cursor: pointer;
           border: none;
         }
+
+        .sale-badge {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          background: #ef4444;
+          color: white;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        .premium-badge {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background: #fbbf24;
+          color: #000;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        .heart-icon {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background: white;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s;
+          cursor: pointer;
+        }
+
+        .product-card:hover .heart-icon {
+          opacity: 1;
+        }
+
+        .color-swatches {
+          display: flex;
+          gap: 4px;
+          margin: 8px 0;
+        }
+
+        .color-swatch {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 1px solid #ddd;
+          cursor: pointer;
+        }
+
+        .delivery-badge {
+          background: #10b981;
+          color: white;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-size: 12px;
+          margin-right: 8px;
+        }
+
+        .price-sale {
+          display: flex;
+          align-items: baseline;
+          gap: 8px;
+        }
+
+        .original-price {
+          text-decoration: line-through;
+          color: #9ca3af;
+          font-size: 14px;
+        }
+
+        .sale-price {
+          font-size: 18px;
+          font-weight: bold;
+          color: #ef4444;
+        }
+
+        .regular-price {
+          font-size: 18px;
+          font-weight: bold;
+          color: #000;
+        }
+
+        .action-buttons {
+          display: none;
+          gap: 8px;
+          margin-top: 8px;
+        }
+
+        .product-card:hover .action-buttons {
+          display: flex;
+        }
+
+        .action-btn {
+          flex: 1;
+          padding: 6px 12px;
+          border: 1px solid #d1d5db;
+          background: white;
+          border-radius: 6px;
+          font-size: 12px;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+
+        .action-btn:hover {
+          background: #f3f4f6;
+        }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -1145,7 +1567,7 @@ const ShopAllGlassesWomen = () => {
               </button>
             ))}
           </div>
-          
+        
           {activeFilter && (
             <div className="w-full mb-4 border-t border-gray-200 pt-4 bg-white rounded-md p-4 shadow-inner">
               <FilterDropdown 
@@ -1155,7 +1577,7 @@ const ShopAllGlassesWomen = () => {
               />
             </div>
           )}
-          
+        
           <div className={`flex items-center gap-4 text-sm ${activeFilter ? 'justify-end mt-4 pt-2 border-t border-gray-200' : ''}`}>
             <button className="flex items-center gap-1 text-gray-700 hover:text-gray-900">
               Most Relevant <ChevronDown size={14} />
@@ -1167,61 +1589,55 @@ const ShopAllGlassesWomen = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-6 mb-12">
-          {products.map((product) => (
-            <div key={product.id} className="relative border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all group">
-              
-              {product.top10 && (
-                <div className="absolute top-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded z-10">
-                  Top 10
-                </div>
-              )}
-              {product.sale && (
-                <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded z-10">
-                  Sale
-                </div>
-              )}
+        {/* Title */}
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">Women's Eyeglasses ({totalProducts})</h1>
 
-              <div className="relative bg-gray-100">
-                {product.premium && (
-                  <div className="absolute bottom-2 left-2 bg-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded z-10">
-                    Premium
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {loading ? (
+            <div className="col-span-full text-center py-8 text-gray-500">Loading products...</div>
+          ) : (
+            products.map((product) => (
+              <div key={product.id} className="product-card border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative">
+                <div className="relative bg-gray-100 p-4">
+                  <img src={product.image} alt={product.name} className="w-full h-48 object-cover mx-auto" />
+                  {product.isSale && <div className="sale-badge">Sale</div>}
+                  {product.isPremium && <div className="premium-badge">Premium</div>}
+                  <div className="heart-icon">❤️</div>
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-gray-500">{product.colors} colors</span>
+                    <span className="delivery-badge">Next-Day Delivery</span>
                   </div>
-                )}
-                <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
-                <button className="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
-                  ❤️
-                </button>
-              </div>
-
-              <div className="p-4 bg-white">
-                <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-1">{product.name}</h3>
-                <p className="text-xs text-gray-500 mb-2">{product.color}</p>
-
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center gap-2">
-                    {product.oldPrice && (
-                      <span className="text-sm text-gray-400 line-through">{product.oldPrice}</span>
+                  <h3 className="text-sm font-medium text-gray-900 mb-2">{product.name}</h3>
+                  <div className="price-sale mb-3">
+                    {product.originalPrice && (
+                      <span className="original-price">${product.originalPrice}</span>
                     )}
-                    <span className="text-lg font-semibold text-gray-900">{product.price}</span>
+                    <span className={product.originalPrice ? 'sale-price' : 'regular-price'}>
+                      ${product.salePrice}
+                    </span>
+                    <span className="text-xs text-gray-500">including lenses</span>
                   </div>
-
-                  {product.nextDay && (
-                    <span className="text-xs text-green-600 font-medium">Next-Day</span>
-                  )}
+                  <div className="color-swatches">
+                    <div className="color-swatch" style={{ backgroundColor: '#8B4513' }}></div>
+                    <div className="color-swatch" style={{ backgroundColor: '#000000' }}></div>
+                    <div className="color-swatch" style={{ backgroundColor: '#FFC0CB' }}></div>
+                  </div>
+                  <div className="action-buttons">
+                    <button className="action-btn">Similar Frames</button>
+                    <button className="action-btn">Live Try On</button>
+                  </div>
                 </div>
-
-                <button className="w-full bg-blue-600 text-white py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
-                  Add to Cart
-                </button>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         <div className="text-center mb-12">
           <button className="bg-blue-600 text-white px-10 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">
-            Showing 20 of 374 - View More
+            Showing {products.length} of {totalProducts} - View More
           </button>
         </div>
       </div>

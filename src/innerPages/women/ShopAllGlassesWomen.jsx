@@ -12,6 +12,7 @@ import ax from "../../assets/brands/ax.jpg";
 import mk from "../../assets/brands/mk.jpg";
 import promobanner from "../../components/PromoBanner";
 import PromoBanner from "../../components/PromoBanner";
+import Footer from "../../components/Footer"
 
 
 const ShopAllGlassesWomen = () => {
@@ -316,7 +317,7 @@ const ShopAllGlassesWomen = () => {
         {filterKey === 'shape' && (
           <>
             <div className="mb-6">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                 {data.options.map((opt, i) => (
                   <button 
                     key={i} 
@@ -332,7 +333,7 @@ const ShopAllGlassesWomen = () => {
                 ))}
               </div>
             </div>
-            {data.extraSection && (
+              {data.extraSection && (
               <div className="mb-6">
                 <h4 className="font-semibold mb-4 text-gray-700">{data.extraSection.title}</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -352,12 +353,16 @@ const ShopAllGlassesWomen = () => {
                 </div>
               </div>
             )}
+          
           </>
         )}
 
+
+
+            
         {/* Size Filter */}
         {filterKey === 'size' && (
-          <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 ">
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-3">
             {data.options.map((opt, i) => (
               <button key={i} className="border flex   border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:bg-blue-50 transition text-left">
                 <div className="font-medium text-gray-900">{opt.name}</div>
@@ -479,7 +484,7 @@ const ShopAllGlassesWomen = () => {
 
         {/* Material Filter */}
         {filterKey === 'material' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
             {data.options.map((opt, i) => (
               <button key={i} className="border border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:bg-blue-50 transition text-left">
                 <div className="font-medium text-gray-900">{opt.name}</div>
@@ -798,7 +803,9 @@ const ShopAllGlassesWomen = () => {
             Showing {products.length} of {totalProducts} - View More
           </button>
         </div>
+      
       </div>
+        <Footer/>
     </div>
   );
 };

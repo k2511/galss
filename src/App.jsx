@@ -22,7 +22,7 @@ import FeaturedAndFilters from "./components/FeaturedAndFilters";
 
 import GuaranteeSection from "./components/GuaranteeSection "; // Make sure this path is correct
 
-import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
+
 
 import Rayban from "./pages/brands/Rayban"; // Corrected import path
 import Oakley from "./pages/brands/Oakley"; // Corrected import path
@@ -33,12 +33,13 @@ import Burberry from "./pages/brands/Burberry"; // Corrected import path
 import Mk from "./pages/brands/Mk";
 import Oliver from "./pages/brands/Oliver";
 
-import PrescriptionGlass from "./pages/PrescriptionGlass";
-import Sunglasses from "./pages/Sunglasses";
-import Insurance from "./pages/Insurence";
+//women
+import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
+import BestSellers from "./innerPages/women/BestSellers";
+import DesignerGlasses from "./innerPages/women/designerglasses";
+import OnSale from "./innerPages/women/OnSale"
 
 
-import "./index.css";
 
 
 function App() {
@@ -102,7 +103,12 @@ function App() {
 
         <Route path="/insurance" element={<Insurance />} />
 
+                 
+        {/* Women Section */}
         <Route path="/ShopAllGlassesWomen" element={<ShopAllGlassesWomen />} />
+        <Route path="/BestSellers" element={<BestSellers/>}/>
+        <Route path="/DesignerGlasses" element={<DesignerGlasses/>}/>
+        <Route path="/OnSale" element={<OnSale/>}/>
       </Routes>
     </div>
   );

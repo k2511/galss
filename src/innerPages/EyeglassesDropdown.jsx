@@ -13,9 +13,9 @@ const EyeglassesDropdown = () => (
         <h3 className="font-semibold text-base mb-4">Women</h3>
         <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
           <li><Link to="/ShopAllGlassesWomen">Shop All Eyeglasses</Link></li>
-          <li><Link to="#">Best Sellers</Link></li>
-          <li><Link to="#">Designer Eyeglasses</Link></li>
-          <li><Link to="#">On Sale</Link></li>
+          <li><Link to="/BestSellers">Best Sellers</Link></li>
+          <li><Link to="/DesignerGlasses">Designer Eyeglasses</Link></li>
+          <li><Link to="/OnSale">On Sale</Link></li>
           <li><Link to="#">Designer Outlet</Link></li>
           <li><Link to="#">Girls' Eyeglasses</Link></li>
           <li><Link to="#">Next Day Delivery</Link></li>

@@ -24,6 +24,16 @@ import GuaranteeSection from "./components/GuaranteeSection "; // Make sure this
 
 import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
 
+import Rayban from "./pages/brands/Rayban"; // Corrected import path
+import Oakley from "./pages/brands/Oakley"; // Corrected import path
+import Persol from "./pages/brands/Persol"; // Corrected import path
+import Coach from "./pages/brands/Coach";// Corrected import path
+import Versace from "./pages/brands/Versace";// Corrected import path
+import Burberry from "./pages/brands/Burberry"; // Corrected import path
+import Mk from "./pages/brands/Mk";
+import Oliver from "./pages/brands/Oliver";
+
+
 import "./index.css";
 
 function App() {
@@ -57,6 +67,31 @@ function App() {
             </>
           }
         />
+        <Route>
+          <Route path="/brands/rayban" element={<Rayban />} />
+        </Route>
+        <Route>
+          <Route path="/brands/oakley" element={<Oakley />} />
+        </Route>
+        <Route>
+          <Route path="/brands/persol" element={<Persol />} />
+        </Route>
+        <Route>
+          <Route path="/brands/coach" element={<Coach />} />
+        </Route>
+        <Route>
+          <Route path="/brands/versace" element={<Versace />} />
+        </Route>
+        <Route>
+          <Route path="/brands/burberry" element={<Burberry />} />
+        </Route>
+         <Route>
+          <Route path="/brands/mk" element={<Mk />} />
+        </Route>
+         <Route>
+          <Route path="/brands/oliver" element={<Oliver />} />
+        </Route>
+
         <Route path="/ShopAllGlassesWomen" element={<ShopAllGlassesWomen />} />
       </Routes>
     </div>

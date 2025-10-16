@@ -2,7 +2,9 @@ import React from 'react'
 
 const Sunglasses = () => {
   return (
-    <div>Sunglasses</div>
+    <div className='text-center text-4xl'>
+      Sunglasses pages
+    </div>
   )
 }
 

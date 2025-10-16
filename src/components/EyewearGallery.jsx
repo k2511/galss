@@ -313,11 +313,6 @@
 
 // export default EyewearGallery;
 
-
-
-
-
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -351,7 +346,6 @@ import versace from "../assets/brands/versace.jpg";
 import burberry from "../assets/brands/burberry.jpg";
 import mk from "../assets/brands/mk.jpg";
 import oliver from "../assets/brands/oliver.jpg";
-
 
 const EyewearGallery = () => {
   const brands = [
@@ -551,12 +545,19 @@ const EyewearGallery = () => {
             Stylish, affordable eyewear designed for comfort and confidence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 rounded-full border-2 border-black bg-white text-black font-medium hover:bg-black hover:text-white transition-all">
+            <Link
+              to="/prescriptionGlass"
+              className="px-8 py-3 rounded-full border-2 border-black bg-white text-black font-medium hover:bg-black hover:text-white transition-all text-center"
+            >
               Shop Eyeglasses
-            </button>
-            <button className="px-8 py-3 rounded-full border-2 border-black bg-white text-black font-medium hover:bg-black hover:text-white transition-all">
+            </Link>
+
+            <Link
+              to="/sunglasses"
+              className="px-8 py-3 rounded-full border-2 border-black bg-white text-black font-medium hover:bg-black hover:text-white transition-all text-center"
+            >
               Shop Sunglasses
-            </button>
+            </Link>
           </div>
         </div>
 

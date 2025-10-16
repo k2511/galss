@@ -33,8 +33,13 @@ import Burberry from "./pages/brands/Burberry"; // Corrected import path
 import Mk from "./pages/brands/Mk";
 import Oliver from "./pages/brands/Oliver";
 
+import PrescriptionGlass from "./pages/PrescriptionGlass";
+import Sunglasses from "./pages/Sunglasses";
+import Insurance from "./pages/Insurence";
+
 
 import "./index.css";
+
 
 function App() {
   return (
@@ -91,6 +96,11 @@ function App() {
          <Route>
           <Route path="/brands/oliver" element={<Oliver />} />
         </Route>
+
+        <Route path="/prescriptionGlass" element={<PrescriptionGlass />} />
+        <Route path="/sunglasses" element={<Sunglasses />} />
+
+        <Route path="/insurance" element={<Insurance />} />
 
         <Route path="/ShopAllGlassesWomen" element={<ShopAllGlassesWomen />} />
       </Routes>

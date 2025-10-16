@@ -8,7 +8,7 @@ const Insurance = () => (
   <div>
    <InsuranceFormSection />
    <PopularBrandsAndFSA/>
-   <Provider/>
+   {/* <Provider/> */}
   </div>
 );
 

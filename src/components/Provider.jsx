@@ -1,5 +1,5 @@
 import React from 'react'
-import providers from "../assets/providers/providers.png"; // adjust path if needed
+// import providers from "../assets/providers/providers.png"; // adjust path if needed
 
 const Provider = () => {
   return (

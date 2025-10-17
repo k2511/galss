@@ -41,6 +41,7 @@ import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
 import BestSellers from "./innerPages/women/BestSellers";
 import DesignerGlasses from "./innerPages/women/designerglasses";
 import OnSale from "./innerPages/women/OnSale"
+import FindYourContacts from "./pages/FindYourContacts";
 
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
         <Route path="/prescriptionGlass" element={<PrescriptionGlass />} />
         <Route path="/sunglasses" element={<Sunglasses />} />
         <Route path="/insurance" element={<Insurance />} />
+        <Route path="/find-contacts" element={<FindYourContacts />} /> {/* 👈 New route */}
 
                  
         {/* Women Section */}

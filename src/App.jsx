@@ -22,8 +22,6 @@ import FeaturedAndFilters from "./components/FeaturedAndFilters";
 
 import GuaranteeSection from "./components/GuaranteeSection "; // Make sure this path is correct
 
-
-
 import Rayban from "./pages/brands/Rayban"; // Corrected import path
 import Oakley from "./pages/brands/Oakley"; // Corrected import path
 import Persol from "./pages/brands/Persol"; // Corrected import path
@@ -33,13 +31,16 @@ import Burberry from "./pages/brands/Burberry"; // Corrected import path
 import Mk from "./pages/brands/Mk";
 import Oliver from "./pages/brands/Oliver";
 
+import PrescriptionGlass from "./pages/PrescriptionGlass";
+import Sunglasses from "./pages/Sunglasses";
+import Insurance from "./pages/Insurence";
+
+
 //women
 import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
 import BestSellers from "./innerPages/women/BestSellers";
 import DesignerGlasses from "./innerPages/women/designerglasses";
 import OnSale from "./innerPages/women/OnSale"
-
-
 
 
 function App() {
@@ -100,7 +101,6 @@ function App() {
 
         <Route path="/prescriptionGlass" element={<PrescriptionGlass />} />
         <Route path="/sunglasses" element={<Sunglasses />} />
-
         <Route path="/insurance" element={<Insurance />} />
 
                  

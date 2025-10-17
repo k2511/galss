@@ -37,11 +37,18 @@ import Insurance from "./pages/Insurence";
 
 
 //women
-import ShopAllGlassesWomen from "./innerPages/women/ShopAllGlassesWomen";
+import ShopAllGlassesWomen from "./innerPages/men/ShopAllGlassesMenjsx";
 import BestSellers from "./innerPages/women/BestSellers";
 import DesignerGlasses from "./innerPages/women/designerglasses";
 import OnSale from "./innerPages/women/OnSale"
+import GirlsEyeglasses from "./innerPages/women/GirlsEyeglasses";
+import DesignerOutlet from "./innerPages/women/DesignerOutlet";
+import NextDayDelivery from "./innerPages/women/NextDayDelivery"
 
+//Men
+import ShopAllGlassesMen from "./innerPages/men/S"
+import BestSellers from "./innerPages/women/BestSellers";
+import DesignerGlasses from "./innerPages/women/designerglasses";
 
 function App() {
   return (
@@ -109,6 +116,13 @@ function App() {
         <Route path="/BestSellers" element={<BestSellers/>}/>
         <Route path="/DesignerGlasses" element={<DesignerGlasses/>}/>
         <Route path="/OnSale" element={<OnSale/>}/>
+        <Route path="/DesignerOutlet" element={<DesignerOutlet/>}/>
+        <Route path="/GirlsEyeglasses" element={<GirlsEyeglasses/>}/>
+        <Route path="/NextDayDelivery" element={<NextDayDelivery/>}/>
+
+        {/*Men Section*/}
+        <Route path="/ShopAllGlassesMen" element={<ShopAllGlassesMen/>}/>
+
       </Routes>
     </div>
   );

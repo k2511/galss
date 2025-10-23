@@ -99,7 +99,7 @@ import {
 import { toggleLoginModal } from "../features/user/userSlice";
 import { toggleCart } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
-import logo from "../assets/img/logo.svg";
+import logo from "../assets/img/logo.png";
 import DropdownMenu from "../components/DropdownMenu";
 import EyeglassesDropdown from "../innerPages/EyeglassesDropdown";
 import SunglassesDropdown from "../innerPages/SunglassesDropdown";

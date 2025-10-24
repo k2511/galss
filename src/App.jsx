@@ -37,7 +37,7 @@ import Insurance from "./pages/Insurence";
 
 
 //women
-import ShopAllGlassesWomen from "./innerPages/men/ShopAllGlassesMenjsx";
+import ShopAllGlassesWomen from "./innerPages/men/ShopAllGlassesMen.jsx";
 import BestSellers from "./innerPages/women/BestSellers";
 import DesignerGlasses from "./innerPages/women/designerglasses";
 import OnSale from "./innerPages/women/OnSale"
@@ -46,9 +46,7 @@ import DesignerOutlet from "./innerPages/women/DesignerOutlet";
 import NextDayDelivery from "./innerPages/women/NextDayDelivery"
 
 //Men
-import ShopAllGlassesMen from "./innerPages/men/S"
-import BestSellers from "./innerPages/women/BestSellers";
-import DesignerGlasses from "./innerPages/women/designerglasses";
+
 
 function App() {
   return (
@@ -121,7 +119,7 @@ function App() {
         <Route path="/NextDayDelivery" element={<NextDayDelivery/>}/>
 
         {/*Men Section*/}
-        <Route path="/ShopAllGlassesMen" element={<ShopAllGlassesMen/>}/>
+     
 
       </Routes>
     </div>
@@ -129,5 +127,4 @@ function App() {
 }
 
 export default App;
-
 

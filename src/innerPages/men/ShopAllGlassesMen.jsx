@@ -15,7 +15,7 @@ import PromoBanner from "../../components/PromoBanner";
 import Footer from "../../components/Footer"
 
 
-const ShopAllGlassesWomen = () => {
+const ShopAllGlassesMen = () => {
   const [activeFilter, setActiveFilter] = useState(null);
   const [selectedBrandLetter, setSelectedBrandLetter] = useState(null);
   const [products, setProducts] = useState([]);
@@ -810,4 +810,4 @@ const ShopAllGlassesWomen = () => {
   );
 };
 
-export default ShopAllGlassesWomen;
+export default ShopAllGlassesMen;

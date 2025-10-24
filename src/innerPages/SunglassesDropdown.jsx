@@ -12,12 +12,12 @@ const SunglassesDropdown = () => (
       <div className="flex-1 min-w-[180px]">
         <h3 className="font-semibold text-base mb-4">Women</h3>
         <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-          <li><Link to="#">Prescription Sunglasses</Link></li>
-          <li><Link to="#">Best Sellers</Link></li>
-          <li><Link to="#">Designer Sunglasses</Link></li>
-          <li><Link to="#">On Sale</Link></li>
-          <li><Link to="#">Ray-Ban</Link></li>
-          <li><Link to="#">Shop All Sunglasses</Link></li>
+          <li><Link to="/sunglasses/women/SunGlasses">Sunglasses</Link></li>
+          <li><Link to="/sunglasses/women/BestSeller">Best Sellers</Link></li>
+          <li><Link to="/sunglasses/women/DesignerSunGlasses">Designer Sunglasses</Link></li>
+          <li><Link to="sunglasses/women/OnSale">On Sale</Link></li>
+          <li><Link to="/sunglasses/women/RayBan">Ray-Ban</Link></li>
+          <li><Link to="/sunglasses/women/ShopAllSunGlasses">Shop All Sunglasses</Link></li>
         </ul>
       </div>
 
@@ -25,12 +25,12 @@ const SunglassesDropdown = () => (
       <div className="flex-1 min-w-[180px]">
         <h3 className="font-semibold text-base mb-4">Men</h3>
         <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-          <li><Link to="#">Prescription Sunglasses</Link></li>
-          <li><Link to="#">Best Sellers</Link></li>
-          <li><Link to="#">Designer Sunglasses</Link></li>
-          <li><Link to="#">On Sale</Link></li>
-          <li><Link to="#">Ray-Ban</Link></li>
-          <li><Link to="#">Shop All Sunglasses</Link></li>
+          <li><Link to="/sunglasses/men/SunGlasses">Sunglasses</Link></li>
+          <li><Link to="/sunglasses/men/BestSeller">Best Sellers</Link></li>
+          <li><Link to="/sunglasses/men/DesignerSunGlasses">Designer Sunglasses</Link></li>
+          <li><Link to="sunglasses/men/OnSale">On Sale</Link></li>
+          <li><Link to="/sunglasses/men/RayBan">Ray-Ban</Link></li>
+          <li><Link to="/sunglasses/men/ShopAllSunGlasses">Shop All Sunglasses</Link></li>
         </ul>
       </div>
 
@@ -38,13 +38,14 @@ const SunglassesDropdown = () => (
       <div className="flex-1 min-w-[180px]">
         <h3 className="font-semibold text-base mb-4">Special Lenses</h3>
         <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-          <li><Link to="#">Sports Glasses</Link></li>
-          <li><Link to="#">Safety Glasses</Link></li>
-          <li><Link to="#">Kids' Glasses</Link></li>
-          <li><Link to="#">Transitions® Lenses</Link></li>
-          <li><Link to="#">Polarized</Link></li>
-          <li><Link to="#">Clip-Ons</Link></li>
-          <li><Link to="#">Progressives</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/SportGlasses">Sports Glasses</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/SafetyGlasses">Safety Glasses</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/KidsGlasses">Kids' Glasses</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/TransitionsLenses">Transitions® Lenses</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/Polarized">Polarized</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/PrescriptionSunGlasses">Prescription Sunglasses</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/ClipOns">Clip-Ons</Link></li>
+          <li><Link to="/sunglasses/SpecialLenses/Progressive">Progressives</Link></li>
         </ul>
       </div>
 

@@ -6,7 +6,7 @@ import ProviderSelection from "../components/ProviderSelection";
 import TrustpilotSection from "../components/TrustpilotSection";
 import ExclusiveBenefits from "../components/ExclusiveBenefits";
 import FAQSection from "../components/FAQSection";
-import GuaranteeSection from "../components/GuaranteeSection ";
+import GuaranteeSection from "../components/GuaranteeSection";
 import Footer from "../components/Footer";
 
 

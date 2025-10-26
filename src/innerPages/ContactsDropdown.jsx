@@ -1,22 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GuaranteeSection from "../components/GuaranteeSection";
+import Footer from "../components/Footer";
 
 const ContactDropdown = () => (
-  <div className="fixed top-35 left-0 w-screen  bg-white shadow-md border-gray-200
+  <div
+    className="fixed top-35 left-0 w-screen  bg-white shadow-md border-gray-200
   origin-top transition-transform duration-300 ease-in-out z-50
-  scale-y-100 opacity-100">
+  scale-y-100 opacity-100"
+  >
     <div className="max-w-[1420px] mx-auto flex justify-between px-10 py-10 rounded-b-2xl">
       {/* Lens Types */}
       <div className="flex-1 min-w-[180px]">
         <h3 className="font-semibold text-base mb-4">Lens Types</h3>
         <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-<li><Link to="/contacts/shopall">Shop All Contacts</Link></li>
-<li><Link to="/contacts/daily">Daily</Link></li>
-<li><Link to="/contacts/weekly">Weekly</Link></li>
-<li><Link to="/contacts/monthly">Monthly</Link></li>
-<li><Link to="/contacts/single-vision">Single Vision</Link></li>
-<li><Link to="/contacts/multifocal">Multifocal & Bifocal</Link></li>
-
+          <li>
+            <Link to="/contacts/shopall">Shop All Contacts</Link>
+          </li>
+          <li>
+            <Link to="/contacts/daily">Daily</Link>
+          </li>
+          <li>
+            <Link to="/contacts/weekly">Weekly</Link>
+          </li>
+          <li>
+            <Link to="/contacts/monthly">Monthly</Link>
+          </li>
+          <li>
+            <Link to="/contacts/single-vision">Single Vision</Link>
+          </li>
+          <li>
+            <Link to="/contacts/multifocal">Multifocal & Bifocal</Link>
+          </li>
         </ul>
       </div>
 

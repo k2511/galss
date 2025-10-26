@@ -104,6 +104,25 @@ import Progressive from "./innerPages/sunglasses/speciallenses/Progressive.jsx";
 
 import ContactLensShop from "./components/ContactLensShop.jsx";
 
+
+// Popular Lenses
+import ProgressiveLenses from "./innerpages/lenses/popularlenses/ProgressiveLenses";
+import BifocalLenses from "./innerpages/lenses/popularlenses/BifocalLenses";
+import BlueLightLenses from "./innerpages/lenses/popularlenses/BlueLightLenses";
+// import TransitionLenses from "./innerpages/lenses/popularlenses/TransitionLenses";
+import SafetyLenses from "./innerpages/lenses/popularlenses/SafetyLenses";
+
+// Special Sunglasses
+import PriscriptionSunglasses from "./innerpages/lenses/specialsunglasses/PriscriptionSunglasses";
+import MirroredSunglasses from "./innerpages/lenses/specialsunglasses/MirroredSunglasses";
+import PolarizedSunglasses from "./innerpages/lenses/specialsunglasses/PolarizedSunglasses";
+import TintedSunglasses from "./innerpages/lenses/specialsunglasses/TintedSunglasses";
+
+// Knowledge Center
+import OurLenses from "./innerpages/lenses/knowledgecenter/OurLenses";
+import AboutUs from "./innerpages/lenses/knowledgecenter/AboutUs";
+import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
+
 function App() {
   return (
     // Removed Provider and BrowserRouter from here since they're in main.jsx
@@ -261,6 +280,25 @@ function App() {
         <Route path="/contacts/proclear" element={<ContactLensShop />} />
         <Route path="/contacts/soflens" element={<ContactLensShop />} />
         <Route path="/contacts/myday" element={<ContactLensShop />} />
+
+
+        {/* Popular Lenses */}
+          <Route path="/lenses/popularlenses/ProgressiveLenses" element={<ProgressiveLenses />} />
+          <Route path="/lenses/popularlenses/BifocalLenses" element={<BifocalLenses />} />
+          <Route path="/lenses/popularlenses/BlueLightLenses" element={<BlueLightLenses />} />
+          <Route path="/lenses/popularlenses/TransitionLenses" element={<TransitionLenses />} />
+          <Route path="/lenses/popularlenses/SafetyLenses" element={<SafetyLenses />} />
+
+          {/* Special Sunglasses */}
+          <Route path="/lenses/specialsunglasses/PriscriptionSunglasses" element={<PriscriptionSunglasses />} />
+          <Route path="/lenses/specialsunglasses/MirroredSunglasses" element={<MirroredSunglasses />} />
+          <Route path="/lenses/specialsunglasses/PolarizedSunglasses" element={<PolarizedSunglasses />} />
+          <Route path="/lenses/specialsunglasses/TintedSunglasses" element={<TintedSunglasses />} />
+
+          {/* Knowledge Center */}
+          <Route path="/lenses/knowledgecenter/OurLenses" element={<OurLenses />} />
+          <Route path="/lenses/knowledgecenter/AboutUs" element={<AboutUs />} />
+          <Route path="/lenses/knowledgecenter/LensBlog" element={<LensBlog />} />
       </Routes>
     </div>
   );

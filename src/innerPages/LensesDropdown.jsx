@@ -16,11 +16,11 @@ const LensesDropdown = () => (
         <div className="flex-1 min-w-[200px]">
           <h3 className="font-semibold text-base mb-4">Popular Lenses</h3>
           <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-            <li><Link to="#">Progressive Lenses</Link></li>
-            <li><Link to="#">Bifocal Lenses</Link></li>
-            <li><Link to="#">Blue Light Lenses</Link></li>
-            <li><Link to="#">Transitions® Lenses</Link></li>
-            <li><Link to="#">Safety Lenses</Link></li>
+            <li><Link to="/lenses/popularlenses/ProgressiveLenses">Progressive Lenses</Link></li>
+            <li><Link to="/lenses/popularlenses/BifocalLenses">Bifocal Lenses</Link></li>
+            <li><Link to="/lenses/popularlenses/BlueLightLenses">Blue Light Lenses</Link></li>
+            <li><Link to="/lenses/popularlenses/TransitionLenses">Transitions® Lenses</Link></li>
+            <li><Link to="/lenses/popularlenses/SafetyLenses">Safety Lenses</Link></li>
           </ul>
         </div>
 
@@ -28,10 +28,10 @@ const LensesDropdown = () => (
         <div className="flex-1 min-w-[200px]">
           <h3 className="font-semibold text-base mb-4">Special Sunglasses</h3>
           <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-            <li><Link to="#">Prescription Sunglasses</Link></li>
-            <li><Link to="#">Mirrored Sunglasses</Link></li>
-            <li><Link to="#">Polarized Sunglasses</Link></li>
-            <li><Link to="#">Tinted Sunglasses</Link></li>
+            <li><Link to="/lenses/specialsunglasses/PriscriptionSunglasses">Prescription Sunglasses</Link></li>
+            <li><Link to="/lenses/specialsunglasses/MirroredSunglasses">Mirrored Sunglasses</Link></li>
+            <li><Link to="/lenses/specialsunglasses/PolarizedSunglasses">Polarized Sunglasses</Link></li>
+            <li><Link to="/lenses/specialsunglasses/TintedSunglasses">Tinted Sunglasses</Link></li>
           </ul>
         </div>
 
@@ -39,9 +39,9 @@ const LensesDropdown = () => (
         <div className="flex-1 min-w-[200px]">
           <h3 className="font-semibold text-base mb-4">Knowledge Center</h3>
           <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed">
-            <li><Link to="#">Our Lenses</Link></li>
-            <li><Link to="#">About Us</Link></li>
-            <li><Link to="#">"Through the Lens" Blog</Link></li>
+            <li><Link to="/lenses/knowledgecenter/OurLenses">Our Lenses</Link></li>
+            <li><Link to="/lenses/knowledgecenter/AboutUs">About Us</Link></li>
+            <li><Link to="/lenses/knowledgecenter/LensBlog">"Through the Lens" Blog</Link></li>
           </ul>
         </div>
       </div>
@@ -59,7 +59,7 @@ const LensesDropdown = () => (
             />
             <div className="px-3 py-3 text-center border-t">
               <Link
-                to="#"
+                to="/lenses/knowledgecenter/OurLenses"
                 className="text-sm font-medium text-black hover:text-blue-600"
               >
                 Explore Our Lenses
@@ -79,7 +79,7 @@ const LensesDropdown = () => (
             <div className="px-3 py-3 text-center border-t">
               <div className="text-sm font-medium text-black mb-1">Our Optical Labs</div>
               <Link
-                to="#"
+                to="/lenses/knowledgecenter/AboutUs"
                 className="text-xs text-gray-600 hover:text-blue-600"
               >
                 About Us

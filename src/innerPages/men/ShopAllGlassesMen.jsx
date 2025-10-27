@@ -10,7 +10,6 @@ import ottoto from "../../assets/brands/ottoto.jpg";
 import burberry from "../../assets/brands/burberry.jpg";
 import ax from "../../assets/brands/ax.jpg";
 import mk from "../../assets/brands/mk.jpg";
-import promobanner from "../../components/PromoBanner";
 import PromoBanner from "../../components/PromoBanner";
 import Footer from "../../components/Footer"
 

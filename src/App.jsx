@@ -20,7 +20,7 @@ import CollectionCards from "./components/CollectionCards";
 import TrustpilotSection from "./components/TrustpilotSection";
 import FeaturedAndFilters from "./components/FeaturedAndFilters";
 
-import GuaranteeSection from "./components/GuaranteeSection "; // Make sure this path is correct
+import GuaranteeSection from "./components/GuaranteeSection.jsx"; // Make sure this path is correct
 
 import Rayban from "./pages/brands/Rayban"; // Corrected import path
 import Oakley from "./pages/brands/Oakley"; // Corrected import path
@@ -100,6 +100,9 @@ import Polarized from "./innerPages/sunglasses/speciallenses/Polarized.jsx";
 import PrescriptionSunGlasses from "./innerPages/sunglasses/speciallenses/PrescriptionSunGlasses.jsx";
 import ClipOns from "./innerPages/sunglasses/speciallenses/ClipOns.jsx";
 import Progressive from "./innerPages/sunglasses/speciallenses/Progressive.jsx";
+
+
+import ContactLensShop from "./components/ContactLensShop.jsx";
 
 function App() {
   return (
@@ -240,6 +243,24 @@ function App() {
           path="/sunglasses/speciallenses/progressive"
           element={<Progressive />}
         />
+        {/* Contact Lenses Pages */}
+        <Route path="/contacts/shopall" element={<ContactLensShop />} />
+        <Route path="/contacts/daily" element={<ContactLensShop />} />
+        <Route path="/contacts/weekly" element={<ContactLensShop />} />
+        <Route path="/contacts/monthly" element={<ContactLensShop />} />
+        <Route path="/contacts/single-vision" element={<ContactLensShop />} />
+        <Route path="/contacts/multifocal" element={<ContactLensShop />} />
+        {/* Contact Lens Brands */}
+        <Route path="/contacts/acuvue" element={<ContactLensShop />} />
+        <Route path="/contacts/biofinity" element={<ContactLensShop />} />
+        <Route path="/contacts/dailies" element={<ContactLensShop />} />
+        <Route path="/contacts/airoptix" element={<ContactLensShop />} />
+        <Route path="/contacts/ultra" element={<ContactLensShop />} />
+        <Route path="/contacts/biotrue" element={<ContactLensShop />} />
+        <Route path="/contacts/clariti" element={<ContactLensShop />} />
+        <Route path="/contacts/proclear" element={<ContactLensShop />} />
+        <Route path="/contacts/soflens" element={<ContactLensShop />} />
+        <Route path="/contacts/myday" element={<ContactLensShop />} />
       </Routes>
     </div>
   );

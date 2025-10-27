@@ -1,9 +1,10 @@
 import React from "react";
 import ContactLensBanner from "../components/ContactLensBanner";
 import ContactLensShop from "../components/ContactLensShop";
-import GuaranteeSection from "../components/GuaranteeSection ";
+
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
+import GuaranteeSection from "../components/GuaranteeSection";
 
 const FindYourContacts = () => {
   return (

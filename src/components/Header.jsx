@@ -40,7 +40,7 @@ const Header = () => {
     <>
       {/* Desktop Header */}
       <header className="w-full bg-white border-b shadow-sm hidden md:flex relative z-50">
-        <div className=" mx-auto w-full flex items-center justify-between h-[62px] xl:px-8 px-1">
+        <div className=" mx-auto w-full flex items-center justify-between h-[62px] xl:px-20 px-1">
           {/* Logo */}
           <Link to="/">
             <img src={logo} alt="logo" className="h-7 min-w-28 w-32 lg:mr-8 mr-3" />

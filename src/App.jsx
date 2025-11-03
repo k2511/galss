@@ -126,7 +126,7 @@ import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
 function App() {
   return (
     // Removed Provider and BrowserRouter from here since they're in main.jsx
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-hidden">
       <TopBar />
       <Header />
       <Routes>

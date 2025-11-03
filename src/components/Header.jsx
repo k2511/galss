@@ -40,10 +40,10 @@ const Header = () => {
     <>
       {/* Desktop Header */}
       <header className="w-full bg-white border-b shadow-sm hidden md:flex relative z-50">
-        <div className="max-w-[1420px] mx-auto w-full flex items-center justify-between h-[62px] px-8">
+        <div className=" mx-auto w-full flex items-center justify-between h-[62px] xl:px-8 px-1">
           {/* Logo */}
           <Link to="/">
-            <img src={logo} alt="logo" className="h-7 min-w-[150px] mr-8" />
+            <img src={logo} alt="logo" className="h-7 min-w-28 w-32 lg:mr-8 mr-3" />
           </Link>
 
           {/* Navigation */}
@@ -53,9 +53,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
                       Eyeglasses
-                      <ChevronDown size={16} className="ml-1" />
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
                     </span>
                   }
                 >
@@ -65,9 +65,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
                       Sunglasses
-                      <ChevronDown size={16} className="ml-1" />
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
                     </span>
                   }
                 >
@@ -77,9 +77,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
                       Brands
-                      <ChevronDown size={16} className="ml-1" />
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
                     </span>
                   }
                 >
@@ -89,9 +89,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
                       Contacts
-                      <ChevronDown size={16} className="ml-1" />
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
                     </span>
                   }
                 >
@@ -101,9 +101,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
                       Lenses
-                      <ChevronDown size={16} className="ml-1" />      
+                      {/* <ChevronDown size={16} className="ml-1" />       */}
                     </span>
                   }
                 >
@@ -113,9 +113,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
                       Stores
-                      <ChevronDown size={16} className="ml-1" />
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
                     </span>
                   }
                 >
@@ -125,9 +125,9 @@ const Header = () => {
                 <DropdownMenu
                   key={item.name}         
                   trigger={
-                    <span className="flex items-center text-base font-normal cursor-pointer text-red-600 hover:text-blue-600">
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer text-red-600 hover:text-blue-600">
                       Sale
-                      <ChevronDown size={16} className="ml-1" />
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
                     </span>
                   }
                 >
@@ -137,7 +137,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={`/${item.name.toLowerCase()}`}
-                  className={`text-base font-normal ${
+                  className={`xl:text-base text-sm font-normal ${
                     item.name === "Sale"
                       ? "text-red-600"
                       : "text-black hover:text-blue-600"
@@ -150,18 +150,34 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex  space-x-3">
-           {/* Search Bar */}
-<div className="flex justify-center flex-1">
-  <div className="flex items-center bg-gray-100 rounded-full px-3 py-1.5 w-[200px] max-w-[220px] shadow-sm">
-    <Search size={16} className="text-gray-400 mr-2" />
-    <input
-      type="text"
-      placeholder="I'm Searching For..."
-      className="bg-transparent outline-none w-full text-sm text-gray-700 placeholder-gray-400"
-    />
-  </div>
-</div>
+             <div className="flex  lg:space-x-3  ">
+                      {/* Search Bar */}
+            <div className="flex justify-center">
+              {/* <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">
+                <Search size={16} className="text-gray-400 xl:mr-2 " />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="bg-transparent  outline-none w-full min-w-12 text-sm text-gray-700 placeholder-gray-400"
+                />
+              </div> */}
+
+          <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">
+                {/* Search icon visible only below md */}
+                <Search
+                  size={16}
+                  className="text-gray-400 xl:mr-2 block md:hidden lg:ml-3 ml-1"
+                />
+
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="bg-transparent outline-none w-full text-sm text-gray-700 placeholder-gray-400 
+                            md:placeholder-opacity-100 placeholder-opacity-0 
+                            px-3 md:px-0"
+                />
+              </div>
+            </div>
 
 
             {/* Wishlist */}
@@ -191,7 +207,7 @@ const Header = () => {
               className="flex items-center p-1 hover:bg-gray-100 rounded-lg"
             >
               <User size={21} className="text-gray-700" />
-              <span className="ml-2 text-base text-black">Hi, Kshitij</span>
+              <span className="ml-2 text-sm text-black">Log In </span>
             </button>
           </div>
         </div>

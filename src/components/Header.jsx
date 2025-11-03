@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Search,
@@ -20,7 +20,8 @@ import LensesDropdown from "../innerPages/LensesDropdown";
 import StoreDropdown from "../innerPages/StoreDropdown";
 import BrandsDropdown from "../innerPages/BrandsDropdown"
 import SalesDropdown from "../innerPages/SalesDropdown";
-
+import { IoMenu } from "react-icons/io5";
+import { X } from "lucide-react";
 
 const nav = [
   { name: "Eyeglasses" },
@@ -36,18 +37,25 @@ const Header = () => {
   const dispatch = useDispatch();
   const { totalQuantity } = useSelector((state) => state.cart);
 
+  const [open, setOpen] = useState(false);
+
+
   return (
     <>
       {/* Desktop Header */}
-      <header className="w-full bg-white border-b shadow-sm hidden md:flex relative z-50">
+      <header className="w-full  bg-white border-b shadow-sm hidden sm:flex relative z-50">
         <div className=" mx-auto w-full flex items-center justify-between h-[62px] xl:px-8 px-1">
           {/* Logo */}
+          <div className="hidden sm:block ">
+            < IoMenu className="text-3xl mx-2"  onClick={() => setOpen(true)} />
+          </div>
+
           <Link to="/">
             <img src={logo} alt="logo" className="h-7 min-w-28 w-32 lg:mr-8 mr-3" />
           </Link>
 
           {/* Navigation */}
-          <nav className="flex flex-1 space-x-5 relative">
+          <nav className="flex flex-1 space-x-5 relative border-2 border-black">
             {nav.map((item) =>
               item.name === "Eyeglasses" ? (
                 <DropdownMenu
@@ -212,6 +220,130 @@ const Header = () => {
           </div>
         </div>
       </header>
+
+
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        ></div>
+      )}
+
+     <div
+        className={`fixed top-0 left-0 h-full w-64  bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-lg font-semibold">Menu</h2>
+          <X
+            className="cursor-pointer text-gray-600"
+            onClick={() => setOpen(false)}
+          />
+        </div>
+
+        <nav className="flex flex-1 flex-col space-x-5 relative border-2 border-black">
+            {nav.map((item) =>
+              item.name === "Eyeglasses" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
+                      Eyeglasses
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
+                    </span>
+                  }
+                >
+                  <EyeglassesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Sunglasses" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
+                      Sunglasses
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
+                    </span>
+                  }
+                >
+                  <SunglassesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Brands" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
+                      Brands
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
+                    </span>
+                  }
+                >
+                  <BrandsDropdown />
+                </DropdownMenu>
+              ) : item.name === "Contacts" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
+                      Contacts
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
+                    </span>
+                  }
+                >
+                  <ContactDropdown />
+                </DropdownMenu>
+              ) : item.name === "Lenses" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
+                      Lenses
+                      {/* <ChevronDown size={16} className="ml-1" />       */}
+                    </span>
+                  }
+                >
+                  <LensesDropdown />
+                </DropdownMenu>
+              ) : item.name === "Stores" ? (
+                <DropdownMenu
+                  key={item.name}
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer hover:text-blue-600">
+                      Stores
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
+                    </span>
+                  }
+                >
+                  <StoreDropdown />
+                </DropdownMenu>
+              ) : item.name === "Sale" ? (
+                <DropdownMenu
+                  key={item.name}         
+                  trigger={
+                    <span className="flex items-center xl:text-base text-sm font-normal cursor-pointer text-red-600 hover:text-blue-600">
+                      Sale
+                      {/* <ChevronDown size={16} className="ml-1" /> */}
+                    </span>
+                  }
+                >
+                  <SalesDropdown />
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={`/${item.name.toLowerCase()}`}
+                  className={`xl:text-base text-sm font-normal ${
+                    item.name === "Sale"
+                      ? "text-red-600"
+                      : "text-black hover:text-blue-600"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
+          </nav>
+      </div>
     </>
   );
 };

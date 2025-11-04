@@ -44,6 +44,7 @@ const LensesDropdown = () => (
             <li><Link to="/lenses/knowledgecenter/LensBlog">"Through the Lens" Blog</Link></li>
           </ul>
         </div>
+        
       </div>
 
       {/* Images Section */}

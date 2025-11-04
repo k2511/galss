@@ -17,7 +17,7 @@ import { IoMenu } from "react-icons/io5";
 import { X } from "lucide-react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import NavbarDropdown from "./NavbarDropdown";
-
+import { FaSearch } from "react-icons/fa";
 // import {RiArrowRightSLine } from "react-icons/ri";
 const nav = [
   { name: "Eyeglasses" },
@@ -193,7 +193,7 @@ const Header = () => {
                 {/* Search icon visible only below md */}
                 <Search
                   size={16}
-                  className="text-gray-400 xl:mr-2 block md:hidden lg:ml-3 ml-1"
+                  className="text-gray-400 xl:mr-2 block  lg:ml-3 ml-1"
                 />
 
                 <input

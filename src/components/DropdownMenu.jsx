@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 const DropdownMenu = ({ trigger, children }) => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
-
+     
   // Show on hover or focus; also allow click for mobile compatibility
   return (
     <div

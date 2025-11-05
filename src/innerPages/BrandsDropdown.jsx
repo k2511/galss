@@ -346,6 +346,7 @@ const BrandsDropdown = () => {
                 </ul>
               </div>
             </div>
+            
           </div>
 
           {/* RIGHT SECTION - Luxury Boutique */}

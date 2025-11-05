@@ -12,6 +12,7 @@ const StoreDropdown = () => (
       <div className="flex justify-between gap-6">
         {/* Roosevelt Field Mall */}
         <div className="flex-1">
+          
           <div className="rounded-2xl overflow-hidden shadow-md bg-white border border-gray-100">
             <img
               src={rooseveltImage}
@@ -66,6 +67,9 @@ const StoreDropdown = () => (
             </div>
           </div>
         </div>
+
+
+
       </div>
     </div>
   </div>

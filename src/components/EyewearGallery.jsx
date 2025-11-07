@@ -16,9 +16,11 @@ const EyewearGallery = () => {
   ];
 
   return (
+
     <div className=" bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Brand Filter Buttons */}
+
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {brands.map((brand, index) => (
             <Link key={index} to={brand.path}>
@@ -32,6 +34,7 @@ const EyewearGallery = () => {
             </Link>
           ))}
         </div>
+
 
         {/* Hero Section */}
         <div className="text-center mb-12">

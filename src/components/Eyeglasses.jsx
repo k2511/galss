@@ -81,6 +81,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      
       {/* Mobile */}
       <header className="md:hidden flex flex-col border-b shadow-sm bg-white w-full">
         <div className="flex items-center justify-between px-3 py-2">

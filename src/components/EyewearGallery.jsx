@@ -58,6 +58,7 @@ const EyewearGallery = () => {
             </Link>
           </div>
         </div>
+        
       </div>
     </div>
   );

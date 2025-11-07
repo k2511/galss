@@ -17,7 +17,7 @@ import Footer from "./components/Footer";
 import GlassSection from "./components/GlassSection";
 import CollectionCards from "./components/CollectionCards";
 import TrustpilotSection from "./components/TrustpilotSection";
-import FeaturedAndFilters from "./components/FeaturedAndFilters";
+
 
 import GuaranteeSection from "./components/GuaranteeSection.jsx"; // Make sure this path is correct
 
@@ -144,7 +144,7 @@ function App() {
                 <GlassSection />
                 <CollectionCards />
                 <TrustpilotSection />
-                <FeaturedAndFilters />
+              
                 <GuaranteeSection />
               </main>
               <Footer />

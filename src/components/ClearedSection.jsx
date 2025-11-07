@@ -12,7 +12,7 @@ const ClearedSection = () => {
       name: "John D.", 
       rating: 5,
       text: "Fast shipping and perfect fit. Highly recommended!",
-      image: "https://via.placeholder.com/300x200/10B981/FFFFFF?text=Customer+2"
+      image: "blob:chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/47a15e38-b712-4a4a-a47c-c2b4ccda3e7f"
     }
   ];
 

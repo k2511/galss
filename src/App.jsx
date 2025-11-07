@@ -122,6 +122,7 @@ import TintedSunglasses from "./innerpages/lenses/specialsunglasses/TintedSungla
 import OurLenses from "./innerpages/lenses/knowledgecenter/OurLenses";
 import AboutUs from "./innerpages/lenses/knowledgecenter/AboutUs";
 import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
+import Glasses from "./components/Glasses.jsx";
 
 function App() {
   return (
@@ -136,6 +137,7 @@ function App() {
             <>
               <main>
                 <HeroSection />
+                <Glasses />
                 <EyewearGallery />
                 <CategorySection />
                 <VirtualTryOnSection />

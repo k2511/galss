@@ -516,7 +516,7 @@ const EyewearGallery = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto  ">
         {/* Brand Filter Pills */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {brands.map((brand, index) => (
@@ -535,6 +535,8 @@ const EyewearGallery = () => {
             </Link>
           ))}
         </div>
+
+
 
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -628,7 +630,13 @@ const EyewearGallery = () => {
             </button>
           </div>
         </div>
+
+        
+        
       </div>
+
+    
+      
     </div>
   );
 };

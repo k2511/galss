@@ -17,6 +17,32 @@ import { IoMenu } from "react-icons/io5";
 import { X } from "lucide-react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import NavbarDropdown from "./NavbarDropdown";
+import rooseveltImage from "../assets/stores/store1.avif";
+import floridaImage from "../assets/stores/store2.avif";
+import natickImage from "../assets/stores/store3.avif";
+import glassesSaleImage from "../assets/sales/sales1.avif";
+import sunglassesSaleImage from "../assets/sales/sales2.avif";
+import designerOutletImage from "../assets/sales/sales3.avif";
+import salesCouponsImage from "../assets/sales/sales4.avif";
+
+import rayban from "../assets/brands/rayban.jpg";
+import oakley from "../assets/brands/oakley.jpg";
+import mk from "../assets/brands/mk.jpg";
+import burberry from "../assets/brands/burberry.jpg";
+import coach from "../assets/brands/coach.jpg";
+import ax from "../assets/brands/ax.jpg";
+import versace from "../assets/brands/versace.jpg";
+
+import persol from "../assets/brands/persol.jpg";
+import ottoto from "../assets/brands/ottoto.jpg";
+
+import prada from "../assets/brands/prada.jpg";
+import gucci from "../assets/brands/gucci.jpg";
+import tomford from "../assets/brands/tomford.jpg";
+import dolce from "../assets/brands/dolce.jpg";
+import oliver from "../assets/brands/oliver.jpg";
+import armani from "../assets/brands/armani.jpg";
+import garrett from "../assets/brands/garrett.jpg";
 
 // import {RiArrowRightSLine } from "react-icons/ri";
 const nav = [
@@ -146,6 +172,7 @@ const Header = () => {
           </div>
           </div>
 
+
           {/* Navigation */}
 
           <nav className="hidden md:flex flex-1 xl:space-x-5 lg:space-x-4 space-x-2 relative ml-2">
@@ -251,7 +278,7 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex  lg:space-x-3  items-center sm:ml-2 ml-0">
+          <div className="flex  lg:space-x-3 border-2 border-black items-center sm:ml-2 ml-0">
             {/* Search Bar */}
             {/* <div className="flex justify-center items-center"> */}
             {/* <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">
@@ -263,18 +290,9 @@ const Header = () => {
                 />
               </div> */}
 
-
             <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
               {/* Search icon visible only below md */}
               <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1" />
-
-              <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 px-0  w-4/6 shadow-sm ">
-                {/* Search icon visible only below md */}
-                <Search
-                  size={16}
-                  className="text-gray-400 xl:mr-2 block md:hidden lg:ml-3 ml-1"
-                />
-
 
               <input
                 type="text"
@@ -350,13 +368,8 @@ const Header = () => {
           />
         </div>
 
-
         <nav className=" flex flex-1 flex-col gap-10 relative h-[90vh]  overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 ">
           <div className="space-y-3 font-bold">
-
-        <nav className=" flex flex-1 flex-col  relative h-[90vh]  border-2 border-black">
-          
-
             {nav.map((item) =>
               item.name === "Eyeglasses" ? (
                 <div

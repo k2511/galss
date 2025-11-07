@@ -7,6 +7,7 @@ import titan from "../assets/brands/titan.jpg";
 import fastrack from "../assets/brands/fastrack.jpg";
 
 const EyewearGallery = () => {
+  
   const brands = [
     { image: rayban, path: "/brands/rayban" },
     { image: oakley, path: "/brands/oakley" },

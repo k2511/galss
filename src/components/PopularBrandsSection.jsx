@@ -13,12 +13,12 @@ const PopularBrandsSection = () => {
       logo: "OAKLEY"
     },
     { 
-      name: "idee", 
+      name: "Idee", 
       image: "https://optimaxweb.glassesusa.com/image/upload/f_auto,q_auto/mf-homepage/client/mobileImg/Ottoto_f678f9f57593db98d773.png",
       logo: "idee"
     },
     { 
-      name: "titan", 
+      name: "Titan", 
       image: "https://optimaxweb.glassesusa.com/image/upload/f_auto,q_auto/mf-homepage/client/mobileImg/Muse_6984369230f6fc1340cc.png",
       logo: "titan"
     }

@@ -278,7 +278,7 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex  lg:space-x-3 border-2 border-black items-center sm:ml-2 ml-0">
+          <div className="flex  lg:space-x-3  items-center sm:ml-2 ml-0">
             {/* Search Bar */}
             {/* <div className="flex justify-center items-center"> */}
             {/* <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">

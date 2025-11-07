@@ -139,7 +139,7 @@ const HeroSection = () => {
       </div>
 
       {/* --- Feature Bar (Hidden on mobile, visible on desktop) --- */}
-      <div className="hidden md:flex relative z-20 bg-white shadow-lg rounded-full mx-auto -mt-6 mb-10 w-[85%] items-center justify-center gap-6 py-4 px-6 text-base font-medium">
+      {/* <div className="hidden md:flex relative z-20 bg-white shadow-lg rounded-full mx-auto -mt-6 mb-10 w-[85%] items-center justify-center gap-6 py-4 px-6 text-base font-medium">
         <div className="flex items-center space-x-2">
           <span>🚚</span> <span>Free Shipping</span>
         </div>
@@ -160,7 +160,7 @@ const HeroSection = () => {
           <span>⭐</span> <span>Trustpilot</span> <span>★★★★★</span>{" "}
           <span>111K</span>
         </div>
-      </div>
+      </div> */}
 
       {/* Insurance Panel */}
       {showInsurance && (

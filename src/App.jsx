@@ -7,12 +7,11 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import TopBar from "./components/TopBar";
 import EyewearGallery from "./components/EyewearGallery";
-import CategorySection from "./components/CategorySection";
+
 import VirtualTryOnSection from "./components/VirtualTryOnSection";
 import PopularBrandsSection from "./components/PopularBrandsSection";
 import SummerPicksSection from "./components/SummerPicksSection";
-import PerfectEyewearSection from "./components/PerfectEyewearSection";
-import InsuranceSection from "./components/InsuranceSection";
+
 import FramingYourWorldSection from "./components/FramingYourWorldSection";
 import Footer from "./components/Footer";
 import GlassSection from "./components/GlassSection";
@@ -62,7 +61,7 @@ import GarrettLeight from "./pages/brands/GarrettLeight.jsx";
 
 import PrescriptionGlass from "./pages/PrescriptionGlass";
 import Sunglasses from "./pages/Sunglasses";
-import Insurance from "./pages/Insurence";
+
 
 //women
 import ShopAllGlassesWomen from "./innerPages/men/ShopAllGlassesMen.jsx";
@@ -139,12 +138,10 @@ function App() {
                 <HeroSection />
                 <Glasses />
                 <EyewearGallery />
-                <CategorySection />
+          
                 <VirtualTryOnSection />
                 <PopularBrandsSection />
-                <SummerPicksSection />
-                <PerfectEyewearSection />
-                <InsuranceSection />
+                <SummerPicksSection />        
                 <FramingYourWorldSection />
                 <GlassSection />
                 <CollectionCards />
@@ -194,7 +191,7 @@ function App() {
         <Route path="/brands/garrett-leight" element={<GarrettLeight />} />
         <Route path="/prescriptionGlass" element={<PrescriptionGlass />} />
         <Route path="/sunglasses" element={<Sunglasses />} />
-        <Route path="/insurance" element={<Insurance />} />
+
         <Route path="/find-contacts" element={<FindYourContacts />} />{" "}
         {/* 👈 New route */}
         {/* Women Section */}

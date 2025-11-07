@@ -22,7 +22,7 @@ const Glasses = () => {
   return (
     <div>
       <div className="flex flex-col space-y-6 items-center w-full py-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-11/12 mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-9/12 mx-auto">
           <img
             src={eyeglass}
             alt=""
@@ -45,75 +45,9 @@ const Glasses = () => {
           />
         </div>
 
-     {/* <div className=" w-11/12 border-2 border-black">
-        <div className="w-11/12 mx-auto flex items-center gap-2">
-            <h1 className="font-bold">Eyeglasses</h1>
-            <button className="px-2 text-xs py-1 border rounded">with power</button>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3  gap-6 w-11/12 mx-auto text-center">
-            <div>
-            <img
-                src="https://static5.lenskart.com/media/uploads/Home-_Diwali-maingrid-eye-menhome-171025-home-171025.png"
-                alt="Men"
-                className="w-full object-contain"
-            />
-            <h1 className="mt-2 text-lg font-semibold">Men</h1>
-            </div>
-            <div>
-            <img
-                src="https://static5.lenskart.com/media/uploads/Home-_Diwali-maingrid-eye-womenhome-171025-home-171025.png"
-                alt="Women"
-                className="w-full object-contain"
-            />
-            <h1 className="mt-2 text-lg font-semibold">Women</h1>
-            </div>
-            <div>
-            <img
-                src="https://static5.lenskart.com/media/uploads/Home-_Diwali-maingrid-eye-kidshome-171025-home-171025.png"
-                alt="Kids"
-                className="w-full object-contain"
-            />
-            <h1 className="mt-2 text-lg font-semibold">Kids</h1>
-            </div>
-        </div>
-        </div>
-
-        <div className=" w-11/12 border-2 border-black">
-        <div className="w-11/12 mx-auto flex items-center">
-            <h1 className="font-bold">Sunglasses</h1>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3  gap-6 w-11/12 mx-auto text-center">
-            <div>
-            <img
-                src="https://static5.lenskart.com/media/uploads/Home-_Diwali-maingrid-sun-menhome-171025-home-171025.png"
-                alt="Men"
-                className="w-full object-contain"
-            />
-            <h1 className="mt-2 text-lg font-semibold">Men</h1>
-          
-            </div>
-            <div>
-            <img
-                src="https://static5.lenskart.com/media/uploads/Home-_Diwali-maingrid-sun-womenhome-171025-home-171025.png"
-                alt="Women"
-                className="w-full object-contain"
-            />
-            <h1 className="mt-2 text-lg font-semibold">Women</h1>
-            </div>
-            <div>
-            <img
-                src="https://static5.lenskart.com/media/uploads/Home-_Diwali-maingrid-sun-kidshome-171025-home-171025.png"
-                alt="Kids"
-                className="w-full object-contain"
-            />
-            <h1 className="mt-2 text-lg font-semibold">Kids</h1>
-            </div>
-        </div>
-        </div> */}
 
         <div className="flex flex-col space-y-8 w-full ">
-        <div className="w-11/12 mx-auto  rounded-2xl ">
+        <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex flex-wrap items-center gap-2">
             <h1 className="font-bold text-lg">Eyeglasses</h1>
             <button className="px-3 text-xs py-1 border rounded">with power</button>
@@ -144,7 +78,7 @@ const Glasses = () => {
             </div>
         </div>
 
-        <div className="w-11/12 mx-auto  rounded-2xl ">
+        <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
             <h1 className="font-bold text-lg">Sunglasses</h1>
             </div>
@@ -175,7 +109,7 @@ const Glasses = () => {
             </div>
         </div>
 
-        <div className="w-11/12 mx-auto  rounded-2xl ">
+        <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
             <h1 className="font-bold text-lg">Lenskart special</h1>
             </div>
@@ -214,7 +148,7 @@ const Glasses = () => {
             </div>
         </div>
 
-        <div className="w-11/12 mx-auto  rounded-2xl ">
+        <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
             <h1 className="font-bold text-lg"> Contact Lenses &amp; Accessories </h1>
             </div>

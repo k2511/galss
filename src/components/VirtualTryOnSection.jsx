@@ -14,7 +14,7 @@ const VirtualTryOnSection = () => (
               Find your perfect pair in 60 seconds!
             </h2>
             <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-md">
-              Take a Quiz
+        Open To Whatssapp
             </button>
           </div>
           

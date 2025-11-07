@@ -17,8 +17,19 @@ import power from '../assets/Lenses/power.jpeg'
 import clear from '../assets/Lenses/clear.jpeg'
 import color from '../assets/Lenses/color.jpeg'
 import solution from '../assets/Lenses/solution.jpeg'
+import { useNavigate } from "react-router-dom";
 
 const Glasses = () => {
+
+    const navigate = useNavigate();
+    const data = [
+        {
+            img: '',
+            price:  '₹1',
+            title: 'Aqualens Nxt Aqualens 24Hrs NXT Monthl',
+
+        },
+    ]
   return (
     <div>
       <div className="flex flex-col space-y-6 items-center w-full py-8">
@@ -33,7 +44,9 @@ const Glasses = () => {
             alt=""
             className="w-full object-contain"
           />
-          <img
+          <img   onClick={() => {
+                   navigate('/contact-lenses/clear-contact-lenses');
+                }}
             src={contactlense}
             alt=""
             className="w-full object-contain"
@@ -48,9 +61,9 @@ const Glasses = () => {
 
         <div className="flex flex-col space-y-8 w-full ">
         <div className="w-8/12 mx-auto  rounded-2xl ">
-            <div className="w-11/12 mx-auto flex flex-wrap items-center gap-2">
-            <h1 className="font-bold text-lg">Eyeglasses</h1>
-            <button className="px-3 text-xs py-1 border rounded">with power</button>
+            <div className="w-11/12 mx-auto flex flex-wrap flex-row items-center gap-2 ">
+            <h1 className="font-bold sm:text-lg text-sm">Eyeglasses</h1>
+            <button className="sm:px-3 px-1 sm:text-xs text-[0.4rem]  sm:py-1 border rounded-xl bg-[#f2f2fd]">with power</button>
             </div>
 
             <div className="grid grid-cols-3 gap-6 w-11/12 mx-auto text-center">
@@ -80,7 +93,7 @@ const Glasses = () => {
 
         <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
-            <h1 className="font-bold text-lg">Sunglasses</h1>
+            <h1 className="font-bold sm:text-lg text-sm">Sunglasses</h1>
             </div>
 
             <div className="grid grid-cols-3 gap-6 w-11/12 mx-auto text-center">
@@ -111,7 +124,7 @@ const Glasses = () => {
 
         <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
-            <h1 className="font-bold text-lg">Lenskart special</h1>
+            <h1 className="font-bold sm:text-lg text-sm">Lenskart special</h1>
             </div>
 
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3 w-11/12 mx-auto text-center">
@@ -150,7 +163,7 @@ const Glasses = () => {
 
         <div className="w-8/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
-            <h1 className="font-bold text-lg"> Contact Lenses &amp; Accessories </h1>
+            <h1 className="font-bold sm:text-lg text-sm"> Contact Lenses &amp; Accessories </h1>
             </div>
 
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3 w-11/12 mx-auto text-center">
@@ -159,6 +172,7 @@ const Glasses = () => {
                 src={clear}
                 alt="Men"
                 className="w-full object-contain"
+              
                 />
             </div>
             <div>

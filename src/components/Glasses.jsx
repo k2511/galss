@@ -33,7 +33,7 @@ const Glasses = () => {
   return (
     <div>
       <div className="flex flex-col space-y-6 items-center w-full py-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-9/12 mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:w-9/12 w-11/12 mx-auto">
           <img
             src={eyeglass}
             alt=""
@@ -58,15 +58,14 @@ const Glasses = () => {
           />
         </div>
 
-
         <div className="flex flex-col space-y-8 w-full ">
-        <div className="w-8/12 mx-auto  rounded-2xl ">
+        <div className="md:w-8/12 w-11/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex flex-wrap flex-row items-center gap-2 ">
             <h1 className="font-bold sm:text-lg text-sm">Eyeglasses</h1>
             <button className="sm:px-3 px-1 sm:text-xs text-[0.4rem]  sm:py-1 border rounded-xl bg-[#f2f2fd]">with power</button>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 w-11/12 mx-auto text-center">
+            <div className="grid grid-cols-3 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
             <div>
                 <img
                 src={eyemen}
@@ -91,12 +90,12 @@ const Glasses = () => {
             </div>
         </div>
 
-        <div className="w-8/12 mx-auto  rounded-2xl ">
+        <div className="md:w-8/12 w-11/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
             <h1 className="font-bold sm:text-lg text-sm">Sunglasses</h1>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 w-11/12 mx-auto text-center">
+            <div className="grid grid-cols-3 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
             <div>
                 <img
                 src={sunmen}
@@ -122,12 +121,12 @@ const Glasses = () => {
             </div>
         </div>
 
-        <div className="w-8/12 mx-auto  rounded-2xl ">
+        <div className="md:w-8/12 w-11/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
             <h1 className="font-bold sm:text-lg text-sm">Lenskart special</h1>
             </div>
 
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-3 w-11/12 mx-auto text-center">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
             <div>
                 <img
                 src={progress}
@@ -161,12 +160,12 @@ const Glasses = () => {
             </div>
         </div>
 
-        <div className="w-8/12 mx-auto  rounded-2xl ">
+        <div className="md:w-8/12 w-11/12 mx-auto  rounded-2xl ">
             <div className="w-11/12 mx-auto flex items-center">
             <h1 className="font-bold sm:text-lg text-sm"> Contact Lenses &amp; Accessories </h1>
             </div>
 
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-3 w-11/12 mx-auto text-center">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
             <div>
                 <img
                 src={clear}

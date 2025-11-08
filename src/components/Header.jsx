@@ -278,7 +278,8 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex  lg:space-x-3  items-center sm:ml-2 ml-0">
+          <div className="flex  lg:space-x-3 
+           items-center sm:ml-2 ml-0">
             {/* Search Bar */}
             {/* <div className="flex justify-center items-center"> */}
             {/* <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">
@@ -290,7 +291,7 @@ const Header = () => {
                 />
               </div> */}
 
-            <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
+            <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-[100px] sm:w-36 xl:w-44 shadow-sm ">
               {/* Search icon visible only below md */}
               <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1" />
 
@@ -1232,7 +1233,7 @@ const Header = () => {
                         to="#"
                         className="text-sm font-medium text-black hover:text-blue-600"
                       >
-                        Roosevelt Field Mall
+                        Fatima Nagar
                       </Link>
                     </div>
                   </div>

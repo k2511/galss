@@ -22,24 +22,22 @@ import { useNavigate } from "react-router-dom";
 const Glasses = () => {
 
     const navigate = useNavigate();
-    const data = [
-        {
-            img: '',
-            price:  '₹1',
-            title: 'Aqualens Nxt Aqualens 24Hrs NXT Monthl',
-
-        },
-    ]
+ 
+    
   return (
     <div>
       <div className="flex flex-col space-y-6 items-center w-full py-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:w-9/12 w-11/12 mx-auto">
-          <img
+          <img  onClick={() => {
+                navigate('/eyeglasses' )
+            }}
             src={eyeglass}
             alt=""
             className="w-full object-contain"
           />
-          <img
+          <img  onClick={() => {
+                navigate('/sunglasses' )
+            }}
             src={sunglass}
             alt=""
             className="w-full object-contain"
@@ -66,7 +64,7 @@ const Glasses = () => {
             </div>
 
             <div className="grid grid-cols-3 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
-            <div>
+            <div >
                 <img
                 src={eyemen}
                 alt="Men"

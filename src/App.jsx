@@ -123,6 +123,7 @@ import AboutUs from "./innerpages/lenses/knowledgecenter/AboutUs";
 import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
 import Glasses from "./components/Glasses.jsx";
 import ClearContextLense from "./components/ClearContextLense.jsx";
+import Eyeglasses from "./pages/Eyeglasses.jsx";
 
 function App() {
   return (
@@ -191,7 +192,7 @@ function App() {
         <Route path="/brands/giorgio-armani" element={<GiorgioArmani />} />
         <Route path="/brands/garrett-leight" element={<GarrettLeight />} />
         <Route path="/prescriptionGlass" element={<PrescriptionGlass />} />
-        <Route path="/sunglasses" element={<Sunglasses />} />
+    
 
         <Route path="/find-contacts" element={<FindYourContacts />} />{" "}
         {/* 👈 New route */}
@@ -203,10 +204,22 @@ function App() {
         <Route path="/DesignerOutlet" element={<DesignerOutlet />} />
         <Route path="/GirlsEyeglasses" element={<GirlsEyeglasses />} />
         <Route path="/NextDayDelivery" element={<NextDayDelivery />} />
+
+        
+
         {/*Men Section*/}
         <Route path="/ShopAllGlassesMen" element={<ShopAllGlassesMen />} />
         <Route path="/findyourcontact" element={<FindYourContacts />} />
+
+
+
+        {/* eye glasses  */}
+
+        <Route path="/eyeglasses" element={<Eyeglasses />} />
+
         {/* Sunglasses (Women) */}
+        
+        <Route path="/sunglasses" element={<Sunglasses />} />
         <Route path="/sunglasses/women/bestseller" element={<BestSeller />} />
         <Route path="/sunglasses/women/sunglasses" element={<SunGlasses />} />
         <Route path="/sunglasses/women/onsale" element={<OnSale />} />

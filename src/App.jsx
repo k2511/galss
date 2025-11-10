@@ -125,6 +125,8 @@ import Glasses from "./components/Glasses.jsx";
 import ClearContextLense from "./components/ClearContextLense.jsx";
 import Eyeglasses from "./pages/Eyeglasses.jsx";
 
+import Cart from './pages/Cart.jsx'
+
 function App() {
   return (
     // Removed Provider and BrowserRouter from here since they're in main.jsx
@@ -211,8 +213,7 @@ function App() {
         <Route path="/ShopAllGlassesMen" element={<ShopAllGlassesMen />} />
         <Route path="/findyourcontact" element={<FindYourContacts />} />
 
-
-
+        <Route path="/cart" element={<Cart />} />
         {/* eye glasses  */}
 
         <Route path="/eyeglasses" element={<Eyeglasses />} />

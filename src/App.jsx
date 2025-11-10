@@ -124,6 +124,7 @@ import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
 import Glasses from "./components/Glasses.jsx";
 import ClearContextLense from "./components/ClearContextLense.jsx";
 import Eyeglasses from "./pages/Eyeglasses.jsx";
+import ColourLens from "./components/ColourLens.jsx";
 
 function App() {
   return (
@@ -295,6 +296,7 @@ function App() {
         <Route path="/contacts/myday" element={<ContactLensShop />} />
 
         <Route path="/contact-lenses/clear-contact-lenses" element={<ClearContextLense />} />
+        <Route path="/colour-lenses/colour-contact-lenses" element={<ColourLens />} />
 
        
         {/* Popular Lenses */}

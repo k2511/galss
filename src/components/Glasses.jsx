@@ -49,7 +49,9 @@ const Glasses = () => {
             alt=""
             className="w-full object-contain"
           />
-          <img
+          <img onClick={() => {
+                   navigate('/colour-lenses/colour-contact-lenses');
+                }}
             src={colorlense}
             alt=""
             className="w-full object-contain"

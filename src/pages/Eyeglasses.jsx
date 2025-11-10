@@ -10,6 +10,7 @@
 // }
 
 // export default Eyeglasses
+import { RxCross1 } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 
@@ -352,7 +353,7 @@ const Eyeglasses = () => {
 //   </div>
 // </div>
 
-<div className="px-4 py-3 text-center border-2 border-black">
+<div className="px-1 py-1 text-center border-2 border-black">
 
  { !showFilter && (<div className="relative w-full  mx-auto py-6 flex flex-row justify-between sm:gap-2 gap-1">
     <aside className="hidden lg:block lg:sticky lg:top-0 lg:h-[75vh] lg:w-1/6 rounded-xl shadow-sm bg-white sm:p-4 p-0 border-2 border-black overflow-auto">
@@ -453,14 +454,22 @@ const Eyeglasses = () => {
 
  {
   showFilter && (
-    <div>
+    <div className="w-full h-[80vh] border-2 z-50  border-black">
+      <div className=" h-14 border-2 w-full flex flex-row justify-between px-5 items-center "> 
+        <h1 >Filter</h1>
+        <RxCross1  className="text-2xl" onClick={() => {
+           setShowFilter(false);
+        }}/>
+      </div>
+      <div className=""> 
 
+      </div>
     </div>
   )
  }
 
 
-  {<div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t-2 border-black p-4" >
+  {<div className="lg:hidden fixed bottom-0 left-0 w-full z-0 bg-white border-t-2 border-black p-4" >
 
    <div> 
     <h2 className="text-[0.7rem]" onClick={() => {

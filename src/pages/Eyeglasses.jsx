@@ -10,10 +10,13 @@
 // }
 
 // export default Eyeglasses
+import { toast } from "react-hot-toast";
 import { RxCross1 } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { IoCartOutline } from "react-icons/io5";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
 const Eyeglasses = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -177,6 +180,8 @@ const Eyeglasses = () => {
     return matchesType && matchesPrice;
   });
 
+  const { handleAddToCart } = useContext(CartContext);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 640) {
@@ -189,6 +194,8 @@ const Eyeglasses = () => {
   
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+
 
   return (
     // <div className="px-3 py-3 text-center border-2 border-black ">
@@ -490,12 +497,13 @@ const Eyeglasses = () => {
                       </div>
                       <div className=" flex border-2 border-black rounded-md bg-sky-100">
                   
-                        <button className="px-2 py-1 flex gap-2">
-                              {/* <IoCartOutline className="text-xl"/> */}
+                        <button className="px-2 py-1 flex gap-2"   onClick={() => {handleAddToCart(item)
+                          toast.success("Item added to cart!");
+                        }}>
+                              
                             Add to cart 
                         </button>
                       </div> </div>
-                   
                    
         
                     </div>

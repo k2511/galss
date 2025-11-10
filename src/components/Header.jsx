@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Search, User, ShoppingBag, Heart, ChevronDown , Truck ,LifeBuoy, Accessibility } from "lucide-react";
 import { toggleLoginModal } from "../features/user/userSlice";
 import { toggleCart } from "../features/cart/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import DropdownMenu from "../components/DropdownMenu";
 import EyeglassesDropdown from "../innerPages/EyeglassesDropdown";
@@ -77,6 +77,7 @@ const BrandTile = ({ brand }) => {
 };
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { totalQuantity } = useSelector((state) => state.cart);
   const [eyeglass, setEyeglass] = useState(false);
@@ -290,7 +291,7 @@ const Header = () => {
 
             <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
               {/* Search icon visible only below md */}
-              <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1" />
+              <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1 " />
 
               <input
                 type="text"
@@ -309,10 +310,13 @@ const Header = () => {
 
             {/* Cart */}
             <button
-              onClick={() => dispatch(toggleCart())}
-              className="relative p-1 hover:bg-gray-100 rounded-lg"
+              onClick={() => {
+                dispatch(toggleCart())
+                navigate('/cart', );
+              }}
+              className="relative p-1 hover:bg-gray-100 rounded-lg "
             >
-              <ShoppingBag size={20} className="text-gray-600" />
+              <ShoppingBag size={20} className="text-gray-600"  />
               {totalQuantity > 0 && (
                 <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {totalQuantity}

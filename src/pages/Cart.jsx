@@ -10,8 +10,6 @@ const Cart = () => {
     const { handleAddToCart, setCart , cart, increaseQty, decreaseQty, removeItem, totalAmount} = useContext(CartContext);
      console.log('cart -----',cart.length, cart )
 
-
-
   return (
     <div className="w-full max-w-2xl mx-auto mt-10 p-4 bg-white rounded-xl shadow border">
       <h2 className="text-2xl font-bold mb-4 text-center">🛒 Your Cart</h2>

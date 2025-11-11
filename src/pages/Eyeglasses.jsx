@@ -1,16 +1,3 @@
-
-// import React from 'react'
-
-// const Eyeglasses = () => {
-//   return (
-//     <div className="p-8 text-center">
-//       <h1 className="text-3xl font-semibold text-blue-600">Eyeglasses Page</h1>
-//       <p className="mt-4 text-gray-600">Welcome to the Eyeglasses collection.</p>
-//     </div>
-//   )
-// }
-
-// export default Eyeglasses
 import { toast } from "react-hot-toast";
 import { RxCross1 } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
@@ -199,7 +186,6 @@ const Eyeglasses = () => {
 
 
   return (
-<div className="px-1 py-1 text-center border-2 border-black">
     // <div className="px-3 py-3 text-center border-2 border-black ">
 
     //   <div className=" relative w-11/12 mx-auto py-6 flex flex-row justify-between sm:gap-8 gap-1">
@@ -388,7 +374,6 @@ const Eyeglasses = () => {
     //     </main>
     //   </div>
     // </div>
->>>>>>> c059a0ff6798f627bcc5e0cc5e1daf6c1061e46f
 
     <div className="px-1 py-1 text-center border-2 border-black">
       {!showFilter && (

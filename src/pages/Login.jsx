@@ -102,10 +102,7 @@ const Login = () => {
               <button  onClick={handleReset} className='cursor-pointer'>
                 Forget password
               </button>
-              <div className="">
-                                <img src="https://eshopweb.store/assets/front_end/modern/image/pictures/google-logo-9825.png " alt="">
-                                <p class="m-0">Google</p>
-                            </div>
+         
             </div>
             
           <p className="text-center text-sm">

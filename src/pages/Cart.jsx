@@ -8,12 +8,11 @@ import { Trash2 } from "lucide-react";
 
 const Cart = () => {
     const { handleAddToCart, setCart , cart, increaseQty, decreaseQty, removeItem, totalAmount} = useContext(CartContext);
-     console.log('cart -----',cart.length, cart )
 
 
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-10 p-4 bg-white rounded-xl shadow border">
+    <div className="w-full max-w-2xl mx-auto mt-10 p-4 bg-[#fbf9f7] rounded-xl shadow border ">
       <h2 className="text-2xl font-bold mb-4 text-center">🛒 Your Cart</h2>
 
       {cart.length === 0 ? (
@@ -26,26 +25,26 @@ const Cart = () => {
                 key={item.id}
                 className="flex justify-between items-center border-b pb-4"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4 ">
                   <img
                     src={item.image}
                     alt={item.name}
                     className="w-20 h-24 object-contain rounded"
                   />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">{item.name}</h3>
-                    <p className="text-gray-500 text-sm">₹{item.price}</p>
-                    <div className="flex items-center mt-2 border rounded-md overflow-hidden">
+                  <div className="">
+                    <h3 className="font-semibold text-gray-800 sm:text-base text-xs">{item.name}</h3>
+                    <p className="text-gray-500 sm:text-sm text-xs">₹{item.price}</p>
+                    <div className="flex items-center justify-around w-24 sm:w-28 mt-2 border rounded-md overflow-hidden">
                       <button
                         onClick={() => decreaseQty(item.id)}
                         className="px-2 py-1 text-xl hover:bg-gray-200"
                       >
                         –
                       </button>
-                      <span className="px-4 font-semibold">{item.quantity}</span>
+                      <span className="sm:px-4 px-2 font-semibold">{item.quantity}</span>
                       <button
                         onClick={() => increaseQty(item.id)}
-                        className="px-2 py-1 text-xl hover:bg-gray-200"
+                        className="px-2  py-1 text-xl hover:bg-gray-200"
                       >
                         +
                       </button>
@@ -54,7 +53,7 @@ const Cart = () => {
                 </div>
 
                 <div className="flex flex-col items-end">
-                  <span className="font-semibold text-sky-600 text-lg">
+                  <span className="font-semibold text-sky-600 sm:text-sm md:text-base text-xs lg:text-lg">
                     ₹{item.price * item.quantity}
                   </span>
                   <button

@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import { store } from "./app/store";
 import "./index.css";
 import { CartProvider } from "./context/CartContext";
+import toast, { Toaster } from 'react-hot-toast';
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -50,7 +51,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <CartProvider>
       <Provider store={store}>
         <BrowserRouter>
-
+            <Toaster />
           <App />
         </BrowserRouter>
       </Provider>

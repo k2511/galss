@@ -9,7 +9,7 @@ const FramingYourWorldSection = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-100 rounded-lg p-6 md:p-8">
           <img 
-            src="blob:chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/47a15e38-b712-4a4a-a47c-c2b4ccda3e7f" 
+            src="https://optimaxweb.glassesusa.com/image/upload/f_auto,q_auto/mf-homepage/client/mobileImg/aboutUsImage_cca5acf802d299cb4741.jpg" 
             alt="Finding perfect pair" 
             className="w-full rounded-lg mb-4"
           />

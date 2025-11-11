@@ -1,3 +1,4 @@
+
 // import React from 'react'
 
 // const Eyeglasses = () => {
@@ -198,6 +199,7 @@ const Eyeglasses = () => {
 
 
   return (
+<div className="px-1 py-1 text-center border-2 border-black">
     // <div className="px-3 py-3 text-center border-2 border-black ">
 
     //   <div className=" relative w-11/12 mx-auto py-6 flex flex-row justify-between sm:gap-8 gap-1">
@@ -386,6 +388,7 @@ const Eyeglasses = () => {
     //     </main>
     //   </div>
     // </div>
+>>>>>>> c059a0ff6798f627bcc5e0cc5e1daf6c1061e46f
 
     <div className="px-1 py-1 text-center border-2 border-black">
       {!showFilter && (

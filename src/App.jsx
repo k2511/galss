@@ -17,7 +17,7 @@ import Footer from "./components/Footer";
 import GlassSection from "./components/GlassSection";
 import CollectionCards from "./components/CollectionCards";
 import TrustpilotSection from "./components/TrustpilotSection";
-import FeaturedAndFilters from "./components/FeaturedAndFilters";
+
 
 import GuaranteeSection from "./components/GuaranteeSection.jsx"; // Make sure this path is correct
 
@@ -124,6 +124,7 @@ import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
 import Glasses from "./components/Glasses.jsx";
 import ClearContextLense from "./components/ClearContextLense.jsx";
 import Eyeglasses from "./pages/Eyeglasses.jsx";
+import ColourLens from "./components/ColourLens.jsx";
 
 import Cart from './pages/Cart.jsx'
 import Signup from "./pages/Signup.jsx";
@@ -154,7 +155,7 @@ function App() {
                 <GlassSection />
                 <CollectionCards />
                 <TrustpilotSection />
-                <FeaturedAndFilters />
+              
                 <GuaranteeSection />
               </main>
               <Footer />
@@ -300,6 +301,7 @@ function App() {
         <Route path="/contacts/myday" element={<ContactLensShop />} />
 
         <Route path="/contact-lenses/clear-contact-lenses" element={<ClearContextLense />} />
+        <Route path="/colour-lenses/colour-contact-lenses" element={<ColourLens />} />
 
        
         {/* Popular Lenses */}

@@ -63,7 +63,6 @@ const EyewearGallery = () => {
           </div>
         </div>
         
-
       </div>
     </div>
   );

@@ -138,29 +138,8 @@ const HeroSection = () => {
         </button>
       </div>
 
-      {/* --- Feature Bar (Hidden on mobile, visible on desktop) --- */}
-      {/* <div className="hidden md:flex relative z-20 bg-white shadow-lg rounded-full mx-auto -mt-6 mb-10 w-[85%] items-center justify-center gap-6 py-4 px-6 text-base font-medium">
-        <div className="flex items-center space-x-2">
-          <span>🚚</span> <span>Free Shipping</span>
-        </div>
-        <span className="border-l h-6 border-gray-300"></span>
-        <div className="flex items-center space-x-2">
-          <span>📦</span> <span>45-days Home Try-on</span>
-        </div>
-        <span className="border-l h-6 border-gray-300"></span>
-        <div className="flex items-center space-x-2">
-          <span>🕒</span> <span>365-Days of Warranty</span>
-        </div>
-        <span className="border-l h-6 border-gray-300"></span>
-        <div className="flex items-center space-x-2">
-          <span>💳</span> <span>Buy now pay later</span>
-        </div>
-        <span className="border-l h-6 border-gray-300"></span>
-        <div className="flex items-center space-x-2">
-          <span>⭐</span> <span>Trustpilot</span> <span>★★★★★</span>{" "}
-          <span>111K</span>
-        </div>
-      </div> */}
+
+      
 
       {/* Insurance Panel */}
       {showInsurance && (

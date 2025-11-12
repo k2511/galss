@@ -378,7 +378,7 @@ const Eyeglasses = () => {
     <div className="px-1 py-1 text-center border-2 border-black">
       {!showFilter && (
         <div className="w-full mx-auto flex flex-row justify-between sm:gap-2 gap-1 items-start">
-          <aside className=" hidden lg:block lg:sticky lg:top-0 lg:h-[90vh] lg:w-1/6 rounded-xl shadow-sm bg-white sm:p-4 p-0 border-2 border-black overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+          <aside className=" hidden lg:block lg:sticky lg:top-0 lg:h-[85vh] lg:w-1/6 rounded-xl shadow-sm bg-white sm:p-4 p-0 border-2 border-black overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
             <h2 className="font-semibold text-lg mb-4 text-gray-800">
               Filter By
             </h2>
@@ -469,7 +469,7 @@ const Eyeglasses = () => {
                         <div className="lg:flex lg:gap-3 lg:items-center   ">  
                       <div className="flex w-auto items-center gap-2 text-sm ">
                        
-                       <span className="text-green-600 font-bold">
+                       <span className=" font-bold">
                          ₹{offPrice}
                        </span>
                      </div>
@@ -493,7 +493,6 @@ const Eyeglasses = () => {
                         </button>
                       </div> </div>
                    
-        
                     </div>
                   );
                 })

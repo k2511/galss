@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Search, User, ShoppingBag, Heart, ChevronDown , Truck ,LifeBuoy, Accessibility } from "lucide-react";
 import { toggleLoginModal } from "../features/user/userSlice";
@@ -43,6 +43,7 @@ import dolce from "../assets/brands/dolce.jpg";
 import oliver from "../assets/brands/oliver.jpg";
 import armani from "../assets/brands/armani.jpg";
 import garrett from "../assets/brands/garrett.jpg";
+import { CartContext } from "../context/CartContext";
 
 // import {RiArrowRightSLine } from "react-icons/ri";
 const nav = [
@@ -82,6 +83,8 @@ const Header = () => {
   const { totalQuantity } = useSelector((state) => state.cart);
   const [eyeglass, setEyeglass] = useState(false);
 
+  const {cart} = useContext(CartContext);
+
   const [sunglass, setSunglass] = useState(false);
   const [brand, setBrand] = useState(false);
   const [contactlense, setContactLense] = useState(false);
@@ -89,7 +92,7 @@ const Header = () => {
   const [sale, setSale] = useState(false);
   const [store, setStore] = useState(false);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);  
 
   const [activeMenu, setActiveMenu] = useState(null); // Track which menu is open
   const [showSubMenu, setShowSubMenu] = useState(false);
@@ -290,7 +293,6 @@ const Header = () => {
               </div> */}
 
             <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
-              {/* Search icon visible only below md */}
               <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1 " />
 
               <input
@@ -312,28 +314,37 @@ const Header = () => {
             <button
               onClick={() => {
                 dispatch(toggleCart())
-                navigate('/cart', );
+                navigate('/cart');
               }}
-              className="relative p-1 hover:bg-gray-100 rounded-lg "
+              className="relative p-1 hover:bg-gray-100 rounded-lg  "
             >
-              <ShoppingBag size={20} className="text-gray-600"  />
+              <ShoppingBag size={20} className="w-6 h-6 "  />
               {totalQuantity > 0 && (
                 <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {totalQuantity}
                 </span>
               )}
+             
+          
+            <span className="absolute -top-1 -right-1 bg-blue-600 text-xs py-1 text-white rounded-full px-1.5">
+                   {cart.length}
+            </span>
+     
+        
             </button>
 
             {/* Divider */}
             <span className="mx-2 h-7 w-px bg-gray-200" />
 
             {/* User/Login */}
-            <button
-              onClick={() => dispatch(toggleLoginModal())}
+            <button className=''
+              onClick={() => {dispatch(toggleLoginModal())
+                navigate('/login')
+              }}
               className="flex items-center min-w-16 w-20 xl:gap-2 lg:gap-1  hover:bg-gray-100 rounded-lg"
             >
               <User size={20} className="text-gray-700" />
-              <span className=" text-sm text-black">Log In </span>
+              <span className=" text-sm text-black px-1 py-2">Log In </span>
             </button>
           </div>
         </div>
@@ -357,7 +368,9 @@ const Header = () => {
               onClick={() => dispatch(toggleLoginModal())}
               className="flex items-center  gap-3 hover:bg-gray-100 rounded-lg"
             >
-              <span className="ml-2 text-md text-black ">
+              <span className="ml-2 text-md text-black " onClick={() => {
+                navigate('/login')
+              }}>
                 Log In / Sign up{" "}
               </span>
               <User size={20} className="text-gray-700" />

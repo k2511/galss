@@ -9,7 +9,7 @@ import { useContext } from "react";
 const Eyeglasses = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [priceOpen, setPriceOpen] = useState(false);
-  const [selectedType, setSelectedType] = useState("spherical");
+  const [selectedType, setSelectedType] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState(null);
 
   const priceRanges = [
@@ -21,12 +21,24 @@ const Eyeglasses = () => {
     { label: "₹2500 - ₹2999", min: 2500, max: 2999 },
     { label: "₹3000 - ₹5000", min: 3000, max: 5000 },
   ];
+  const eyeglass = [
+    {img:'https://static5.lenskart.com/media/uploads/All-New.png',
+      name: 'All'
+    },
+    {img:'	https://static1.lenskart.com/media/desktop/img/2024/jan/premium.png',
+      name: 'Premium'
+    },
+    {img:'	https://static1.lenskart.com/media/desktop/img/2024/jan/regular-1.png',
+      name: 'Budget'
+    },
+
+  ]
 
   const products = [
     {
       id: 1,
       name: "Aqua Spherical Lens",
-      type: "spherical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 1200,
@@ -35,7 +47,7 @@ const Eyeglasses = () => {
     {
       id: 2,
       name: "Pro Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 1800,
@@ -44,7 +56,7 @@ const Eyeglasses = () => {
     {
       id: 3,
       name: "Ultra Spherical Premium",
-      type: "spherical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2000,
@@ -53,7 +65,7 @@ const Eyeglasses = () => {
     {
       id: 4,
       name: "Aqua Soft Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 450,
@@ -62,7 +74,7 @@ const Eyeglasses = () => {
     {
       id: 5,
       name: "Cool Vision Lens",
-      type: "spherical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 800,
@@ -71,7 +83,7 @@ const Eyeglasses = () => {
     {
       id: 6,
       name: "Pro Max Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2100,
@@ -80,7 +92,7 @@ const Eyeglasses = () => {
     {
       id: 7,
       name: "Pro Max Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 3200,
@@ -89,7 +101,7 @@ const Eyeglasses = () => {
     {
       id: 8,
       name: "Pro Max Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 3800,
@@ -98,7 +110,7 @@ const Eyeglasses = () => {
     {
       id: 9,
       name: "Pro Max Toric Lens",
-      type: "sperical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 4000,
@@ -107,7 +119,7 @@ const Eyeglasses = () => {
     {
       id: 10,
       name: "Pro Max Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2400,
@@ -116,7 +128,7 @@ const Eyeglasses = () => {
     {
       id: 11,
       name: "Pro Max Toric Lens",
-      type: "sperical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2200,
@@ -125,7 +137,7 @@ const Eyeglasses = () => {
     {
       id: 12,
       name: "Pro Max Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 4400,
@@ -134,7 +146,7 @@ const Eyeglasses = () => {
     {
       id: 13,
       name: "Pro Max Toric Lens",
-      type: "sperical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2700,
@@ -143,7 +155,7 @@ const Eyeglasses = () => {
     {
       id: 14,
       name: "Pro Max Toric Lens",
-      type: "sperical",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2700,
@@ -152,7 +164,7 @@ const Eyeglasses = () => {
     {
       id: 15,
       name: "Pro Max Toric Lens",
-      type: "toric",
+      type: "eyeglasses",
       image:
         "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-vc-s15999-c6-sunglasses_dsc_0321_20_03_2024.jpg",
       price: 2500,
@@ -160,11 +172,28 @@ const Eyeglasses = () => {
     },
   ];
 
+  // const filteredProducts = products.filter((p) => {
+  //   const matchesType = p.type === selectedType;
+  //   const premium = p.price > 1500;
+  //   const matchesPrice =
+  //     !selectedPrice ||
+  //     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
+  //   return matchesType && matchesPrice;
+  // });
+
   const filteredProducts = products.filter((p) => {
-    const matchesType = p.type === selectedType;
+    let matchesType = true;
+
+    if (selectedType === "Premium") {
+      matchesType = p.price >  1500;
+    } else if (selectedType === "All") {
+      matchesType = true;
+    }
+
     const matchesPrice =
       !selectedPrice ||
       (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
+
     return matchesType && matchesPrice;
   });
 
@@ -176,205 +205,14 @@ const Eyeglasses = () => {
         setShowFilter(false);
       }
     };
-  
+
     window.addEventListener("resize", handleResize);
     handleResize(); // run once on mount
-  
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
-
   return (
-    // <div className="px-3 py-3 text-center border-2 border-black ">
-
-    //   <div className=" relative w-11/12 mx-auto py-6 flex flex-row justify-between sm:gap-8 gap-1">
-
-    //     <aside className="w-full hidden lg:block lg:w-1/4 rounded-xl shadow-sm bg-white sm:p-4 p-0 h-fit border-2 border-black">
-    //       <h2 className="font-semibold text-lg mb-4 text-gray-800">
-    //         Filter By
-    //       </h2>
-    //       <h3 className="font-semibold mb-2 text-gray-700">Price Range</h3>
-    //       <div className="flex flex-col gap-2">
-    //         {priceRanges.map((range) => (
-    //           <label
-    //             key={range.label}
-    //             className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
-    //               selectedPrice?.label === range.label
-    //                 ? "bg-blue-500 text-white shadow-lg"
-    //                 : " text-gray-700"
-    //             }`}
-    //           >
-    //             <input  className=" appearance-none w-4 h-4 border border-gray-400 rounded checked:bg-blue-500 checked:border-blue-500 relative
-    //                after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
-    //               type="radio"
-    //               name="price"
-    //               checked={selectedPrice?.label === range.label}
-    //               onChange={() => setSelectedPrice(range)}
-    //             />
-    //             {range.label}
-    //           </label>
-    //         ))}
-    //       </div>
-
-    //       {selectedPrice && (
-    //         <button
-    //           onClick={() => setSelectedPrice(null)}
-    //           className="mt-4 text-sm text-red-500 underline"
-    //         >
-    //           Clear Price Filter
-    //         </button>
-    //       )}
-    //     </aside>
-
-    //     <main className="w-full lg:w-3/4 border-2 border-black mx-auto">
-    //       <div className="flex justify-center gap-4 mb-6">
-    //         {["spherical", "toric"].map((type) => (
-    //           <button
-    //             key={type}
-    //             onClick={() => setSelectedType(type)}
-    //             className={`px-6 py-2  font-semibold text-sm transition ${
-    //               selectedType === type
-    //                 ? "bg-blue-500 text-white shadow-lg"
-    //                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-    //             }`}
-    //           >
-    //             {type.charAt(0).toUpperCase() + type.slice(1)}
-    //           </button>
-    //         ))}
-    //       </div>
-
-    //       <div className="grid grid-cols-1 lg:grid-cols-3 xl:gap-6 gap-3">
-    //         {filteredProducts.length > 0 ? (
-    //           filteredProducts.map((item) => {
-    //             const offPrice =
-    //               item.price - (item.price * item.discount) / 100;
-    //             return (
-    //               <div
-    //                 key={item.id}
-    //                 className="border rounded-xl shadow-sm hover:shadow-lg transition p-3 text-center bg-white"
-    //               >
-    //                 <img
-    //                   src={item.image}
-    //                   alt={item.name}
-    //                   className="w-full h-80 object-contain xl:mb-3"
-    //                 />
-    //                 <h2 className="text-sm font-semibold">{item.name}</h2>
-    //                 <div className="flex justify-center items-center gap-2 text-sm mt-1">
-    //                   <span className="text-gray-500 line-through">
-    //                     ₹{item.price}
-    //                   </span>
-    //                   <span className="text-green-600 font-bold">
-    //                     ₹{offPrice}
-    //                   </span>
-    //                 </div>
-    //                 <p className="text-xs text-[#00bac6]">
-    //                   {item.discount}% off
-    //                 </p>
-    //               </div>
-    //             );
-    //           })
-    //         ) : (
-    //           <p className="text-center col-span-full text-gray-500">
-    //             No products found in this range 😕
-    //           </p>
-    //         )}
-    //       </div>
-    //     </main>
-    //   </div>
-
-    // </div>
-
-    //     <div className="px-3 py-3 text-center border-2 border-black">
-    //   <div className="relative w-11/12 mx-auto py-6 flex flex-col lg:flex-row justify-between sm:gap-8 gap-1">
-
-    //     <aside className="lg:sticky lg:top-0 lg:h-screen w-full lg:w-1/4 rounded-xl shadow-sm bg-white sm:p-4 p-0 h-fit border-2 border-black">
-    //       <h2 className="font-semibold text-lg mb-4 text-gray-800">
-    //         Filter By
-    //       </h2>
-    //       <h3 className="font-semibold mb-2 text-gray-700">Price Range</h3>
-    //       <div className="flex flex-col gap-2">
-    //         {priceRanges.map((range) => (
-    //           <label
-    //             key={range.label}
-    //             className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm ${
-    //               selectedPrice?.label === range.label
-    //                 ? "bg-blue-500 text-white shadow-lg"
-    //                 : "text-gray-700"
-    //             }`}
-    //           >
-    //             <input
-    //               className="appearance-none w-4 h-4 border border-gray-400 rounded-none checked:bg-blue-500 checked:border-blue-500 relative after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
-    //               type="radio"
-    //               name="price"
-    //               checked={selectedPrice?.label === range.label}
-    //               onChange={() => setSelectedPrice(range)}
-    //             />
-    //             {range.label}
-    //           </label>
-    //         ))}
-    //       </div>
-
-    //       {selectedPrice && (
-    //         <button
-    //           onClick={() => setSelectedPrice(null)}
-    //           className="mt-4 text-sm text-red-500 underline"
-    //         >
-    //           Clear Price Filter
-    //         </button>
-    //       )}
-    //     </aside>
-
-    //     <main className="w-full lg:w-3/4 border-2 border-black mx-auto mt-6 lg:mt-0">
-    //       <div className="flex justify-center gap-4 mb-6">
-    //         {["spherical", "toric"].map((type) => (
-    //           <button
-    //             key={type}
-    //             onClick={() => setSelectedType(type)}
-    //             className={`px-6 py-2 font-semibold text-sm transition ${
-    //               selectedType === type
-    //                 ? "bg-blue-500 text-white shadow-lg"
-    //                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-    //             }`}
-    //           >
-    //             {type.charAt(0).toUpperCase() + type.slice(1)}
-    //           </button>
-    //         ))}
-    //       </div>
-
-    //       <div className="grid grid-cols-1 lg:grid-cols-3 xl:gap-6 gap-3">
-    //         {filteredProducts.length > 0 ? (
-    //           filteredProducts.map((item) => {
-    //             const offPrice = item.price - (item.price * item.discount) / 100;
-    //             return (
-    //               <div
-    //                 key={item.id}
-    //                 className="border rounded-xl shadow-sm hover:shadow-lg transition p-3 text-center bg-white"
-    //               >
-    //                 <img
-    //                   src={item.image}
-    //                   alt={item.name}
-    //                   className="w-full h-80 object-contain xl:mb-3"
-    //                 />
-    //                 <h2 className="text-sm font-semibold">{item.name}</h2>
-    //                 <div className="flex justify-center items-center gap-2 text-sm mt-1">
-    //                   <span className="text-gray-500 line-through">₹{item.price}</span>
-    //                   <span className="text-green-600 font-bold">₹{offPrice}</span>
-    //                 </div>
-    //                 <p className="text-xs text-[#00bac6]">{item.discount}% off</p>
-    //               </div>
-    //             );
-    //           })
-    //         ) : (
-    //           <p className="text-center col-span-full text-gray-500">
-    //             No products found in this range 😕
-    //           </p>
-    //         )}
-    //       </div>
-    //     </main>
-    //   </div>
-    // </div>
-
     <div className="px-1 py-1 text-center border-2 border-black">
       {!showFilter && (
         <div className="w-full mx-auto flex flex-row justify-between sm:gap-2 gap-1 items-start">
@@ -389,7 +227,6 @@ const Eyeglasses = () => {
                   setPriceOpen(!priceOpen);
                 }}
               >
-
                 <h3 className="font-semibold   text-gray-700 ">Price Range</h3>{" "}
                 <FaChevronDown
                   className={`transition-transform duration-300 ${
@@ -434,7 +271,7 @@ const Eyeglasses = () => {
 
           <main className="w-full lg:w-4/7  mx-auto">
             <div className="flex justify-center gap-4 mb-6">
-              {["spherical", "toric"].map((type) => (
+              {/* {["All", "Budget", "Premium"].map((type) => (
                 <button
                   key={type}
                   onClick={() => setSelectedType(type)}
@@ -446,10 +283,31 @@ const Eyeglasses = () => {
                 >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </button>
+              ))} */}
+              { eyeglass.map((data,id) => (
+                <div className="">
+                  <div className=" ">
+                     <div className="flex items-center justify-center "> <img src={data.img} className="w-7 h-5"/>
+                     </div> 
+                  <div>
+                 <button
+                  key={id}
+                  onClick={() => setSelectedType(data.name)}
+                  className={`px-6  font-semibold text-sm transition  ${
+                    selectedType === data.name
+                      ? "border-b-blue-950 border-  text-blue-950 "
+                      : " "
+                  }`}
+                >
+                  {data.name}
+                </button> </div> </div>
+                     
+                  </div>
+            
               ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 gap-3 " >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 gap-3 ">
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((item) => {
                   const offPrice =
@@ -465,34 +323,33 @@ const Eyeglasses = () => {
                         className="w-full h-60 sm:h-72 lg:h-60 object-contain xl:mb-3"
                       />
                       {/* <h2 className="text-sm font-semibold">{item.name}</h2> */}
-                      <div className="flex justify-between w-full rounded-md" > 
-                        <div className="lg:flex lg:gap-3 lg:items-center   ">  
-                      <div className="flex w-auto items-center gap-2 text-sm ">
-                       
-                       <span className=" font-bold">
-                         ₹{offPrice}
-                       </span>
-                     </div>
-                     
-                      <div className="flex gap-2 items-center "> 
-                          <span className="text-gray-500 line-through">
-                          ₹{item.price}
-                        </span>
-                      <p className="text-xs text-[#00bac6]">
-                     ({item.discount}% off)
-                      </p>
+                      <div className="flex justify-between w-full rounded-md">
+                        <div className="lg:flex lg:gap-3 lg:items-center   ">
+                          <div className="flex w-auto items-center gap-2 text-sm ">
+                            <span className=" font-bold">₹{offPrice}</span>
+                          </div>
+
+                          <div className="flex gap-2 items-center ">
+                            <span className="text-gray-500 line-through">
+                              ₹{item.price}
+                            </span>
+                            <p className="text-xs text-[#00bac6]">
+                              ({item.discount}% off)
+                            </p>
+                          </div>
                         </div>
+                        <div className=" flex border-2 border-black rounded-md bg-sky-100">
+                          <button
+                            className="px-2 py-1 flex gap-2"
+                            onClick={() => {
+                              handleAddToCart(item);
+                              toast.success("Item added to cart!");
+                            }}
+                          >
+                            Add to cart
+                          </button>
+                        </div>{" "}
                       </div>
-                      <div className=" flex border-2 border-black rounded-md bg-sky-100">
-                  
-                        <button className="px-2 py-1 flex gap-2"   onClick={() => {handleAddToCart(item)
-                          toast.success("Item added to cart!");
-                        }}>
-                              
-                            Add to cart 
-                        </button>
-                      </div> </div>
-                   
                     </div>
                   );
                 })
@@ -518,7 +375,6 @@ const Eyeglasses = () => {
             />
           </div>
           <aside className="border-2 border-black  lg:sticky lg:top-0 lg:h-[90vh] w-full px-3 shadow-sm  sm:p-4 p-0  overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-
             <div>
               <div
                 className="flex  items-center w-full justify-between "
@@ -559,19 +415,23 @@ const Eyeglasses = () => {
             </div>
 
             {selectedPrice && (
-              <div className="flex justify-between items-center"> <button
-                onClick={() => setSelectedPrice(null)}
-                className="mt-4 text-sm text-[#000042] border-2 px-3 py-2 rounded-lg border-[#000042]   "
-              >
-                Clear All
-              </button>
-               <button  onClick={() => {
-                setShowFilter(false);
-              }}  className="bg-[#000042] text-white px-16 py-2 rounded-lg">
-                   Apply 
-               </button>
-               </div>
-             
+              <div className="flex justify-between items-center">
+                {" "}
+                <button
+                  onClick={() => setSelectedPrice(null)}
+                  className="mt-4 text-sm text-[#000042] border-2 px-3 py-2 rounded-lg border-[#000042]   "
+                >
+                  Clear All
+                </button>
+                <button
+                  onClick={() => {
+                    setShowFilter(false);
+                  }}
+                  className="bg-[#000042] text-white px-16 py-2 rounded-lg"
+                >
+                  Apply
+                </button>
+              </div>
             )}
           </aside>
         </div>
@@ -580,7 +440,10 @@ const Eyeglasses = () => {
       {!showFilter && (
         <div className="lg:hidden fixed bottom-0 left-0 w-full z-0 bg-white  p-4">
           <div className="flex items-center gap-2 justify-center">
-          <img src="https://static.lenskart.com/media/desktop/img/DesignStudioIcons/FilterIcon.svg" alt="" />
+            <img
+              src="https://static.lenskart.com/media/desktop/img/DesignStudioIcons/FilterIcon.svg"
+              alt=""
+            />
             <h2
               className="text-[0.7rem]"
               onClick={() => {
@@ -596,20 +459,21 @@ const Eyeglasses = () => {
       {showFilter && (
         <div className="lg:hidden block fixed bottom-0 left-0 w-full z-0 bg-white border-t-2 border-black p-4">
           <div>
-             <div className="flex items-center gap-2 justify-center">
-             <img src="https://static.lenskart.com/media/desktop/img/DesignStudioIcons/FilterIcon.svg" alt="" />
-            <h2
-              className="text-[0.7rem]"
-              onClick={() => {
-                setShowFilter(!showFilter);
-              }}
-            >
-              Filters 
-            </h2>
-          </div>
+            <div className="flex items-center gap-2 justify-center">
+              <img
+                src="https://static.lenskart.com/media/desktop/img/DesignStudioIcons/FilterIcon.svg"
+                alt=""
+              />
+              <h2
+                className="text-[0.7rem]"
+                onClick={() => {
+                  setShowFilter(!showFilter);
+                }}
+              >
+                Filters
+              </h2>
             </div>
-        
-       
+          </div>
         </div>
       )}
 
@@ -637,3 +501,194 @@ const Eyeglasses = () => {
 };
 
 export default Eyeglasses;
+
+
+// <div className="px-3 py-3 text-center border-2 border-black ">
+
+//   <div className=" relative w-11/12 mx-auto py-6 flex flex-row justify-between sm:gap-8 gap-1">
+
+//     <aside className="w-full hidden lg:block lg:w-1/4 rounded-xl shadow-sm bg-white sm:p-4 p-0 h-fit border-2 border-black">
+//       <h2 className="font-semibold text-lg mb-4 text-gray-800">
+//         Filter By
+//       </h2>
+//       <h3 className="font-semibold mb-2 text-gray-700">Price Range</h3>
+//       <div className="flex flex-col gap-2">
+//         {priceRanges.map((range) => (
+//           <label
+//             key={range.label}
+//             className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
+//               selectedPrice?.label === range.label
+//                 ? "bg-blue-500 text-white shadow-lg"
+//                 : " text-gray-700"
+//             }`}
+//           >
+//             <input  className=" appearance-none w-4 h-4 border border-gray-400 rounded checked:bg-blue-500 checked:border-blue-500 relative
+//                after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
+//               type="radio"
+//               name="price"
+//               checked={selectedPrice?.label === range.label}
+//               onChange={() => setSelectedPrice(range)}
+//             />
+//             {range.label}
+//           </label>
+//         ))}
+//       </div>
+
+//       {selectedPrice && (
+//         <button
+//           onClick={() => setSelectedPrice(null)}
+//           className="mt-4 text-sm text-red-500 underline"
+//         >
+//           Clear Price Filter
+//         </button>
+//       )}
+//     </aside>
+
+//     <main className="w-full lg:w-3/4 border-2 border-black mx-auto">
+//       <div className="flex justify-center gap-4 mb-6">
+//         {["spherical", "toric"].map((type) => (
+//           <button
+//             key={type}
+//             onClick={() => setSelectedType(type)}
+//             className={`px-6 py-2  font-semibold text-sm transition ${
+//               selectedType === type
+//                 ? "bg-blue-500 text-white shadow-lg"
+//                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+//             }`}
+//           >
+//             {type.charAt(0).toUpperCase() + type.slice(1)}
+//           </button>
+//         ))}
+//       </div>
+
+//       <div className="grid grid-cols-1 lg:grid-cols-3 xl:gap-6 gap-3">
+//         {filteredProducts.length > 0 ? (
+//           filteredProducts.map((item) => {
+//             const offPrice =
+//               item.price - (item.price * item.discount) / 100;
+//             return (
+//               <div
+//                 key={item.id}
+//                 className="border rounded-xl shadow-sm hover:shadow-lg transition p-3 text-center bg-white"
+//               >
+//                 <img
+//                   src={item.image}
+//                   alt={item.name}
+//                   className="w-full h-80 object-contain xl:mb-3"
+//                 />
+//                 <h2 className="text-sm font-semibold">{item.name}</h2>
+//                 <div className="flex justify-center items-center gap-2 text-sm mt-1">
+//                   <span className="text-gray-500 line-through">
+//                     ₹{item.price}
+//                   </span>
+//                   <span className="text-green-600 font-bold">
+//                     ₹{offPrice}
+//                   </span>
+//                 </div>
+//                 <p className="text-xs text-[#00bac6]">
+//                   {item.discount}% off
+//                 </p>
+//               </div>
+//             );
+//           })
+//         ) : (
+//           <p className="text-center col-span-full text-gray-500">
+//             No products found in this range 😕
+//           </p>
+//         )}
+//       </div>
+//     </main>
+//   </div>
+
+// </div>
+
+//     <div className="px-3 py-3 text-center border-2 border-black">
+//   <div className="relative w-11/12 mx-auto py-6 flex flex-col lg:flex-row justify-between sm:gap-8 gap-1">
+
+//     <aside className="lg:sticky lg:top-0 lg:h-screen w-full lg:w-1/4 rounded-xl shadow-sm bg-white sm:p-4 p-0 h-fit border-2 border-black">
+//       <h2 className="font-semibold text-lg mb-4 text-gray-800">
+//         Filter By
+//       </h2>
+//       <h3 className="font-semibold mb-2 text-gray-700">Price Range</h3>
+//       <div className="flex flex-col gap-2">
+//         {priceRanges.map((range) => (
+//           <label
+//             key={range.label}
+//             className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm ${
+//               selectedPrice?.label === range.label
+//                 ? "bg-blue-500 text-white shadow-lg"
+//                 : "text-gray-700"
+//             }`}
+//           >
+//             <input
+//               className="appearance-none w-4 h-4 border border-gray-400 rounded-none checked:bg-blue-500 checked:border-blue-500 relative after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
+//               type="radio"
+//               name="price"
+//               checked={selectedPrice?.label === range.label}
+//               onChange={() => setSelectedPrice(range)}
+//             />
+//             {range.label}
+//           </label>
+//         ))}
+//       </div>
+
+//       {selectedPrice && (
+//         <button
+//           onClick={() => setSelectedPrice(null)}
+//           className="mt-4 text-sm text-red-500 underline"
+//         >
+//           Clear Price Filter
+//         </button>
+//       )}
+//     </aside>
+
+//     <main className="w-full lg:w-3/4 border-2 border-black mx-auto mt-6 lg:mt-0">
+//       <div className="flex justify-center gap-4 mb-6">
+//         {["spherical", "toric"].map((type) => (
+//           <button
+//             key={type}
+//             onClick={() => setSelectedType(type)}
+//             className={`px-6 py-2 font-semibold text-sm transition ${
+//               selectedType === type
+//                 ? "bg-blue-500 text-white shadow-lg"
+//                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+//             }`}
+//           >
+//             {type.charAt(0).toUpperCase() + type.slice(1)}
+//           </button>
+//         ))}
+//       </div>
+
+//       <div className="grid grid-cols-1 lg:grid-cols-3 xl:gap-6 gap-3">
+//         {filteredProducts.length > 0 ? (
+//           filteredProducts.map((item) => {
+//             const offPrice = item.price - (item.price * item.discount) / 100;
+//             return (
+//               <div
+//                 key={item.id}
+//                 className="border rounded-xl shadow-sm hover:shadow-lg transition p-3 text-center bg-white"
+//               >
+//                 <img
+//                   src={item.image}
+//                   alt={item.name}
+//                   className="w-full h-80 object-contain xl:mb-3"
+//                 />
+//                 <h2 className="text-sm font-semibold">{item.name}</h2>
+//                 <div className="flex justify-center items-center gap-2 text-sm mt-1">
+//                   <span className="text-gray-500 line-through">₹{item.price}</span>
+//                   <span className="text-green-600 font-bold">₹{offPrice}</span>
+//                 </div>
+//                 <p className="text-xs text-[#00bac6]">{item.discount}% off</p>
+//               </div>
+//             );
+//           })
+//         ) : (
+//           <p className="text-center col-span-full text-gray-500">
+//             No products found in this range 😕
+//           </p>
+//         )}
+//       </div>
+//     </main>
+//   </div>
+// </div>
+

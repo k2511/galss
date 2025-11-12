@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
-
+import toast from "react-hot-toast";
 export const CartProvider = ({ children }) => {
    
   const [cart, setCart] = useState([]);
@@ -13,26 +13,37 @@ export const CartProvider = ({ children }) => {
     setCart((prev) => {
       const exist = prev.find((item) => String(item.id) === String(product.id));
       if (exist) {
-        console.log("already exists, increasing qty");
+
+        toast.error("already exists, increasing qty");
         return prev.map((item) =>
           String(item.id) === String(product.id)
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        console.log("adding new item");
+        toast.success("adding new item");
         return [...prev, { ...product, quantity: 1 }];
       }
     });
   };
 
-  
-
 // const handleAddToCart = (product) => {
-//     console.log('product', product)
-//     setCart([...cart, { ...product, quantity: 1 }]);
-//   };
+//   const exist = cart.find((item) => String(item.id) === String(product.id));
 
+//   if (exist) {
+//     setCart((prev) =>
+//       prev.map((item) =>
+//         String(item.id) === String(product.id)
+//           ? { ...item, quantity: item.quantity + 1 }
+//           : item
+//       )
+//     );
+//     toast.error("already exists, increasing qty");
+//   } else {
+//     setCart((prev) => [...prev, { ...product, quantity: 1 }]);
+//     toast.success("Item added to cart!");
+//   }
+// };
   const increaseQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>

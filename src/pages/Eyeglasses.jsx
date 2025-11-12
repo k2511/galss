@@ -13,7 +13,7 @@ const Eyeglasses = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
 
   const priceRanges = [
-    { label: "₹1 - ₹499", min: 1, max: 499 },
+    { label: "₹1 - ₹499", min: 1, max: 499,  },
     { label: "₹500 - ₹999", min: 500, max: 999 },
     { label: "₹1000 - ₹1499", min: 1000, max: 1499 },
     { label: "₹1500 - ₹1999", min: 1500, max: 1999 },
@@ -181,6 +181,11 @@ const Eyeglasses = () => {
   //   return matchesType && matchesPrice;
   // });
 
+  // let cnt  = products.map((p,idx) => {
+  //      if(p.price > 
+          
+  //       )
+  // })
   const filteredProducts = products.filter((p) => {
     let matchesType = true;
 
@@ -196,6 +201,7 @@ const Eyeglasses = () => {
 
     return matchesType && matchesPrice;
   });
+
 
   const { handleAddToCart } = useContext(CartContext);
 
@@ -213,11 +219,11 @@ const Eyeglasses = () => {
   }, []);
 
   return (
-    <div className="px-1 py-1 text-center border-2 border-black">
+    <div className=" text-center  ">
       {!showFilter && (
         <div className="w-full mx-auto flex flex-row justify-between sm:gap-2 gap-1 items-start">
-          <aside className=" hidden lg:block lg:sticky lg:top-0 lg:h-[85vh] lg:w-1/6 rounded-xl shadow-sm bg-white sm:p-4 p-0 border-2 border-black overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-            <h2 className="font-semibold text-lg mb-4 text-gray-800">
+          <aside className=" hidden lg:block lg:sticky lg:top-0 lg:h-[85vh] lg:w-1/5 min-w-1/4  rounded-xl shadow-sm bg-white sm:p-4 p-0 border-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+            <h2 className="font-semibold text-left text-[#605f5f]  text-lg mb-4 ">
               Filter By
             </h2>
             <div>
@@ -227,9 +233,9 @@ const Eyeglasses = () => {
                   setPriceOpen(!priceOpen);
                 }}
               >
-                <h3 className="font-semibold   text-gray-700 ">Price Range</h3>{" "}
+                <h3 className="font-semibold   text-[#8b8b8b] ">Price Range</h3>{" "}
                 <FaChevronDown
-                  className={`transition-transform duration-300 ${
+                  className={`transition-transform duration-300 text-[#8b8b8b]  ${
                     priceOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -237,6 +243,7 @@ const Eyeglasses = () => {
               {priceOpen && (
                 <div className="flex flex-col gap-2 ">
                   {priceRanges.map((range) => (
+                    <div>
                     <label
                       key={range.label}
                       className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
@@ -252,8 +259,11 @@ const Eyeglasses = () => {
                         checked={selectedPrice?.label === range.label}
                         onChange={() => setSelectedPrice(range)}
                       />
-                      {range.label}
+                      {range.label} 
                     </label>
+                    
+                    <h2> </h2>
+                    </div> 
                   ))}
                 </div>
               )}
@@ -295,7 +305,7 @@ const Eyeglasses = () => {
                   onClick={() => setSelectedType(data.name)}
                   className={`px-6  font-semibold text-sm transition  ${
                     selectedType === data.name
-                      ? "border-b-blue-950 border-  text-blue-950 "
+                      ? "border-b-blue-950 border-b-2  text-blue-950 "
                       : " "
                   }`}
                 >
@@ -315,7 +325,7 @@ const Eyeglasses = () => {
                   return (
                     <div
                       key={item.id}
-                      className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border-2 border-black"
+                      className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border"
                     >
                       <img
                         src={item.image}
@@ -333,17 +343,17 @@ const Eyeglasses = () => {
                             <span className="text-gray-500 line-through">
                               ₹{item.price}
                             </span>
-                            <p className="text-xs text-[#00bac6]">
+                            <p className="text-xs font-semibold text-[#00bac6]">
                               ({item.discount}% off)
                             </p>
                           </div>
                         </div>
-                        <div className=" flex border-2 border-black rounded-md bg-sky-100">
+                        <div className=" flex border-2 border-black rounded-md bg-sky-100 overflow-hidden">
                           <button
-                            className="px-2 py-1 flex gap-2"
+                            className="px-2 py-1 flex gap-2 bg-[#5ce2ec]"
                             onClick={() => {
                               handleAddToCart(item);
-                              toast.success("Item added to cart!");
+                             
                             }}
                           >
                             Add to cart
@@ -364,8 +374,8 @@ const Eyeglasses = () => {
       )}
 
       {showFilter && (
-        <div className="w-full  h-[80vh] border-2 z-50 bg-red-400 border-black">
-          <div className=" h-14 border-2 w-full flex flex-row justify-between px-3 items-center ">
+        <div className="w-full  h-[80vh] border-2 z-50 sm:px-1 px-4 border-black">
+          <div className=" h-14 w-full flex flex-row justify-between px-3 items-center ">
             <h1>Filter</h1>
             <RxCross1
               className="text-2xl"
@@ -415,11 +425,11 @@ const Eyeglasses = () => {
             </div>
 
             {selectedPrice && (
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mt-3  ">
                 {" "}
                 <button
                   onClick={() => setSelectedPrice(null)}
-                  className="mt-4 text-sm text-[#000042] border-2 px-3 py-2 rounded-lg border-[#000042]   "
+                  className="text-sm text-[#000042] border-2 px-3 py-2 rounded-lg border-[#000042]   "
                 >
                   Clear All
                 </button>

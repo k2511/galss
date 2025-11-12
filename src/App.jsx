@@ -130,12 +130,12 @@ import Cart from './pages/Cart.jsx'
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import Payment from './pages/Payment.jsx'
-
+import WhatsappComponent from "./components/WhatsappComponent.jsx";
 
 function App() {
   return (
     // Removed Provider and BrowserRouter from here since they're in main.jsx
-    <div className="min-h-screen bg-white overflow-hidden">
+    <div className="min-h-screen bg-white overflow-hidden relative">
       <TopBar />
       <Header />
       <Routes>
@@ -147,7 +147,7 @@ function App() {
                 <HeroSection />
                 <Glasses />
                 <EyewearGallery />
-          
+                
                 <VirtualTryOnSection />
                 <PopularBrandsSection />
                 <SummerPicksSection />        
@@ -158,7 +158,7 @@ function App() {
               
                 <GuaranteeSection />
               </main>
-              <Footer />
+         
             </>
           }
         />
@@ -327,8 +327,11 @@ function App() {
        
       </Routes>
       <Footer />
+      < WhatsappComponent />
+    
     </div>
   );
 }
 
 export default App;
+ 

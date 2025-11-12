@@ -53,7 +53,7 @@ const nav = [
   { name: "Contacts" },
   { name: "Lenses" },
   { name: "Stores" },
-  { name: "Sale" },
+  
 ];
 
 const BrandTile = ({ brand }) => {
@@ -329,7 +329,7 @@ const Header = () => {
               )}
              
           
-            <span className="absolute -top-1 -right-1 bg-blue-600 text-xs py-1 text-white rounded-full px-1.5">
+            <span className="absolute -top-0 -right-1 bg-[#00bac6] text-[0.6rem] py-0.5 text-white rounded-full px-1.5">
                    {cart.length}
             </span>
      

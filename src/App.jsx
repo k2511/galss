@@ -129,7 +129,7 @@ import ColourLens from "./components/ColourLens.jsx";
 import Cart from './pages/Cart.jsx'
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-
+import Payment from './pages/Payment.jsx'
 
 
 function App() {
@@ -219,6 +219,7 @@ function App() {
         <Route path="/findyourcontact" element={<FindYourContacts />} />
 
         <Route path="/cart" element={<Cart />} />
+        <Route path="/payment-gateway" element={<Payment />} />
         {/* eye glasses  */}
 
         <Route path="/eyeglasses" element={<Eyeglasses />} />
@@ -323,8 +324,9 @@ function App() {
           <Route path="/lenses/knowledgecenter/LensBlog" element={<LensBlog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-
+       
       </Routes>
+      <Footer />
     </div>
   );
 }

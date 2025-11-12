@@ -134,6 +134,7 @@ const Header = () => {
     { name: "Garrett Leight", img: garrett, path: "/brands/garrett-leight" },
   ];
 
+ 
   const TEXT_BRANDS_COL1 = [
     { name: "Adidas", path: "/brands/adidas" },
     { name: "Arnette", path: "/brands/arnette" },
@@ -159,12 +160,12 @@ const Header = () => {
       <header className="w-full  bg-white border-b shadow-sm flex relative z-50">
         <div className=" mx-auto w-full flex items-center justify-between h-16 xl:px-8 px-2">
           {/* Logo */}
-          <div className="flex ">
+          <div className="flex "> 
           <div className="md:hidden block ">
             <IoMenu className="text-3xl mx-2" onClick={() => setOpen(true)} />
           </div>
-
-          <div>
+          
+          <div> 
              <Link to="/">
             <img
               src={logo}
@@ -174,6 +175,7 @@ const Header = () => {
            </Link>
           </div>
           </div>
+
 
           {/* Navigation */}
 
@@ -293,13 +295,14 @@ const Header = () => {
               </div> */}
 
             <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
+              {/* Search icon visible only below md */}
               <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1 " />
 
               <input
                 type="text"
                 placeholder="Search"
-                className="bg-transparent outline-none w-full text-sm  text-gray-700 placeholder-gray-400
-                            md:placeholder-opacity-100 placeholder-opacity-0
+                className="bg-transparent outline-none w-full text-sm  text-gray-700 placeholder-gray-400 
+                            md:placeholder-opacity-100 placeholder-opacity-0 
                             px-3 md:px-0 "
               />
               {/* </div> */}
@@ -337,11 +340,11 @@ const Header = () => {
             <span className="mx-2 h-7 w-px bg-gray-200" />
 
             {/* User/Login */}
-            <button className=''
+            <button   className="flex items-center min-w-16 w-20 xl:gap-2 lg:gap-1  hover:bg-gray-100 rounded-lg"
               onClick={() => {dispatch(toggleLoginModal())
                 navigate('/login')
               }}
-              className="flex items-center min-w-16 w-20 xl:gap-2 lg:gap-1  hover:bg-gray-100 rounded-lg"
+           
             >
               <User size={20} className="text-gray-700" />
               <span className=" text-sm text-black px-1 py-2">Log In </span>
@@ -529,7 +532,7 @@ const Header = () => {
                 >
                   <div>
                     {/* <NavbarDropdown
-                  key={item.name}
+                  key={item.name}         
                   trigger={ */}
                     <span className="flex items-center  text-lg cursor-pointer text-red-600 hover:text-blue-600">
                       Sale
@@ -622,7 +625,7 @@ const Header = () => {
                     </li>
                   </ul>
                 </div>
-
+ 
                 <div className="flex-1 ">
                   <h3 className="font-semibold text-base mb-4">Men</h3>
                   <ul className="space-y-2 text-[15px] text-gray-800 leading-relaxed   ">
@@ -931,14 +934,14 @@ const Header = () => {
                       </h3>
                       <div className="grid grid-cols-3 gap-3">
                         {PREMIUM_BRANDS.map((brand) => (
-
+                          
                           <div  onClick={() => {
                             setBrand(false);
                             setOpen(false)
-                            }}> <BrandTile key={brand.name} brand={brand}
+                            }}> <BrandTile key={brand.name} brand={brand} 
                           />
                             </div>
-
+                          
                         ))}
                         <div onClick={() => {
                           setBrand(false);
@@ -1424,7 +1427,7 @@ const Header = () => {
               </li>
               <li  onClick={() => {
                 setOpen(false)
-
+               
               }} >
                 {" "}
                 <Link to="/insurance"> Visible Insurance </Link>
@@ -1441,7 +1444,7 @@ const Header = () => {
               <div className="flex  items-center gap-2 "> <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1" viewBox="0 0 20 16" height="16" width="20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.56H13M11 3h3.5L19 6.4V12h-2.5M11 12h1.5M11 12V1H1v11h2.78M11 12H7.23m0 0a2 2 0 1 1-3.73 1 2.02 2.02 0 0 1 2.02-2c.73 0 1.37.4 1.71 1m7.29-1a2.01 2.01 0 0 0-2.02 2c0 .53.2 1.03.6 1.41A2 2 0 0 0 16.5 13a2 2 0 0 0-1.98-2"></path></svg> <li>Shipping and Returns </li></div>
               <div className="flex  items-center gap-2 "> <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 30 30" height="16" width="20"><path stroke="currentColor" stroke-linejoin="round" d="M4.9 4.9a13.96 13.96 0 0 0-4.1 9.9c0 3.87 1.57 7.37 4.1 9.9m0-19.8A13.96 13.96 0 0 1 14.8.8c3.87 0 7.37 1.57 9.9 4.1m-19.8 0 4.24 4.24m0 0a7.97 7.97 0 0 0 0 11.32m0-11.32a7.97 7.97 0 0 1 11.32 0m0 11.32a7.97 7.97 0 0 0 0-11.32m0 11.32a7.97 7.97 0 0 1-11.32 0m11.32 0 4.24 4.24m0 0a13.96 13.96 0 0 0 4.1-9.9c0-3.87-1.57-7.37-4.1-9.9m0 19.8a13.96 13.96 0 0 1-9.9 4.1c-3.87 0-7.37-1.57-9.9-4.1M24.7 4.9l-4.24 4.24M9.14 20.46 4.9 24.7"></path></svg>    <li> Help center </li></div>
                <div className="flex   items-center gap-2"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 21 28" height="16" width="20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8.78 6.16a2.6 2.6 0 0 0 2.6-2.58A2.59 2.59 0 0 0 8.78 1 2.59 2.59 0 0 0 6.2 3.58a2.59 2.59 0 0 0 2.6 2.58Zm0 0v5.14m11.17 10.52-3.38-5.42H8.78v-5.1m0 0h6.29m.3 12.67a8.08 8.08 0 0 1-14.35-5.54 7.99 7.99 0 0 1 3.29-5.9"></path></svg> <li>Accessibility View </li> </div>
-
+             
             </ul>
           </div>
         </nav>
@@ -1451,7 +1454,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-

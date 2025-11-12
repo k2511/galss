@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import ProductList from '../components/ProductList'
 import CartSidebar from '../components/CartSidebar'
 import { CartContext } from "../context/CartContext";
-
+import { Navigate, useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";  
   
 
 const Cart = () => {
-    const { handleAddToCart, setCart , cart, increaseQty, decreaseQty, removeItem, totalAmount} = useContext(CartContext);
 
+    const navigate = useNavigate();
 
+    const { handleAddToCart, setCart , cart, increaseQty,
+       decreaseQty, removeItem, totalAmount} = useContext(CartContext);
 
   return (
     <div className="w-full max-w-2xl mx-auto mt-10 p-4 bg-[#fbf9f7] rounded-xl shadow border ">
@@ -73,9 +75,16 @@ const Cart = () => {
           </div>
 
           <div className="mt-4 flex gap-3">
-            <button className="w-1/2 bg-sky-500 text-white py-2 rounded hover:bg-sky-600">
-              View Cart
+          
+                <button onClick={() => {
+
+                  navigate('/payment-gateway')
+                  
+                }}  className="w-1/2 bg-sky-500 text-white py-2 rounded hover:bg-sky-600">
+               Buy now
             </button>
+            
+            
             <button className="w-1/2 bg-green-500 text-white py-2 rounded hover:bg-green-600">
               Checkout
             </button>

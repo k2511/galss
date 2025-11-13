@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ec4488c65fa7b5a906e7fb54de11be3d009338
 import { toast } from "react-hot-toast";
 import { RxCross1 } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
@@ -172,20 +176,15 @@ const Eyeglasses = () => {
     },
   ];
 
-  // const filteredProducts = products.filter((p) => {
-  //   const matchesType = p.type === selectedType;
-  //   const premium = p.price > 1500;
-  //   const matchesPrice =
-  //     !selectedPrice ||
-  //     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
-  //   return matchesType && matchesPrice;
-  // });
 
-  // let cnt  = products.map((p,idx) => {
-  //      if(p.price > 
-          
-  //       )
-  // })
+  const updatedRanges = priceRanges.map((range) => {
+    const count = products.filter(
+      (lens) => lens.price >= range.min && lens.price <= range.max
+    ).length;
+  
+    return { ...range, count };
+  });
+
   const filteredProducts = products.filter((p) => {
     let matchesType = true;
 
@@ -240,10 +239,10 @@ const Eyeglasses = () => {
                   }`}
                 />
               </div>
-              {priceOpen && (
+              {updatedRanges && (
                 <div className="flex flex-col gap-2 ">
-                  {priceRanges.map((range) => (
-                    <div>
+                  {updatedRanges.map((range) => (
+                    <div className="flex justify-between">
                     <label
                       key={range.label}
                       className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
@@ -262,7 +261,7 @@ const Eyeglasses = () => {
                       {range.label} 
                     </label>
                     
-                    <h2> </h2>
+                    <h5 > <span className="text-[#8b8b8b]">({range.count})</span> </h5>
                     </div> 
                   ))}
                 </div>
@@ -702,3 +701,14 @@ export default Eyeglasses;
 //   </div>
 // </div>
 
+<<<<<<< HEAD
+=======
+ // const filteredProducts = products.filter((p) => {
+  //   const matchesType = p.type === selectedType;
+  //   const premium = p.price > 1500;
+  //   const matchesPrice =
+  //     !selectedPrice ||
+  //     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
+  //   return matchesType && matchesPrice;
+  // });
+>>>>>>> 94ec4488c65fa7b5a906e7fb54de11be3d009338

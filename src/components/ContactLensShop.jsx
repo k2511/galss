@@ -129,7 +129,7 @@ export default function ContactLensShop() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-8 border-2 border-black" >
         <div className="flex gap-8">
           {/* Sidebar Filters */}
           <div className="w-64 flex-shrink-0">

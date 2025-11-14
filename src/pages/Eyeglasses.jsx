@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 94ec4488c65fa7b5a906e7fb54de11be3d009338
 import { toast } from "react-hot-toast";
 import { RxCross1 } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
@@ -701,8 +697,6 @@ export default Eyeglasses;
 //   </div>
 // </div>
 
-<<<<<<< HEAD
-=======
  // const filteredProducts = products.filter((p) => {
   //   const matchesType = p.type === selectedType;
   //   const premium = p.price > 1500;
@@ -711,4 +705,3 @@ export default Eyeglasses;
   //     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
   //   return matchesType && matchesPrice;
   // });
->>>>>>> 94ec4488c65fa7b5a906e7fb54de11be3d009338

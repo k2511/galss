@@ -1,17 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProductList from '../components/ProductList'
 import CartSidebar from '../components/CartSidebar'
 import { CartContext } from "../context/CartContext";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";  
 import { ArrowRight } from 'lucide-react';
+import axios from 'axios'
+
+const API = "http://localhost:5000/api/cart";
 
 const Cart = () => {
 
     const navigate = useNavigate();
-
-    const { handleAddToCart, setCart , cart, increaseQty,
+    
+    const { handleAddToCart, setCart , cart, increaseQty, fetchCartItem,
        decreaseQty, removeItem, totalAmount} = useContext(CartContext);
+
+ useEffect(() => {
+     fetchCartItem()
+ },[])   
 
   return (
     // <div className="w-full max-w-2xl mx-auto mt-10 p-4 bg-[#fbf9f7] rounded-xl shadow border ">
@@ -123,7 +130,7 @@ const Cart = () => {
                 <div className="flex items-start gap-4 w-full">
                   <div className="w-28 h-28 bg-gray-50 flex items-center justify-center rounded-md overflow-hidden flex-shrink-0">
                     <img
-                      src={item.image}
+                      src={item.img}
                       alt={item.name}
                       className="w-full h-full object-contain"
                     />
@@ -133,18 +140,18 @@ const Cart = () => {
                     <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate">
                       {item.name}
                     </h3>
-                    <p className="text-gray-500 mt-1 text-sm">₹{item.price}</p>
+                    <p className="text-gray-500 mt-1 text-sm">₹{item.mrp}</p>
 
                     <div className="mt-3 inline-flex items-center border rounded-full overflow-hidden">
                       <button
-                        onClick={() => decreaseQty(item.id)}
+                        onClick={() => decreaseQty(item.product_id)}
                         className="px-3 py-1 text-lg hover:bg-gray-100 focus:outline-none"
                       >
                         –
                       </button>
-                      <span className="px-4 font-semibold text-sm">{item.quantity}</span>
+                      <span className="px-4 font-semibold text-sm">{item.quantity} </span>
                       <button
-                        onClick={() => increaseQty(item.id)}
+                        onClick={() => increaseQty(item.product_id)}
                         className="px-3 py-1 text-lg hover:bg-gray-100 focus:outline-none"
                       >
                         +
@@ -155,10 +162,10 @@ const Cart = () => {
 
                 <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3">
                   <span className="font-semibold text-sky-600 text-base sm:text-lg">
-                    ₹{item.price * item.quantity}
+                    ₹{item.sell_price * (Number(item.quantity) || 1) }
                   </span>
                   <button
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(item.product_id)}
                     className="mt-0 sm:mt-3 bg-sky-500 hover:bg-sky-600 text-white p-2 rounded-full"
                   >
                     <Trash2 size={16} />

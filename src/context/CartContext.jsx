@@ -1,73 +1,111 @@
 import { createContext, useState, useEffect } from "react";
+import axios from "axios";
+
+const API = "http://localhost:5000/api/cart";
 
 export const CartContext = createContext();
 import toast from "react-hot-toast";
 export const CartProvider = ({ children }) => {
-   
   const [cart, setCart] = useState([]);
   const [activeCart, setActiveCart] = useState(false);
 
   const togglecartbar = () => setActiveCart(!activeCart);
 
   const handleAddToCart = (product) => {
-    setCart((prev) => {
-      const exist = prev.find((item) => String(item.id) === String(product.id));
-      if (exist) {
-
-        toast.error("already exists, increasing qty");
-        return prev.map((item) =>
-          String(item.id) === String(product.id)
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        toast.success("adding new item");
-        return [...prev, { ...product, quantity: 1 }];
-      }
-    });
+    // setCart((prev) => {
+    //   const exist = prev.find((item) => String(item.id) === String(product.id));
+    //   if (exist) {
+    //     toast.error("already exists, increasing qty");
+    //     return prev.map((item) =>
+    //       String(item.id) === String(product.id)
+    //         ? { ...item, quantity: item.quantity + 1 }
+    //         : item
+    //     );
+    //   } else {
+    //     toast.success("adding new item");
+    //     return [...prev, { ...product, quantity: 1 }];
+    //   }
+    // });
   };
 
-// const handleAddToCart = (product) => {
-//   const exist = cart.find((item) => String(item.id) === String(product.id));
+  const addToCart = async (matchedReview, item) => {
+    // console.log("add to ", item);
+    let obj = {
+      img: item.image_url,
+      product_id: item.id,
+      name: item.name,
+      sell_price: item.sell_price,
+      mrp: item.price,
+      rating: matchedReview.rating,
+      reviews: matchedReview.comment,
+    };
+    console.log('ddd', obj)
 
-//   if (exist) {
-//     setCart((prev) =>
-//       prev.map((item) =>
-//         String(item.id) === String(product.id)
-//           ? { ...item, quantity: item.quantity + 1 }
-//           : item
-//       )
-//     );
-//     toast.error("already exists, increasing qty");
-//   } else {
-//     setCart((prev) => [...prev, { ...product, quantity: 1 }]);
-//     toast.success("Item added to cart!");
-//   }
-// };
-  const increaseQty = (id) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+    try {
+      const res = await axios.post(`${API}`, obj);
+      toast.success("Item added in cart")
+    } catch (err) {
+      console.log("err in cart", err);
+    }
+  };
+  const fetchCartItem = async () => {
+    try {
+      const res = await axios.get(`${API}`);
+      setCart(res.data.data);
+    } catch (err) {
+      console.log("Fetch error:", err);
+    }
   };
 
-  const decreaseQty = (id) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
+  const increaseQty = async (id) => {
+    // setCart((prev) =>
+    //   prev.map((item) =>
+    //     item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    //   )
+    // );
+    try {
+      const res = await axios.post(`${API}/inc-qty`, { id });
+      fetchCartItem();
+    } catch (err) {
+      console.log("err in cart", err);
+    }
   };
 
-  const removeItem = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  const decreaseQty = async (id) => {
+    // setCart((prev) =>
+    //   prev.map((item) =>
+    //     item.id === id && item.quantity > 1
+    //       ? { ...item, quantity: item.quantity - 1 }
+    //       : item
+    //   )
+    // );
+    try {
+      const res = await axios.post(`${API}/dec-qty`, { id });
+      fetchCartItem();
+    } catch (err) {
+      console.log("err in cart", err);
+    }
   };
 
+  const removeItem = async(id) => {
+    console.log("remove", id);
+    // setCart((prev) => prev.filter((item) => item.id !== id));
+    try {
+      await axios.delete(`${API}`, {
+        data: { id }
+      });
+
+      toast.success("Item deleted")
+      fetchCartItem();
+
+    } catch (err) {
+      console.log("err in cart", err);
+    }
+  };
+
+  // console.log('cart context', cart )
   const totalAmount = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item.sell_price * item.quantity || 1,
     0
   );
 
@@ -92,6 +130,9 @@ export const CartProvider = ({ children }) => {
         decreaseQty,
         removeItem,
         totalAmount,
+        addToCart,
+      
+        fetchCartItem,
       }}
     >
       {children}

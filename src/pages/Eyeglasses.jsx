@@ -1,4 +1,3 @@
-
 import { toast } from "react-hot-toast";
 import { RxCross1 } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
@@ -6,15 +5,21 @@ import React, { useState, useEffect } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
+import axios from "axios";
+import { TiStar } from "react-icons/ti";
+
+const API = "http://localhost:5000/api";
 
 const Eyeglasses = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [priceOpen, setPriceOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const priceRanges = [
-    { label: "₹1 - ₹499", min: 1, max: 499,  },
+    { label: "₹1 - ₹499", min: 1, max: 499 },
     { label: "₹500 - ₹999", min: 500, max: 999 },
     { label: "₹1000 - ₹1499", min: 1000, max: 1499 },
     { label: "₹1500 - ₹1999", min: 1500, max: 1999 },
@@ -22,20 +27,23 @@ const Eyeglasses = () => {
     { label: "₹2500 - ₹2999", min: 2500, max: 2999 },
     { label: "₹3000 - ₹5000", min: 3000, max: 5000 },
   ];
+
   const eyeglass = [
-    {img:'https://static5.lenskart.com/media/uploads/All-New.png',
-      name: 'All'
+    {
+      img: "https://static5.lenskart.com/media/uploads/All-New.png",
+      name: "All",
     },
-    {img:'	https://static1.lenskart.com/media/desktop/img/2024/jan/premium.png',
-      name: 'Premium'
+    {
+      img: "	https://static1.lenskart.com/media/desktop/img/2024/jan/premium.png",
+      name: "Premium",
     },
-    {img:'	https://static1.lenskart.com/media/desktop/img/2024/jan/regular-1.png',
-      name: 'Budget'
+    {
+      img: "	https://static1.lenskart.com/media/desktop/img/2024/jan/regular-1.png",
+      name: "Budget",
     },
+  ];
 
-  ]
-
-  const products = [
+  const product = [
     {
       id: 1,
       name: "Aqua Spherical Lens",
@@ -173,33 +181,37 @@ const Eyeglasses = () => {
     },
   ];
 
-
   const updatedRanges = priceRanges.map((range) => {
-    const count = products.filter(
-      (lens) => lens.price >= range.min && lens.price <= range.max
+    const count = products.filter((lens) =>
+      Number(
+        lens.category_name === "Eyeglasses" &&
+          lens.sell_price >= range.min &&
+          Number(lens.sell_price) <= range.max
+      )
     ).length;
-  
+
     return { ...range, count };
   });
 
   const filteredProducts = products.filter((p) => {
     let matchesType = true;
 
-    if (selectedType === "Premium") {
-      matchesType = p.price >  1500;
-    } else if (selectedType === "All") {
-      matchesType = true;
+    if (p.category_name === "Eyeglasses") {
+      if (selectedType === "Premium") {
+        matchesType = p.sell_price > 1500;
+      } else if (selectedType === "All") {
+        matchesType = true;
+      }
+
+      const matchesPrice =
+        !selectedPrice ||
+        (Number(p.sell_price) >= selectedPrice.min &&
+          Number(p.sell_price) <= selectedPrice.max);
+      return matchesType && matchesPrice;
     }
-
-    const matchesPrice =
-      !selectedPrice ||
-      (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
-
-    return matchesType && matchesPrice;
   });
 
-
-  const { handleAddToCart } = useContext(CartContext);
+  const { handleAddToCart, addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const handleResize = () => {
@@ -213,6 +225,38 @@ const Eyeglasses = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get(`${API}/products`);
+        // console.log(res.data);
+
+        setProducts(res.data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await axios.get(`${API}/reviews`);
+        // console.log('reviews',res.data);
+
+        setReviews(res.data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  console.log("prodddd----", filteredProducts);
 
   return (
     <div className=" text-center  ">
@@ -240,26 +284,31 @@ const Eyeglasses = () => {
                 <div className="flex flex-col gap-2 ">
                   {updatedRanges.map((range) => (
                     <div className="flex justify-between">
-                    <label
-                      key={range.label}
-                      className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
-                        selectedPrice?.label === range.label
-                          ? "bg-blue-500 text-white shadow-lg"
-                          : "text-gray-700"
-                      }`}
-                    >
-                      <input
-                        className="appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-blue-500 relative after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
-                        type="radio"
-                        name="price"
-                        checked={selectedPrice?.label === range.label}
-                        onChange={() => setSelectedPrice(range)}
-                      />
-                      {range.label} 
-                    </label>
-                    
-                    <h5 > <span className="text-[#8b8b8b]">({range.count})</span> </h5>
-                    </div> 
+                      <label
+                        key={range.label}
+                        className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
+                          selectedPrice?.label === range.label
+                            ? "bg-blue-500 text-white shadow-lg"
+                            : "text-gray-700"
+                        }`}
+                      >
+                        <input
+                          className="appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-blue-500 relative after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
+                          type="radio"
+                          name="price"
+                          checked={selectedPrice?.label === range.label}
+                          onChange={() => setSelectedPrice(range)}
+                        />
+                        {range.label}
+                      </label>
+
+                      <h5>
+                        {" "}
+                        <span className="text-[#8b8b8b]">
+                          ({range.count})
+                        </span>{" "}
+                      </h5>
+                    </div>
                   ))}
                 </div>
               )}
@@ -290,45 +339,63 @@ const Eyeglasses = () => {
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </button>
               ))} */}
-              { eyeglass.map((data,id) => (
+              {eyeglass.map((data, id) => (
                 <div className="">
                   <div className=" ">
-                     <div className="flex items-center justify-center "> <img src={data.img} className="w-7 h-5"/>
-                     </div> 
-                  <div>
-                 <button
-                  key={id}
-                  onClick={() => setSelectedType(data.name)}
-                  className={`px-6  font-semibold text-sm transition  ${
-                    selectedType === data.name
-                      ? "border-b-blue-950 border-b-2  text-blue-950 "
-                      : " "
-                  }`}
-                >
-                  {data.name}
-                </button> </div> </div>
-                     
+                    <div className="flex items-center justify-center ">
+                      {" "}
+                      <img src={data.img} className="w-7 h-5" />
+                    </div>
+                    <div>
+                      <button
+                        key={id}
+                        onClick={() => setSelectedType(data.name)}
+                        className={`px-6  font-semibold text-sm transition  ${
+                          selectedType === data.name
+                            ? "border-b-blue-950 border-b-2  text-blue-950 "
+                            : " "
+                        }`}
+                      >
+                        {data.name}
+                      </button>{" "}
+                    </div>{" "}
                   </div>
-            
+                </div>
               ))}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 gap-3 ">
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((item) => {
-                  const offPrice =
-                    item.price - (item.price * item.discount) / 100;
+                  const offPrice = Number(item.sell_price);
+                  const matchedReview =
+                    item.category_name === "Eyeglasses" &&
+                    reviews.find((r) => r.product_id === item.id);
+                  console.log("rating", matchedReview);
+
+                  // let data = { matchedReview, item };
+                  // item.sell_price - (item.sell_price * item.discount) / 100;
                   return (
                     <div
                       key={item.id}
                       className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border"
                     >
                       <img
-                        src={item.image}
+                        src={item.image_url}
                         alt={item.name}
                         className="w-full h-60 sm:h-72 lg:h-60 object-contain xl:mb-3"
                       />
-                      {/* <h2 className="text-sm font-semibold">{item.name}</h2> */}
+
+                      <div className="bg-[#f5f5ff] flex rounded-xl items-center gap-1 w-20 px-3 py-2">
+                        <span className="font-semibold text-xs flex items-center">
+                          {matchedReview ? Number(matchedReview.rating) : 0}
+                        </span>
+                        <TiStar className="text-[#68d1d9]" />
+                      </div>
+
+                      <h2 className="text-sm font-semibold text-left pt-3">
+                        {item.name}
+                      </h2>
                       <div className="flex justify-between w-full rounded-md">
                         <div className="lg:flex lg:gap-3 lg:items-center   ">
                           <div className="flex w-auto items-center gap-2 text-sm ">
@@ -344,12 +411,12 @@ const Eyeglasses = () => {
                             </p>
                           </div>
                         </div>
-                        <div className=" flex border-2 border-black rounded-md bg-sky-100 overflow-hidden">
+                        <div className=" flex rounded-md bg-sky-100 overflow-hidden">
                           <button
-                            className="px-2 py-1 flex gap-2 bg-[#5ce2ec]"
+                            className="px-2 py-1 flex gap-2  text-[#207c83] bg-[#f5f5ff]"
                             onClick={() => {
                               handleAddToCart(item);
-                             
+                              addToCart( matchedReview, item );
                             }}
                           >
                             Add to cart
@@ -697,11 +764,11 @@ export default Eyeglasses;
 //   </div>
 // </div>
 
- // const filteredProducts = products.filter((p) => {
-  //   const matchesType = p.type === selectedType;
-  //   const premium = p.price > 1500;
-  //   const matchesPrice =
-  //     !selectedPrice ||
-  //     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
-  //   return matchesType && matchesPrice;
-  // });
+// const filteredProducts = products.filter((p) => {
+//   const matchesType = p.type === selectedType;
+//   const premium = p.price > 1500;
+//   const matchesPrice =
+//     !selectedPrice ||
+//     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
+//   return matchesType && matchesPrice;
+// });

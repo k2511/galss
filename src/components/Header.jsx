@@ -329,7 +329,7 @@ const Header = () => {
               )}
              
           
-            <span className="absolute -top-0 -right-1 bg-[#00bac6] text-[0.6rem] py-0.5 text-white rounded-full px-1.5">
+            <span className={`absolute -top-0 -right-1 bg-[#00bac6] text-[0.6rem] py-0.5 text-white  rounded-full px-1.5 ${cart.length  > 0 ? 'animate-bounce':''}`}>
                    {cart.length}
             </span>
      

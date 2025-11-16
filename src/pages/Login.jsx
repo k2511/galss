@@ -3,6 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from "react-hot-toast";
+
+
+const API = "http://localhost:5000/api/auth";
+
 const Login = () => {
   const [val, setVal] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -39,15 +43,23 @@ const Login = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+    setOpen(false)
+    toast.success('Logout successfully ')
+  };
+  
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(val);
-    if (val.password.length < 6) {
-      toast.error("Password must be at least 6 characters long.");
-      return;
-    }
+    // console.log(val);
+    // if (val.password.length < 6) {
+    //   toast.error("Password must be at least 6 characters long.");
+    //   return;
+    // }
     try {
-      const res = await axios.post("http://localhost:4000/login", val);
+      const res = await axios.post(`${API}/customer-login`, val);
       const data = await res.data;
 
       if (data.message == "Logged In successfully") {
@@ -56,10 +68,11 @@ const Login = () => {
         localStorage.setItem("token", token);
         toast.success("Logged in ! 🎉");
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/cart");
         }, 1000);
+
       } else {
-        toast.error(data.message, "! ❌");
+        // toast.error(data.message, "! ❌");
       }
     } catch (err) {
       const message = err.response?.data?.message || "Something went wrong";

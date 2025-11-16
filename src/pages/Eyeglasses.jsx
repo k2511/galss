@@ -211,7 +211,7 @@ const Eyeglasses = () => {
     }
   });
 
-  const { handleAddToCart, addToCart } = useContext(CartContext);
+  const { handleAddToCart, addToCart, fetchCartItem } = useContext(CartContext);
 
   useEffect(() => {
     const handleResize = () => {
@@ -241,22 +241,24 @@ const Eyeglasses = () => {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const res = await axios.get(`${API}/reviews`);
-        // console.log('reviews',res.data);
 
-        setReviews(res.data);
-      } catch (err) {
-        console.error("Error fetching products:", err);
-      }
-    };
+        useEffect(() => {
+          const fetchReviews = async () => {
+            try {
+              const res = await axios.get(`${API}/reviews`);
+              // console.log('reviews',res.data);
 
-    fetchReviews();
-  }, []);
+              setReviews(res.data);
+            } catch (err) {
+              console.error("Error fetching products:", err);
+            }
+          };
 
-  console.log("prodddd----", filteredProducts);
+          fetchReviews();
+          
+        }, []);
+
+  // console.log("prodddd----", filteredProducts);
 
   return (
     <div className=" text-center  ">
@@ -280,7 +282,7 @@ const Eyeglasses = () => {
                   }`}
                 />
               </div>
-              {updatedRanges && (
+              {updatedRanges && priceOpen && (
                 <div className="flex flex-col gap-2 ">
                   {updatedRanges.map((range) => (
                     <div className="flex justify-between">
@@ -368,12 +370,13 @@ const Eyeglasses = () => {
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((item) => {
                   const offPrice = Number(item.sell_price);
-                  const matchedReview =
+                  let matchedReview =
                     item.category_name === "Eyeglasses" &&
                     reviews.find((r) => r.product_id === item.id);
-                  console.log("rating", matchedReview);
+                  // console.log("rating", typeof(matchedReview), matchedReview);
+             
 
-                  // let data = { matchedReview, item };
+                   console.log('itemmmmmm', matchedReview )
                   // item.sell_price - (item.sell_price * item.discount) / 100;
                   return (
                     <div
@@ -412,6 +415,12 @@ const Eyeglasses = () => {
                           </div>
                         </div>
                         <div className=" flex rounded-md bg-sky-100 overflow-hidden">
+                                 <button
+                                  
+                                  className="w-full     py-1 r    transition-colors"
+                                >
+                                  Buy now
+                                </button>
                           <button
                             className="px-2 py-1 flex gap-2  text-[#207c83] bg-[#f5f5ff]"
                             onClick={() => {

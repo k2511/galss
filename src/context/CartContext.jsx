@@ -11,6 +11,10 @@ export const CartProvider = ({ children }) => {
 
   const togglecartbar = () => setActiveCart(!activeCart);
 
+  const token = localStorage.getItem("token")
+  //  let id = user.id;
+  //  console.log('iddddd',  token)
+
   const handleAddToCart = (product) => {
     // setCart((prev) => {
     //   const exist = prev.find((item) => String(item.id) === String(product.id));
@@ -29,28 +33,44 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (matchedReview, item) => {
-    // console.log("add to ", item);
+   
     let obj = {
       img: item.image_url,
       product_id: item.id,
       name: item.name,
       sell_price: item.sell_price,
       mrp: item.price,
-      rating: matchedReview.rating,
-      reviews: matchedReview.comment,
-    };
-    console.log('ddd', obj)
-
+      gender: item.gender,
+      // client_id: id,
+      rating: matchedReview.rating ?? 0,
+      reviews: matchedReview.comment || 'Good',
+  
+    }; 
+      //  console.log("add to ", obj);
     try {
-      const res = await axios.post(`${API}`, obj);
+      const res = await axios.post( `${API}`, obj,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success("Item added in cart")
+      fetchCartItem();
+      
     } catch (err) {
       console.log("err in cart", err);
     }
   };
+
+ 
   const fetchCartItem = async () => {
     try {
-      const res = await axios.get(`${API}`);
+      const res = await axios.get(`${API}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setCart(res.data.data);
     } catch (err) {
       console.log("Fetch error:", err);
@@ -88,12 +108,17 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeItem = async(id) => {
-    console.log("remove", id);
+    // console.log("remove", id);
     // setCart((prev) => prev.filter((item) => item.id !== id));
     try {
-      await axios.delete(`${API}`, {
-        data: { id }
-      });
+      await axios.delete( `${API}`,
+        {
+          data: { id },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
 
       toast.success("Item deleted")
       fetchCartItem();

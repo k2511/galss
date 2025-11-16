@@ -160,6 +160,7 @@
 
 // export default Signup;
 
+const API = "http://localhost:5000/api/auth";
 
 import React, { useState } from "react";
 import { useNavigate, Link, NavLink } from "react-router-dom";
@@ -171,7 +172,7 @@ const Signup = () => {
     email: "",
     password: "",
     fullName: "",
-    otp: "",
+ 
   });
   const navigate = useNavigate();
   const [step, setStep] = useState(2);
@@ -180,25 +181,26 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(val.password.length < 6){
-      toast.error("Password must be at least 6 characters long.");
-      return 
-    }
+    // if(val.password.length < 6){
+    //   toast.error("Password must be at least 6 characters long.");
+    //   return 
+    // }
+    // console.log('valllll', val )
     try {
-      const res = await axios.post("http://localhost:4000/signup", val);
+      const res = await axios.post(`${API}/signup`, val);
       const data = await res.data;
       //   console.log("data, ", data);
-      if (data.message == "Signup successfully") {
+      // if (data.message == "Signup successfully") {
         toast.success("Signup successfully ! 🎉");
         setTimeout(() => {
           navigate("/login");
         }, 1000);
-      } else {
-        toast.error(data.message, "! ❌");
-      }
+      // } else {
+      //   toast.error(data.message, "! ❌");
+      // }
     } catch (err) {
       const message = err.response?.data?.message || "Something went wrong";
-      toast.error(message, "! ❌");
+      // toast.error(message, "! ❌");
     }
   };
 
@@ -258,14 +260,14 @@ const Signup = () => {
                   onChange={(e) => setVal({ ...val, password: e.target.value })}
                   required
                 />
-                <input
+                {/* <input
                   type="number"
                   placeholder="Enter your otp"
                   className="w-full p-2 border rounded"
                   value={val.otp}
                   onChange={(e) => setVal({ ...val, otp: e.target.value })}
                   required
-                />
+                /> */}
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"

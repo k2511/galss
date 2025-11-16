@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Search, User, ShoppingBag, Heart, ChevronDown , Truck ,LifeBuoy, Accessibility } from "lucide-react";
 import { toggleLoginModal } from "../features/user/userSlice";
 import { toggleCart } from "../features/cart/cartSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate , NavLink} from "react-router-dom";
+import { LuLogOut } from "react-icons/lu";
 import logo from "../assets/img/logo.png";
 import DropdownMenu from "../components/DropdownMenu";
 import EyeglassesDropdown from "../innerPages/EyeglassesDropdown";
@@ -44,6 +45,8 @@ import oliver from "../assets/brands/oliver.jpg";
 import armani from "../assets/brands/armani.jpg";
 import garrett from "../assets/brands/garrett.jpg";
 import { CartContext } from "../context/CartContext";
+import { MdOutlineSegment } from "react-icons/md";
+import toast from "react-hot-toast";
 
 // import {RiArrowRightSLine } from "react-icons/ri";
 const nav = [
@@ -83,7 +86,7 @@ const Header = () => {
   const { totalQuantity } = useSelector((state) => state.cart);
   const [eyeglass, setEyeglass] = useState(false);
 
-  const {cart} = useContext(CartContext);
+  const {cart, setCart, fetchCartItem} = useContext(CartContext);
 
   const [sunglass, setSunglass] = useState(false);
   const [brand, setBrand] = useState(false);
@@ -91,6 +94,8 @@ const Header = () => {
   const [lense, setLense] = useState(false);
   const [sale, setSale] = useState(false);
   const [store, setStore] = useState(false);
+   
+  const isLoggedIn = !!localStorage.getItem('token');
 
   const [open, setOpen] = useState(false);  
 
@@ -154,6 +159,20 @@ const Header = () => {
     { name: "Wiley X", path: "/brands/wiley-x" },
   ];
 
+    
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+    setOpen(false)
+    toast.success('Logout successfully ')
+  };
+
+
+  useEffect(() => {
+    fetchCartItem();
+  },[]);
+
+  
   return (
     <>
       {/* Desktop Header */}
@@ -162,7 +181,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex "> 
           <div className="md:hidden block ">
-            <IoMenu className="text-3xl mx-2" onClick={() => setOpen(true)} />
+            <IoMenu className="text-3xl mx-2" onClick={() => setOpen(true)}  />
           </div>
           
           <div> 
@@ -282,7 +301,7 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex  lg:space-x-3  items-center sm:ml-2 ml-0">
+          <div className="flex  lg:space-x-3 justify-around items-center sm:ml-2 ml-0 ">
             {/* Search Bar */}
             {/* <div className="flex justify-center items-center"> */}
             {/* <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">
@@ -294,7 +313,7 @@ const Header = () => {
                 />
               </div> */}
 
-            <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
+            <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2 border-2 border-black w-16 sm:w-36 xl:w-44 shadow-sm ">
               {/* Search icon visible only below md */}
               <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1 " />
 
@@ -309,6 +328,8 @@ const Header = () => {
             </div>
 
             {/* Wishlist */}
+
+            
             <button className="p-1 hover:bg-gray-100 rounded-lg">
               <Heart size={20} className="text-gray-600" />
             </button>
@@ -328,11 +349,9 @@ const Header = () => {
                 </span>
               )}
              
-          
             <span className={`absolute -top-0 -right-1 bg-[#00bac6] text-[0.6rem] py-0.5 text-white  rounded-full px-1.5 ${cart.length  > 0 ? 'animate-bounce':''}`}>
                    {cart.length}
-            </span>
-     
+            </span> 
         
             </button>
 
@@ -340,19 +359,26 @@ const Header = () => {
             <span className="mx-2 h-7 w-px bg-gray-200" />
 
             {/* User/Login */}
-            <button   className="flex items-center min-w-16 w-20 xl:gap-2 lg:gap-1  hover:bg-gray-100 rounded-lg"
+            <button   className="flex sm:items-center justify-center  md:w-20 w-full xl:gap-2 lg:gap-1   rounded-lg"
               onClick={() => {dispatch(toggleLoginModal())
                 navigate('/login')
               }}
            
             >
               <User size={20} className="text-gray-700" />
-              <span className=" text-sm text-black px-1 py-2">Log In </span>
+              {/* <span className=" text-sm text-black px-1 py-2">Log In </span> */}
+            
+       
+                   {/* {!isLoggedIn && <NavLink to="/signup" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer">Signup</NavLink>} */}
+                    {!isLoggedIn && <NavLink to="/login"  className="hidden md:block text-sm text-black px-1 py-2  rounded cursor-pointer ">Login</NavLink>}
+                    {isLoggedIn && <button className="text-sm  px-1 py-1 text-gray-700 cursor-pointer" onClick={handleLogout}> Logout</button>}
+                          
+
             </button>
           </div>
         </div>
       </header>
-
+ 
       {open && (
         <div
           className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
@@ -373,6 +399,7 @@ const Header = () => {
             >
               <span className="ml-2 text-md text-black " onClick={() => {
                 navigate('/login')
+                setOpen(false)
               }}>
                 Log In / Sign up{" "}
               </span>
@@ -386,11 +413,13 @@ const Header = () => {
           />
         </div>
 
+         
+
         <nav className=" flex flex-1 flex-col gap-10 relative h-[90vh]  overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 ">
           <div className="space-y-3 font-bold">
-            {nav.map((item) =>
+            {nav.map((item ,idx) =>
               item.name === "Eyeglasses" ? (
-                <div
+                <div key={idx}
                   className="flex justify-between px-3 pt-4"
                   onClick={() => setEyeglass(true)}
                 >
@@ -1448,6 +1477,10 @@ const Header = () => {
             </ul>
           </div>
         </nav>
+
+
+       
+        
       </div>
     </>
   );

@@ -131,6 +131,7 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import Payment from './pages/Payment.jsx'
 import WhatsappComponent from "./components/WhatsappComponent.jsx";
+import PrivateRoute  from "./components/PrivateRoute.jsx";
 
 function App() {
   return (
@@ -218,7 +219,13 @@ function App() {
         <Route path="/ShopAllGlassesMen" element={<ShopAllGlassesMen />} />
         <Route path="/findyourcontact" element={<FindYourContacts />} />
 
-        <Route path="/cart" element={<Cart />} />
+         <Route path="/cart" element={
+          <PrivateRoute>
+                <Cart /> 
+          </PrivateRoute>
+           } />
+       
+
         <Route path="/payment-gateway" element={<Payment />} />
         {/* eye glasses  */}
 
@@ -324,7 +331,7 @@ function App() {
           <Route path="/lenses/knowledgecenter/LensBlog" element={<LensBlog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-       
+         
       </Routes>
       <Footer />
       < WhatsappComponent />

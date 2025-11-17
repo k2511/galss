@@ -591,6 +591,7 @@ const Eyeglasses = () => {
 
 export default Eyeglasses;
 
+
 // <div className="px-3 py-3 text-center border-2 border-black ">
 
 //   <div className=" relative w-11/12 mx-auto py-6 flex flex-row justify-between sm:gap-8 gap-1">
@@ -788,3 +789,4 @@ export default Eyeglasses;
 //     (p.price >= selectedPrice.min && p.price <= selectedPrice.max);
 //   return matchesType && matchesPrice;
 // });
+

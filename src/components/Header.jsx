@@ -176,7 +176,7 @@ const Header = () => {
   return (
     <>
       {/* Desktop Header */}
-      <header className="w-full  bg-white border-b shadow-sm flex relative z-50">
+      <header className="w-full  bg-white border-b shadow-sm flex relative z-40">
         <div className=" mx-auto w-full flex items-center justify-between h-16 xl:px-8 px-2">
           {/* Logo */}
           <div className="flex "> 

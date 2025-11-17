@@ -7,6 +7,7 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import axios from "axios";
 import { TiStar } from "react-icons/ti";
+import { useNavigate } from "react-router-dom";
 
 const API = "http://localhost:5000/api";
 
@@ -17,7 +18,8 @@ const Eyeglasses = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [products, setProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
-
+ 
+  const navigate = useNavigate()
   const priceRanges = [
     { label: "₹1 - ₹499", min: 1, max: 499 },
     { label: "₹500 - ₹999", min: 500, max: 999 },
@@ -374,14 +376,20 @@ const Eyeglasses = () => {
                     item.category_name === "Eyeglasses" &&
                     reviews.find((r) => r.product_id === item.id);
                   // console.log("rating", typeof(matchedReview), matchedReview);
-             
 
-                   console.log('itemmmmmm', matchedReview )
+                  //  console.log('itemmmmmm', matchedReview )
                   // item.sell_price - (item.sell_price * item.discount) / 100;
                   return (
                     <div
                       key={item.id}
                       className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border"
+                      // onClick={() => {
+                      //   navigate(`/eyeglasses/${encodeURIComponent(item.name)}`, { state: item });
+                      // }}
+                      onClick={() => {
+                        const encodedState = encodeURIComponent(JSON.stringify(item));
+                        window.open(`/eyeglasses/${encodeURIComponent(item.name)}?data=${encodedState}`, "_blank");
+                      }}
                     >
                       <img
                         src={item.image_url}
@@ -389,7 +397,7 @@ const Eyeglasses = () => {
                         className="w-full h-60 sm:h-72 lg:h-60 object-contain xl:mb-3"
                       />
 
-                      <div className="bg-[#f5f5ff] flex rounded-xl items-center gap-1 w-20 px-3 py-2">
+                      <div className="bg-[#f5f5ff] flex rounded-xl items-center gap-1 w-20 px-3 py-2" >
                         <span className="font-semibold text-xs flex items-center">
                           {matchedReview ? Number(matchedReview.rating) : 0}
                         </span>
@@ -415,12 +423,11 @@ const Eyeglasses = () => {
                           </div>
                         </div>
                         <div className=" flex rounded-md bg-sky-100 overflow-hidden">
-                                 <button
-                                  
+                                 {/* <button
                                   className="w-full     py-1 r    transition-colors"
                                 >
                                   Buy now
-                                </button>
+                                </button> */}
                           <button
                             className="px-2 py-1 flex gap-2  text-[#207c83] bg-[#f5f5ff]"
                             onClick={() => {

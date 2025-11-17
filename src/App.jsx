@@ -124,6 +124,8 @@ import LensBlog from "./innerPages/lenses/knowledgecenter/LensBlog.jsx";
 import Glasses from "./components/Glasses.jsx";
 import ClearContextLense from "./components/ClearContextLense.jsx";
 import Eyeglasses from "./pages/Eyeglasses.jsx";
+import EyeProductName from "./pages/EyeProductName.jsx";
+
 import ColourLens from "./components/ColourLens.jsx";
 
 import Cart from './pages/Cart.jsx'
@@ -230,6 +232,7 @@ function App() {
         {/* eye glasses  */}
 
         <Route path="/eyeglasses" element={<Eyeglasses />} />
+        <Route path="/eyeglasses/:id" element={<EyeProductName />} />
 
         {/* Sunglasses (Women) */}
         

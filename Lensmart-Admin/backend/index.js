@@ -24,6 +24,11 @@ import productShapeRoutes from "./src/routes/productShapeRoutes.js";
 import permissionRoutes from "./src/routes/permissionRoutes.js";
 import cartRoutes from './src/routes/cartRoutes.js'
 
+import paymentRoutes from "./src/routes/paymentRoutes.js";
+import orderRoutes from "./src/routes/orderRoutes.js";
+
+
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -70,6 +75,8 @@ app.use("/uploads", express.static(uploadsDir));
   }
 })();
 
+
+
 // Register API routes (mounted AFTER middleware)
 app.use("/api/product-types", productTypeRoutes);
 app.use("/api/product-shapes", productShapeRoutes);
@@ -101,6 +108,9 @@ app.use("/api/new-arrivals", newArrivalRoutes);
 app.use("/api/newArrival", newArrivalRoutes);
 
 app.use("/api/cart", cartRoutes);
+
+app.use("/api/payment", paymentRoutes);
+app.use("/api/order", orderRoutes);
 
 
 // Health check

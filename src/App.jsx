@@ -134,6 +134,8 @@ import Login from "./pages/Login.jsx";
 import Payment from './pages/Payment.jsx'
 import WhatsappComponent from "./components/WhatsappComponent.jsx";
 import PrivateRoute  from "./components/PrivateRoute.jsx";
+import PaymentGateway from "./pages/PaymentGateway.jsx";
+import OrderSuccess from "./pages/OrderSuccess.jsx";
 
 function App() {
   return (
@@ -228,7 +230,10 @@ function App() {
            } />
        
 
-        <Route path="/payment-gateway" element={<Payment />} />
+        <Route path="/payment-gateway" element={<PaymentGateway />} />
+
+        <Route path="/order-success" element={<OrderSuccess />} />
+        
         {/* eye glasses  */}
 
         <Route path="/eyeglasses" element={<Eyeglasses />} />

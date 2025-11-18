@@ -37,22 +37,24 @@ export const createProduct = async (req, res) => {
       gender,
     } = req.body;
 
-    console.log(
-      "backend",  
-      gender 
-       
-    );
     const finalBrandId = brand_id ?? br_id ?? null;
     const finalCategoryId = category_id ?? cat_id ?? null;
-    const image = req.file ? req.file.filename : null;
+    // const image = req.file ? req.file.filename : null;
+    const image = req.files?.up_img ? req.files.up_img[0].filename : null;
+     
+    const galleryImages = req.files?.gallery_imgs
+    ? req.files.gallery_imgs.map((img) => img.filename)
+    : [];
+
+    console.log( "backend",  galleryImages, image, req.files );
 
     sell_price = Number(sell_price);
     price = Number(price);
 
       const [result] = await pool.query(
       `INSERT INTO products
-        (name, gender, sku, brand_id, category_id, price, sell_price, stock, description, image, meta_key, meta_des, platform, features, ins_inst, d_link, status, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`,
+        (name, gender, sku, brand_id, category_id, price, sell_price, stock, description, image, gallery_images, meta_key, meta_des, platform, features, ins_inst, d_link, status, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`,
       [
         name || null,
         gender || null,
@@ -64,6 +66,7 @@ export const createProduct = async (req, res) => {
         safeNumber(stock, 0),
         description || null,
         image,
+        JSON.stringify(galleryImages),
         meta_key || null,
         meta_des || null,
         platform || null,
@@ -102,8 +105,11 @@ export const getAll = async (_, res) => {
     const mapped = rows.map((r) => ({
       ...r,
       image_url: r.image ? `${BASE_URL}/uploads/${r.image}` : null,
+      gallery_images: r.gallery_images ? r.gallery_images : []
     }));
-    
+
+    console.log('dd', mapped)
+
 
     res.json(mapped);
   } catch (err) {
@@ -136,6 +142,8 @@ export const getProductById = async (req, res) => {
 
     const row = rows[0];
     row.image_url = row.image ? `${BASE_URL}/uploads/${row.image}` : null;
+
+    
     res.json(row);
   } catch (err) {
     console.error("getProductById error:", err);

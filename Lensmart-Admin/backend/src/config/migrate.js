@@ -216,7 +216,6 @@
 //     });
 // }
 
-
 import { pool } from "../config/db.js";
 
 /**
@@ -365,14 +364,13 @@ export async function migrate() {
       
     `);
 
-  // CONSTRAINT chk_rating CHECK (rating BETWEEN 1 AND 5),
-  //       CONSTRAINT fk_reviews_product FOREIGN KEY (product_id)
-  //         REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  //       CONSTRAINT fk_reviews_user FOREIGN KEY (user_id)
-  //         REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
-  //     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-  
- 
+    // CONSTRAINT chk_rating CHECK (rating BETWEEN 1 AND 5),
+    //       CONSTRAINT fk_reviews_product FOREIGN KEY (product_id)
+    //         REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    //       CONSTRAINT fk_reviews_user FOREIGN KEY (user_id)
+    //         REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+    //     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
     // -------------------------------------------------
     // BUYING LIST TABLE
     // -------------------------------------------------
@@ -388,21 +386,33 @@ export async function migrate() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+      await conn.query(`
+              CREATE TABLE orders (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          user_id INT NOT NULL,
+          items_json JSON NOT NULL,
+          subtotal DECIMAL(10,2) NOT NULL,
+          gst_amount DECIMAL(10,2) NOT NULL,
+          total_amount DECIMAL(10,2) NOT NULL,
+          currency VARCHAR(10) DEFAULT 'INR',
+          razorpay_order_id VARCHAR(255),
+          razorpay_payment_id VARCHAR(255),
+          payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending',
+          order_status ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      );
+     `);
 
-    await conn.query(`
-      CREATE TABLE IF NOT EXISTS orders (
-        id INT NOT NULL AUTO_INCREMENT,
-        user_id INT NULL,
-        total BIGINT NULL,
-        no_of_items INT NULL,
-        order_status VARCHAR(45) NULL,
-        payment_status VARCHAR(45) NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-      )
-    `);
-
-    
+        await conn.query(`CREATE TABLE order_items (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          order_id INT NOT NULL,
+          product_id INT NOT NULL,
+          name VARCHAR(255),
+          price DECIMAL(10,2),
+          qty INT,
+          FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+        );`);
 
     await conn.query(`
       CREATE TABLE IF NOT EXISTS cart (
@@ -421,7 +431,7 @@ export async function migrate() {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       );
     `);
-    
+
     await conn.query(`
       CREATE TABLE IF NOT EXISTS customers (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -430,7 +440,7 @@ export async function migrate() {
         password VARCHAR(100)
       );
     `);
-    
+
     // -------------------------------------------------
     // NEW ARRIVALS TABLE
     // -------------------------------------------------
@@ -474,13 +484,19 @@ export async function migrate() {
       { table: "reviews", name: "idx_reviews_product", col: "product_id" },
       { table: "reviews", name: "idx_reviews_user", col: "user_id" },
       { table: "buying_list", name: "idx_buyinglist_user", col: "user_id" },
-      { table: "new_arrivals", name: "idx_newarrivals_product", col: "product_id" },
+      {
+        table: "new_arrivals",
+        name: "idx_newarrivals_product",
+        col: "product_id",
+      },
     ];
 
     for (const idx of indexes) {
       const exists = await indexExists(conn, idx.table, idx.name);
       if (!exists) {
-        await conn.query(`CREATE INDEX \`${idx.name}\` ON \`${idx.table}\` (\`${idx.col}\`)`);
+        await conn.query(
+          `CREATE INDEX \`${idx.name}\` ON \`${idx.table}\` (\`${idx.col}\`)`
+        );
         console.log(`✅ Created index ${idx.name} on ${idx.table}(${idx.col})`);
       } else {
         console.log(`ℹ️ Index ${idx.name} already exists on ${idx.table}`);
@@ -488,7 +504,9 @@ export async function migrate() {
     }
 
     await conn.commit();
-    console.log("✅ Migration completed successfully with role & permission system.");
+    console.log(
+      "✅ Migration completed successfully with role & permission system."
+    );
   } catch (error) {
     await conn.rollback();
     console.error("❌ Migration failed:", error.message || error);
@@ -498,7 +516,10 @@ export async function migrate() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}` || process.env.RUN_MIGRATIONS_ON_START === "1") {
+if (
+  import.meta.url === `file://${process.argv[1]}` ||
+  process.env.RUN_MIGRATIONS_ON_START === "1"
+) {
   migrate()
     .then(() => process.exit(0))
     .catch((err) => {
@@ -506,4 +527,3 @@ if (import.meta.url === `file://${process.argv[1]}` || process.env.RUN_MIGRATION
       process.exit(1);
     });
 }
-

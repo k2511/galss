@@ -17,7 +17,7 @@ const Cart = () => {
        decreaseQty, removeItem, totalAmount} = useContext(CartContext);
  
        let amt = totalAmount * 0.18;
-       console.log('gst', amt)
+      //  console.log('gst', amt)
 
       useEffect(() => {
           fetchCartItem()
@@ -25,22 +25,17 @@ const Cart = () => {
 
       
      const onSubmit = async() => {
-      navigate('/payment-gateway')
-        // let object = {
-        //   item: cart.length,
-        //   total: totalAmount,
-        //   user_id: '',
-        //   order_status: '',
-        //   payment_status: ''
-        // }
-        //  try{
-        //   const res = await axios.post(`${API}`, );
-
-        //  }catch(err){
-
-        //  }
+      navigate("/payment-gateway", {
+        state: {
+          items: cart,
+          subtotal: totalAmount,
+          gstAmount: totalAmount * 0.18,
+          total: totalAmount + totalAmount * 0.18
+        }
+      });
+    
      }
-      // 
+   
   return (
  
  
@@ -128,15 +123,21 @@ const Cart = () => {
           </div>
 
           <div className="flex justify-between items-center border-t pt-3 pb-4 mb-4">
-            <span className="text-gray-700 font-semibold text-base">Total</span>
+            <span className="text-gray-700 font-semibold text-base">Total Amount</span>
             <span className="text-teal-600 font-bold text-xl">₹{totalAmount + amt }</span>
           </div>
+          <div className="flex justify-between items-center border-t pt-3 pb-4 mb-4">
+            <span className="text-gray-700 font-semibold text-sm">GST</span>
+            <span className="text-teal-600 font-bold text-sm">18%</span>
+          </div>
+          {/* <div className="flex justify-between items-center border-t pt-3 pb-4 mb-4">
+            <span className="text-gray-700 font-semibold text-sm">ProductId</span>
+            <span className="text-teal-600 font-bold text-sm">18%</span>
+          </div> */}
 
           <div className="flex flex-col gap-3">
            
-            <button  onClick={() => {
-                  onsubmit
-              }}
+            <button onClick={onSubmit}
               className="w-full bg-green-500 text-white py-3 rounded-full hover:bg-green-600 transition-colors">
               Cart Checkout
             </button>

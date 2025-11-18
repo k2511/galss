@@ -18,7 +18,8 @@ const Eyeglasses = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [products, setProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
- 
+  const [galImg, setGalImg] = useState([]);
+
   const navigate = useNavigate()
   const priceRanges = [
     { label: "₹1 - ₹499", min: 1, max: 499 },
@@ -233,7 +234,6 @@ const Eyeglasses = () => {
       try {
         const res = await axios.get(`${API}/products`);
         // console.log(res.data);
-
         setProducts(res.data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -372,30 +372,50 @@ const Eyeglasses = () => {
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((item) => {
                   const offPrice = Number(item.sell_price);
+
                   let matchedReview =
                     item.category_name === "Eyeglasses" &&
                     reviews.find((r) => r.product_id === item.id);
-                  // console.log("rating", typeof(matchedReview), matchedReview);
+                 
 
-                  //  console.log('itemmmmmm', matchedReview )
+                  const firstImage = item.gallery_images && item.gallery_images.length > 0 
+                        ? item.gallery_images[0] 
+                        : null;
+
+                        const fullUrl = firstImage ? `http://localhost:5000/uploads/${firstImage}` : "/no-image.png";
+
+                        console.log("i", fullUrl);
+            
+
+                   
                   // item.sell_price - (item.sell_price * item.discount) / 100;
                   return (
                     <div
                       key={item.id}
-                      className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border"
+                      className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border group"
                       // onClick={() => {
                       //   navigate(`/eyeglasses/${encodeURIComponent(item.name)}`, { state: item });
                       // }}
                       onClick={() => {
-                        const encodedState = encodeURIComponent(JSON.stringify(item));
+                        const dataToSend = {
+                          ...item,
+                          matchedReview: matchedReview || null
+                        };
+                        const encodedState = encodeURIComponent(JSON.stringify(dataToSend));
                         window.open(`/eyeglasses/${encodeURIComponent(item.name)}?data=${encodedState}`, "_blank");
                       }}
                     >
                       <img
                         src={item.image_url}
                         alt={item.name}
-                        className="w-full h-60 sm:h-72 lg:h-60 object-contain xl:mb-3"
+                        className="w-full h-60 sm:h-72 lg:h-60 object-contain xl:mb-3 group-hover:hidden"
                       />
+
+                      <img  className="w-full h-60 sm:h-72 lg:h-60 object-contain  hidden group-hover:block"
+                        src={fullUrl} 
+                        alt="product"
+                      />
+
 
                       <div className="bg-[#f5f5ff] flex rounded-xl items-center gap-1 w-20 px-3 py-2" >
                         <span className="font-semibold text-xs flex items-center">
@@ -428,15 +448,7 @@ const Eyeglasses = () => {
                                 >
                                   Buy now
                                 </button> */}
-                          <button
-                            className="px-2 py-1 flex gap-2  text-[#207c83] bg-[#f5f5ff]"
-                            onClick={() => {
-                              handleAddToCart(item);
-                              addToCart( matchedReview, item );
-                            }}
-                          >
-                            Add to cart
-                          </button>
+                       
                         </div>{" "}
                       </div>
                     </div>

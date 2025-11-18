@@ -12,8 +12,7 @@ export const CartProvider = ({ children }) => {
   const togglecartbar = () => setActiveCart(!activeCart);
 
   const token = localStorage.getItem("token")
-  //  let id = user.id;
-  //  console.log('iddddd',  token)
+
 
   const handleAddToCart = (product) => {
     // setCart((prev) => {
@@ -42,11 +41,11 @@ export const CartProvider = ({ children }) => {
       mrp: item.price,
       gender: item.gender,
       // client_id: id,
-      rating: matchedReview.rating ?? 0,
-      reviews: matchedReview.comment || 'Good',
+      rating: item?.matchedReview?.rating  ?? 0,
+      reviews: item?.matchedReview?.comment ?? 'Good',
   
     }; 
-      //  console.log("add to ", obj);
+       console.log("add to ", obj);
     try {
       const res = await axios.post( `${API}`, obj,
         {

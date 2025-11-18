@@ -25,8 +25,10 @@ export default function AddProduct() {
     };
   }, []);
    
-  
   // state
+  const [galleryFiles, setGalleryFiles] = useState([]);
+  const [galleryPreview, setGalleryPreview] = useState([]);
+
   const [gender, setGender] = useState('');
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -93,6 +95,14 @@ export default function AddProduct() {
     }
   }, []);
 
+  const handleGallery = (e) => {
+    const files = Array.from(e.target.files);
+    setGalleryFiles(files);
+  
+    const previews = files.map((f) => URL.createObjectURL(f));
+    setGalleryPreview(previews);
+  };
+
   const fetchBrands = useCallback(async () => {
     try {
       const res = await axios.get(`${API}/api/brands`).catch(async (err) => {
@@ -152,7 +162,8 @@ export default function AddProduct() {
 
         if (didCancel) return;
         setForm(mapped);
-
+         
+        
         // set preview to existing uploaded image url when editing
         if (productImageName) {
           const url = `${UPLOADS_BASE}${productImageName}`;
@@ -263,9 +274,12 @@ export default function AddProduct() {
       data.append("gender", form.gender || "");
 
       // image file
+
       if (form.up_img) {
-        data.append("image", form.up_img);
+        data.append("up_img", form.up_img);
       }
+
+      galleryFiles.forEach(f => data.append("gallery_imgs", f));
 
       if (isEdit) {
         await axios.put(`${API}/api/products/${id}`, data, {
@@ -471,21 +485,29 @@ export default function AddProduct() {
           )}
         </div>
 
-        <div>
-          <label className="block text-sm mb-1">Gallery Image </label>
-          <input
-            type="file"
-            name="up_img"
-            accept="image/*"
-            onChange={handleFile}
-            className="w-full border p-2 rounded"
-          />
-          {preview && (
-            <div className="mt-3">
-              <img src={preview} alt="preview" className="h-28 rounded border object-contain"  />
+          <div>
+            <label className="block text-sm mb-1">Gallery Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              name="gallery_imgs"
+              onChange={handleGallery}
+              className="w-full border p-2 rounded"
+            />
+
+            <div className="flex gap-2 mt-3 flex-wrap">
+              {galleryPreview.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  className="h-20 w-20 rounded border object-cover"
+                />
+              ))}
             </div>
-          )}
-        </div>
+          </div>
+
+
 
         <div>
           <label className="block text-sm mb-1">Meta Keywords</label>

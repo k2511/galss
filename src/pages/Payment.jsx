@@ -4,7 +4,6 @@ const Payment = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-10 bg-gray-50">
       
-      {/* Left Side - Product Image */}
       <div className="md:w-1/2 flex justify-center items-center border py-20">
         <img
           src="https://res.cloudinary.com/demo/image/upload/v1690000000/sample.jpg"
@@ -13,7 +12,6 @@ const Payment = () => {
         />
       </div>
 
-      {/* Right Side - Product Details */}
       <div className="md:w-1/2 mt-8 md:mt-0 md:pl-10">
         <h2 className="text-2xl font-semibold text-gray-900">
           Bausch & Lomb Soflens 59 (6 Lens Per Box)

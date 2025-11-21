@@ -4,6 +4,8 @@ import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from "react-hot-toast";
 
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const API = "http://localhost:5000/api/auth";
 
@@ -13,6 +15,7 @@ const Login = () => {
   // const [token, setToken] = useState("");
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
+ 
 
   const handleReset = async (e) => {
     setStep(2);
@@ -50,6 +53,7 @@ const Login = () => {
     toast.success('Logout successfully ')
   };
   
+  const {cart ,fetchCartItem,  setLoginEmail} = useContext(CartContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -61,16 +65,21 @@ const Login = () => {
     try {
       const res = await axios.post(`${API}/customer-login`, val);
       const data = await res.data;
+      //  console.log('email;;;;', data.user.email)
 
       if (data.message == "Logged In successfully") {
         let token = data.user.token;
         // console.log("login ", data.user);
         localStorage.setItem("token", token);
         toast.success("Logged in ! 🎉");
+        setLoginEmail(data.user.email);
         setTimeout(() => {
-          navigate("/cart");
+           fetchCartItem();
+
         }, 1000);
 
+
+        navigate("/cart");
       } else {
         // toast.error(data.message, "! ❌");
       }

@@ -28,7 +28,6 @@ import axios from "axios";
 
 const API = "http://localhost:5000/api/payment";
 
-
 const PaymentGateway = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,9 +44,11 @@ const PaymentGateway = () => {
     loadRazorpay();
   }, []);
 
+
   const makePayment = async () => {
     const res = await axios.post(`${API}/create-order`, {
       userId: 1,
+     
       items,
       subtotal,
       gstAmount,
@@ -56,10 +57,10 @@ const PaymentGateway = () => {
     });
 
     const { order, localOrderId } = res.data;
-    console.log(' order, localOrderId',  order, localOrderId)
+    // console.log(' order, localOrderId',  order, localOrderId)
 
     const options = {
-      key: '',
+      key: 'rzp_test_bzK53YGmR1lrbV',
       amount: order.amount,
       currency: "INR",
       name: "Lensmart Store",

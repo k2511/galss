@@ -52,7 +52,6 @@ const App = () => {
     }
   }, [token]);
 
-  // Sync state across tabs
   useEffect(() => {
     const handleStorage = (e) => {
       if (e.key === "token") {

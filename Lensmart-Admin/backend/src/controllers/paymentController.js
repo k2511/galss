@@ -1,25 +1,26 @@
-import Razorpay from "razorpay";
+
 import crypto from "crypto";
 import db from "../config/db.js";
 import dotenv from "dotenv";
 dotenv.config();
+import {razor} from '../config/razorpay.js'
 
-const razor = new Razorpay({
-  key_id:'',
-  key_secret: '',
-});
 
-export const createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {  
   try {
     const { subtotal, gstAmount, amount, currency, items, userId } = req.body;
     //  console.log(' subtotal,  ',  subtotal, gstAmount, amount, currency, items, userId )
     const rzpOrder = await razor.orders.create({
-      amount: Math.round(amount * 100),
+      amount: amount * 100,
       currency: currency || "INR",
       receipt: "rcpt_" + Date.now(),
+      notes: {
+        userId ,
+        products: items.map((val) => val.product_id)
+      }
     });
 
-    console.log('pao', rzpOrder)
+    console.log('order_id', rzpOrder)
 
     const [result] = await db.query(
       `INSERT INTO orders (user_id, items_json, subtotal, gst_amount, total_amount, currency, razorpay_order_id) 
@@ -35,14 +36,24 @@ export const createOrder = async (req, res) => {
       ]
     );
 
-    res.json({
+    // console.log('result in order', result  )
+    // user ne already pay to nhi krdiya h iss product k liye 
+    // order_id check krna h correct h ya nhi fir store krna h 
+    res.status(200).json({
+      success: true,
+      message: "order created",
       order: rzpOrder,
       localOrderId: result.insertId,
     });
+
   } catch {
     res.status(500).json({ message: "error" });
   }
 };
+
+ 
+
+
 
 export const verifyPayment = async (req, res) => {
   try {
@@ -79,24 +90,40 @@ export const verifyPayment = async (req, res) => {
 
 export const razorpayWebhook = async (req, res) => {
   try {
+    const webhookSecret = '12345678';
+     
     const signature = req.headers["x-razorpay-signature"];
-    const expected = crypto
-      .createHmac("sha256", process.env.WEBHOOK_SECRET)
-      .update(req.rawBody)
-      .digest("hex");
 
-    if (signature !== expected) return res.status(400).send("invalid");
+      const shasum = crypto.createHmac("sha256", webhookSecret) 
+      shasum.update(JSON.stringify(req.body));
+      const digest = shasum.digest("hex");
 
-    const payload = req.body;
+     //  hmac ----> hashed based message authentication code
+    // hmac takes two thing first is sha algorithm second is secret key 
+    // sha ------=>  secure hasing algorithm 
+    // check sum
 
-    if (payload.event === "payment.captured") {
-      const pay = payload.payload.payment.entity;
 
-      await db.query(
-        `UPDATE orders SET payment_status='paid', order_status='processing', razorpay_payment_id=? WHERE razorpay_order_id=?`,
-        [pay.id, pay.order_id]
-      );
+    if (signature !== shasum) return res.status(400).send("invalid");
+    
+    if(signature === digest) {
+      console.log('payment authorized');
+      
+       const {products, userId } = req.body.payload.payment.entity.notes;
+       console.log('products, userId', products, userId);
     }
+
+    // const payload = req.body;
+
+    // if (payload.event === "payment.captured") {
+    //   const pay = payload.payload.payment.entity;
+
+    //   await db.query(
+    //     `UPDATE orders SET payment_status='paid', order_status='processing', razorpay_payment_id=? WHERE razorpay_order_id=?`,
+    //     [pay.id, pay.order_id]
+    //   );
+    // }
+
 
     res.json({ ok: true });
   } catch {

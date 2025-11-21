@@ -3,7 +3,7 @@ import { CheckCircle } from "react-feather";
 
 export default function OrderSuccess() {
   const { state } = useLocation();
-
+   console.log('order', state )
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">

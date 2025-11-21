@@ -434,10 +434,18 @@ export async function migrate() {
 
     await conn.query(`
       CREATE TABLE IF NOT EXISTS customers (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100),
-        email VARCHAR(100),
-        password VARCHAR(100)
+          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(100),
+          email VARCHAR(100),
+          password VARCHAR(100),
+          phone VARCHAR(100),
+          pincode VARCHAR(100),
+          address VARCHAR(100),
+          state VARCHAR(45),
+          city VARCHAR(45),
+          country VARCHAR(45),
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       );
     `);
 

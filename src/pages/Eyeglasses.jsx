@@ -257,6 +257,7 @@ const Eyeglasses = () => {
           };
 
           fetchReviews();
+          fetchCartItem()
           
         }, []);
 
@@ -384,7 +385,7 @@ const Eyeglasses = () => {
 
                         const fullUrl = firstImage ? `http://localhost:5000/uploads/${firstImage}` : "/no-image.png";
 
-                        console.log("i", fullUrl);
+                        // console.log("i", fullUrl);
             
 
                    
@@ -417,7 +418,7 @@ const Eyeglasses = () => {
                       />
 
 
-                      <div className="bg-[#f5f5ff] flex rounded-xl items-center gap-1 w-20 px-3 py-2" >
+                      <div className="bg-[#f5f5ff] flex rounded-xl items-center gap-1 w-12 px-3 py-2" >
                         <span className="font-semibold text-xs flex items-center">
                           {matchedReview ? Number(matchedReview.rating) : 0}
                         </span>

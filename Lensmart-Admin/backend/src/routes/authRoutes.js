@@ -1,6 +1,6 @@
 // src/routes/authRoutes.js
 import express from "express";
-import { register, login , signup, customerLogin } from "../controllers/authController.js";
+import { register, login , signup, customerLogin , profile} from "../controllers/authController.js";
 import { verifyToken, isSuperAdmin } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -13,6 +13,8 @@ router.post("/login", login);
 
 router.post("/signup", signup);
 router.post("/customer-login", customerLogin);
+
+router.post('/profile', profile);
 
 // ==============================
 // Protected Example Routes

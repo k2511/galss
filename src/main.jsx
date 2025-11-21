@@ -48,14 +48,17 @@ class ErrorBoundary extends React.Component {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ErrorBoundary>
-    <CartProvider>
+
       <Provider store={store}>
         <BrowserRouter>
+          <CartProvider>
             <Toaster />
-          <App />
+            <App /> 
+          
+         </CartProvider> 
         </BrowserRouter>
       </Provider>
-     </CartProvider> 
+   
     </ErrorBoundary>
   </React.StrictMode>
 );

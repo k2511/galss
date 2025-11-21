@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect } from "react";
 // import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
@@ -136,8 +136,26 @@ import WhatsappComponent from "./components/WhatsappComponent.jsx";
 import PrivateRoute  from "./components/PrivateRoute.jsx";
 import PaymentGateway from "./pages/PaymentGateway.jsx";
 import OrderSuccess from "./pages/OrderSuccess.jsx";
+import { CartContext } from "./context/CartContext.jsx";
+import { useContext } from "react";
+import Profile from "./pages/Profile.jsx";
+import MyOrders from "./pages/MyOrders.jsx";
+
+
 
 function App() {
+
+   const { handleAddToCart, addToCart, fetchCartItem,  } = useContext(CartContext);
+
+   window.onload = function () {
+    console.log("appp me .");
+  };
+
+   useEffect(()=>{
+      fetchCartItem();
+    
+   },[])
+   
   return (
     // Removed Provider and BrowserRouter from here since they're in main.jsx
     <div className="min-h-screen bg-white overflow-hidden relative">
@@ -233,7 +251,8 @@ function App() {
         <Route path="/payment-gateway" element={<PaymentGateway />} />
 
         <Route path="/order-success" element={<OrderSuccess />} />
-        
+        <Route path="/my-orders" element={<MyOrders />} />
+       
         {/* eye glasses  */}
 
         <Route path="/eyeglasses" element={<Eyeglasses />} />
@@ -339,7 +358,8 @@ function App() {
           <Route path="/lenses/knowledgecenter/LensBlog" element={<LensBlog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-         
+          <Route path="/profile" element={<Profile />} />
+          
       </Routes>
       <Footer />
       < WhatsappComponent />

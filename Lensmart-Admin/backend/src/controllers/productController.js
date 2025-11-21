@@ -46,7 +46,7 @@ export const createProduct = async (req, res) => {
     ? req.files.gallery_imgs.map((img) => img.filename)
     : [];
 
-    console.log( "backend",  galleryImages, image, req.files );
+    // console.log( "backend",  galleryImages, image, req.files );
 
     sell_price = Number(sell_price);
     price = Number(price);
@@ -108,7 +108,7 @@ export const getAll = async (_, res) => {
       gallery_images: r.gallery_images ? r.gallery_images : []
     }));
 
-    console.log('dd', mapped)
+    // console.log('dd', mapped)
 
 
     res.json(mapped);

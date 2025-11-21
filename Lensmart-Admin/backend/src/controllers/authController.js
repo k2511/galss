@@ -84,7 +84,6 @@
 // }
 // src/controllers/authController.js
 
-
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { pool } from "../config/db.js"; // adjust path if you use db.js not config/db.js
@@ -105,7 +104,9 @@ export async function register(req, res) {
     }
 
     // Check if user already exists
-    const [existing] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    const [existing] = await pool.query("SELECT * FROM users WHERE email = ?", [
+      email,
+    ]);
     if (existing.length > 0) {
       return res.status(400).json({ message: "Email already registered." });
     }
@@ -117,14 +118,14 @@ export async function register(req, res) {
     const userRole = role && role === "super_admin" ? "super_admin" : "admin";
 
     // Insert new user
-    await pool.query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", [
-      name,
-      email,
-      hashedPassword,
-      userRole,
-    ]);
+    await pool.query(
+      "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
+      [name, email, hashedPassword, userRole]
+    );
 
-    res.status(201).json({ message: "User registered successfully.", role: userRole });
+    res
+      .status(201)
+      .json({ message: "User registered successfully.", role: userRole });
   } catch (err) {
     console.error("Register Error:", err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -142,11 +143,15 @@ export async function login(req, res) {
 
     // Validate inputs
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required." });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required." });
     }
 
     // Check if user exists
-    const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [
+      email,
+    ]);
     if (rows.length === 0) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -199,10 +204,9 @@ export async function login(req, res) {
   }
 }
 
-
 export async function signup(req, res) {
   try {
-    const {fullName, email, password,} = req.body;
+    const { fullName, email, password } = req.body;
 
     // console.log('bakcen', fullName, email, password, req.body )
     if (!fullName || !email || !password) {
@@ -210,7 +214,10 @@ export async function signup(req, res) {
     }
 
     // Check if user already exists
-    const [existing] = await pool.query("SELECT * FROM customers WHERE email = ?", [email]);
+    const [existing] = await pool.query(
+      "SELECT * FROM customers WHERE email = ?",
+      [email]
+    );
     if (existing.length > 0) {
       return res.status(400).json({ message: "Email already registered." });
     }
@@ -219,14 +226,12 @@ export async function signup(req, res) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert new user
-    await pool.query("INSERT INTO customers (name, email, password ) VALUES (?, ?, ?)", [
-      fullName,
-      email,
-      hashedPassword,
-    
-    ]);
+    await pool.query(
+      "INSERT INTO customers (name, email, password ) VALUES (?, ?, ?)",
+      [fullName, email, hashedPassword]
+    );
 
-    res.status(201).json({ message: "User registered successfully.", });
+    res.status(201).json({ message: "User registered successfully." });
   } catch (err) {
     console.error("Register Error:", err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -240,11 +245,15 @@ export async function customerLogin(req, res) {
 
     // Validate inputs
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required." });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required." });
     }
 
     // Check if user exists
-    const [rows] = await pool.query("SELECT * FROM customers WHERE email = ?", [email]);
+    const [rows] = await pool.query("SELECT * FROM customers WHERE email = ?", [
+      email,
+    ]);
     if (rows.length === 0) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -257,31 +266,31 @@ export async function customerLogin(req, res) {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid credentials." });
-    }else{
-      const token = jwt.sign(
-      { id: user.id, email: user.email,  },
-      JWT_SECRET,
-      { expiresIn: "5h" }
-    );
+    } else {
+      const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+        expiresIn: "1h",
+      });
 
-    const options = {
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
-    };
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
 
-
-    res.cookie("token", token, options).status(200).json({
-      success: true,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        token: token,
-      },
-      token,
-      message: "Logged In successfully",
-    });
-
+      res
+        .cookie("token", token, options)
+        .status(200)
+        .json({
+          success: true,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            token: token,
+          },
+          token,
+          
+          message: "Logged In successfully",
+        });
     }
 
     // res.json({
@@ -291,12 +300,50 @@ export async function customerLogin(req, res) {
     //     id: user.id,
     //     name: user.name,
     //     email: user.email,
-      
+
     //   },
 
     // });
   } catch (err) {
     console.error("Login Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+export async function profile(req, res) {
+  try {
+    const { phone, pincode, city, state, address, country } = req.body;
+    // console.log("vvv", phone, pincode, city, state, address, country);
+
+    
+          const token = req.headers.authorization?.split(" ")[1]; 
+          
+          const decoded = jwt.verify(token, process.env.JWT_SECRET) || 'mysecretkey';
+          
+          req.user = decoded;  
+          // console.log('req',req.user);
+          let id = req.user.id;
+          console.log('req',id);
+
+          const [result] =  await pool.query(`UPDATE customers SET phone = ?,
+                      pincode = ?,
+                      address = ?,
+                      state = ?,
+                      city = ?,
+                      country = ?
+                  WHERE id = ? `, 
+               [phone, pincode, address, state, city, country,
+            id,
+          ]);
+
+          res.status(200).json({
+            message: "success add address",
+            
+            success: true,
+          });
+
+  } catch (err) {
+    console.error("profile:", err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }

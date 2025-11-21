@@ -86,7 +86,7 @@ const Header = () => {
   const { totalQuantity } = useSelector((state) => state.cart);
   const [eyeglass, setEyeglass] = useState(false);
 
-  const {cart, setCart, fetchCartItem} = useContext(CartContext);
+  const {cart, setCart, fetchCartItem,  loginEmail,  setLoginEmail} = useContext(CartContext);
 
   const [sunglass, setSunglass] = useState(false);
   const [brand, setBrand] = useState(false);
@@ -96,12 +96,14 @@ const Header = () => {
   const [store, setStore] = useState(false);
    
   const isLoggedIn = !!localStorage.getItem('token');
-
+ 
   const [open, setOpen] = useState(false);  
-
+  
+  const [showLogout, setShowLogout] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null); // Track which menu is open
   const [showSubMenu, setShowSubMenu] = useState(false);
 
+  //  console.log(loginEmail)
   const handleMenuClick = (menuName) => {
     setActiveMenu(menuName);
     setShowSubMenu(true);
@@ -161,7 +163,7 @@ const Header = () => {
 
     
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.clear('token');
     navigate('/login');
     setOpen(false)
     toast.success('Logout successfully ')
@@ -301,7 +303,7 @@ const Header = () => {
           </nav>
 
           {/* Right Icons (Search, Wishlist, Cart, User) */}
-          <div className="flex  lg:space-x-3 justify-around items-center sm:ml-2 ml-0 ">
+          <div className="relative  flex lg:space-x-3 justify-around items-center sm:ml-2 ml-0">
             {/* Search Bar */}
             {/* <div className="flex justify-center items-center"> */}
             {/* <div className="flex items-center bg-gray-100 rounded-full lg:px-3 px-0 py-1.5 w-4/6 shadow-sm">
@@ -313,7 +315,7 @@ const Header = () => {
                 />
               </div> */}
 
-            <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2 border-2 border-black w-16 sm:w-36 xl:w-44 shadow-sm ">
+            <div className="flex items-center  bg-gray-100 h-8 rounded-full lg:px-3 py-1 px-2  w-16 sm:w-36 xl:w-44 shadow-sm ">
               {/* Search icon visible only below md */}
               <Search size={24} className="text-gray-400 xl:mr-2 block  ml-1 " />
 
@@ -359,23 +361,45 @@ const Header = () => {
             <span className="mx-2 h-7 w-px bg-gray-200" />
 
             {/* User/Login */}
-            <button   className="flex sm:items-center justify-center  md:w-20 w-full xl:gap-2 lg:gap-1   rounded-lg"
-              onClick={() => {dispatch(toggleLoginModal())
-                navigate('/login')
+            <button   className=" flex sm:items-center justify-center  md:w-20 w-full xl:gap-2 lg:gap-1   rounded-lg"
+              onClick={() => {
+                dispatch(toggleLoginModal())
+              
               }}
-           
-            >
-              <User size={20} className="text-gray-700" />
-              {/* <span className=" text-sm text-black px-1 py-2">Log In </span> */}
+            > 
+          
+              <User size={20} className="text-gray-700" onClick={() => 
+                setShowLogout(!showLogout)
+              } />
             
-       
-                   {/* {!isLoggedIn && <NavLink to="/signup" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer">Signup</NavLink>} */}
-                    {!isLoggedIn && <NavLink to="/login"  className="hidden md:block text-sm text-black px-1 py-2  rounded cursor-pointer ">Login</NavLink>}
-                    {isLoggedIn && <button className="text-sm  px-1 py-1 text-gray-700 cursor-pointer" onClick={handleLogout}> Logout</button>}
-                          
-
+               {/* {!isLoggedIn && <NavLink to="/signup" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer">Signup</NavLink>} */}
+              {!isLoggedIn && <NavLink to="/login"  className="hidden md:block text-sm  text-black px-1 py-2  rounded cursor-pointer ">Login</NavLink>}
+                   
             </button>
+           
           </div>
+         
+           {showLogout && isLoggedIn && (  <div className=" absolute text-left  top-12 right-5 flex flex-col py-2 px-3 bg-white gap-2  rounded-lg border">
+               {loginEmail && isLoggedIn && (
+                  <button className="text-sm  text-left px-2  py-1 text-gray-700 cursor-pointer  ">
+                    {loginEmail}
+                  </button>
+                )}
+              <button className="text-sm  px-2 text-left  py-1 text-gray-700 cursor-pointer" onClick={()=> {
+                navigate('/profile')
+                setShowLogout(!showLogout)
+
+              }}>Profile</button>
+               
+              {isLoggedIn && <button className="text-sm  text-left px-2  py-1 text-gray-700 cursor-pointer " onClick={()=>{navigate('/my-orders')
+                setShowLogout(!showLogout)
+              }}> My Orders</button>}
+
+              {isLoggedIn && <button className="text-sm text-left px-2  py-1 text-gray-700 cursor-pointer " onClick={handleLogout}> Logout</button>}
+              
+           </div>
+            )}
+         
         </div>
       </header>
  

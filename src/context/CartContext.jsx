@@ -2,17 +2,20 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const API = "http://localhost:5000/api/cart";
+import { useNavigate } from 'react-router-dom';
 
 export const CartContext = createContext();
 import toast from "react-hot-toast";
 export const CartProvider = ({ children }) => {
+
+
   const [cart, setCart] = useState([]);
   const [activeCart, setActiveCart] = useState(false);
-
+  const [loginEmail, setLoginEmail] = useState('');
   const togglecartbar = () => setActiveCart(!activeCart);
 
   const token = localStorage.getItem("token")
-
+  const navigate = useNavigate();
 
   const handleAddToCart = (product) => {
     // setCart((prev) => {
@@ -45,7 +48,8 @@ export const CartProvider = ({ children }) => {
       reviews: item?.matchedReview?.comment ?? 'Good',
   
     }; 
-       console.log("add to ", obj);
+
+      //  console.log("add to ", obj);
     try {
       const res = await axios.post( `${API}`, obj,
         {
@@ -64,24 +68,34 @@ export const CartProvider = ({ children }) => {
 
  
   const fetchCartItem = async () => {
+    if (!token) {
+      console.log("No token, not fetching cart");
+      return;
+    }
     try {
       const res = await axios.get(`${API}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+  
       setCart(res.data.data);
+   
     } catch (err) {
       console.log("Fetch error:", err);
+      if (err.response && err.response.status === 401) {
+        console.log("Token invalid or expired");
+  
+        localStorage.removeItem("token");
+        navigate("/login");
+        setOpen(false);
+        // toast.error("Session expired, please login again");
+      }
     }
   };
 
   const increaseQty = async (id) => {
-    // setCart((prev) =>
-    //   prev.map((item) =>
-    //     item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    //   )
-    // );
+ 
     try {
       const res = await axios.post(`${API}/inc-qty`, { id });
       fetchCartItem();
@@ -91,13 +105,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const decreaseQty = async (id) => {
-    // setCart((prev) =>
-    //   prev.map((item) =>
-    //     item.id === id && item.quantity > 1
-    //       ? { ...item, quantity: item.quantity - 1 }
-    //       : item
-    //   )
-    // );
+  
     try {
       const res = await axios.post(`${API}/dec-qty`, { id });
       fetchCartItem();
@@ -107,8 +115,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeItem = async(id) => {
-    // console.log("remove", id);
-    // setCart((prev) => prev.filter((item) => item.id !== id));
     try {
       await axios.delete( `${API}`,
         {
@@ -127,7 +133,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // console.log('cart context', cart )
+
   const totalAmount = cart.reduce(
     (acc, item) => acc + item.sell_price * item.quantity || 1,
     0
@@ -155,8 +161,10 @@ export const CartProvider = ({ children }) => {
         removeItem,
         totalAmount,
         addToCart,
-      
+        
         fetchCartItem,
+        loginEmail,
+         setLoginEmail
       }}
     >
       {children}

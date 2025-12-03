@@ -7,13 +7,14 @@ import { Trash2 } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import axios from "axios";
 import { useState } from "react";
-
+import { X } from "lucide-react"; //
 const API = "http://localhost:5000/api/cart";
 
 const Cart = () => {
   const navigate = useNavigate();
   const [detail, setDetails] = useState([]);
-
+  const [showCoupons, setShowCoupons] = useState(false);
+  const [coupons, setCoupons] = useState([]);
   const {
     handleAddToCart,
     setCart,
@@ -33,8 +34,6 @@ const Cart = () => {
   // console.log(detail)
 
   const onSubmit = async () => {
-    //  console.log("dddd", token )
-
     try {
       const res = await axios.post(
         "http://localhost:5000/api/order/check-address",
@@ -45,7 +44,6 @@ const Cart = () => {
           },
         }
       );
-      console.log("ddd", res.data.address);
 
       if (
         res.data.address &&
@@ -56,9 +54,8 @@ const Cart = () => {
         res.data.address.state &&
         res.data.address.pincode
       ) {
-        console.log("User Address:", res.data.address, cart.length, cart);
+        // console.log("User Address:", res.data.address, cart.length, cart);
         fetchCartItem();
-
         // setDetails(res.data.address);  // optional
 
         navigate("/payment-gateway", {
@@ -73,6 +70,15 @@ const Cart = () => {
         navigate("/profile");
       }
       // toast.success("Address Saved Successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchCoupons = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/coupons");
+      setCoupons(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -150,12 +156,12 @@ const Cart = () => {
                     </div>
 
                     <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3">
-                      <span className="font-semibold text-sky-600 text-base sm:text-lg">
+                      <span className="font-semibold text-teal-600 text-base sm:text-lg">
                         ₹{item.sell_price * (Number(item.quantity) || 1)}
                       </span>
                       <button
                         onClick={() => removeItem(item.product_id)}
-                        className="mt-0 sm:mt-3 bg-sky-500 hover:bg-sky-600 text-white p-2 rounded-full"
+                        className="mt-0 sm:mt-3 bg-teal-600 hover:bg-teal-600 text-white p-2 rounded-full"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -192,15 +198,75 @@ const Cart = () => {
             <span className="text-gray-700 font-semibold text-sm">ProductId</span>
             <span className="text-teal-600 font-bold text-sm">18%</span>
           </div> */}
+                 <div className="flex flex-col justify-start  py-3  gap-1 rounded-xl mb-5 shadow-lg px-3" >
+                  <button className="flex flex-col justify-start text-start" onClick={() => {
+                        fetchCoupons();
+                        setShowCoupons(true);
+                  }}>  <span
+                  
+                  className="w-full text-xs text-[#000042] font-semibold  rounded-full transition-colors"
+                >
+                  Apply Coupons
+                </span>
+                <span className="w-full text-xs text-[#66668e]  ">Check available offers</span></button>
+               
+              </div>
 
               <div className="flex flex-col gap-3">
                 <button
                   onClick={onSubmit}
-                  className="w-full bg-green-500 text-white py-3 rounded-full hover:bg-green-600 transition-colors"
+                  className="w-full bg-teal-600 text-white py-3 rounded-full hover:bg-teal-600transition-colors"
                 >
                   Cart Checkout
                 </button>
               </div>
+
+              {showCoupons && (
+                <div className="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 p-6 overflow-y-auto transition-transform duration-300">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-semibold">Available Coupons</h3>
+                    <button
+                      onClick={() => setShowCoupons(false)}
+                      className="text-gray-600 hover:text-gray-900"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+                  {coupons.length === 0 ? (
+                    <p className="text-gray-500 text-sm">No coupons available.</p>
+                  ) : (
+                    <ul className="space-y-3">
+                      {coupons.map((c) => (
+                        <li
+                          key={c.id}
+                          className="border rounded-md p-3 flex justify-between items-center"
+                        >
+                          <div>
+                            <p>{c.name}</p>
+                            <p className="font-semibold text-sm">{c.code}</p>
+                            <p className="text-xs text-gray-500">
+                              {c.discount_type === "percent"
+                                ? `${c.value}% off`
+                                : `₹${c.value} off`}
+                            </p>
+                          </div>
+                          <button
+                            className="bg-teal-600 text-white text-xs px-3 py-1 rounded"
+                            onClick={() => {
+                              // Apply coupon logic
+                              console.log("Apply coupon:", c.code);
+                              setShowCoupons(false);
+                            }}
+                          >
+                            Apply
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+
             </aside>
           </div>
         )}

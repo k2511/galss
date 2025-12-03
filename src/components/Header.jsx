@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { Search, User, ShoppingBag, Heart, ChevronDown , Truck ,LifeBuoy, Accessibility } from "lucide-react";
 import { toggleLoginModal } from "../features/user/userSlice";
 import { toggleCart } from "../features/cart/cartSlice";
@@ -81,6 +82,7 @@ const BrandTile = ({ brand }) => {
 };
 
 const Header = () => {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { totalQuantity } = useSelector((state) => state.cart);
@@ -88,6 +90,7 @@ const Header = () => {
 
   const {cart, setCart, fetchCartItem,  loginEmail,  setLoginEmail} = useContext(CartContext);
 
+  
   const [sunglass, setSunglass] = useState(false);
   const [brand, setBrand] = useState(false);
   const [contactlense, setContactLense] = useState(false);
@@ -391,7 +394,8 @@ const Header = () => {
 
               }}>Profile</button>
                
-              {isLoggedIn && <button className="text-sm  text-left px-2  py-1 text-gray-700 cursor-pointer " onClick={()=>{navigate('/my-orders')
+              {isLoggedIn && <button className="text-sm  text-left px-2  py-1 text-gray-700 cursor-pointer " onClick={()=>{
+                navigate('/my-orders', { state })
                 setShowLogout(!showLogout)
               }}> My Orders</button>}
 

@@ -55,7 +55,7 @@ export const getReviewById = async (req, res) => {
 export const createReview = async (req, res) => {
   try {
     const { product_id, user_id, rating, comment } = req.body;
-    console.log('backend reviews ', product_id, user_id, rating, comment)
+    // console.log('backend reviews ', product_id, user_id, rating, comment)
     // Validation
     if (!product_id) {
       return res.status(400).json({ message: "Product ID is required" });
@@ -66,16 +66,46 @@ export const createReview = async (req, res) => {
 
     const safeRating = rating && rating >= 1 && rating <= 5 ? rating : 5;
 
-    const [result] = await db.query(
-      `INSERT INTO reviews (product_id, user_id, rating, comment, created_at)
-       VALUES (?, ?, ?, ?, NOW())`,
-      [product_id, user_id || null, safeRating, comment.trim()]
-    );
 
-    res.status(201).json({
-      message: "✅ Review added successfully",
-      id: result.insertId,
-    });
+    if (user_id && product_id) {
+
+      // Check old review
+      const [existing] = await db.query(
+        `SELECT * FROM reviews WHERE user_id = ? AND product_id = ?`,
+        [user_id, product_id]
+      );
+    
+      // If exist → UPDATE
+      if (existing.length > 0) {
+        await db.query(
+          `UPDATE reviews 
+           SET rating = ?, comment = ?, updated_at = NOW() 
+           WHERE user_id = ? AND product_id = ?`,
+          [safeRating, comment.trim(), user_id, product_id]
+        );
+    
+        return res.json({ message: "Review updated" });
+      }
+
+      await db.query(
+        `INSERT INTO reviews (product_id, user_id, rating, comment, created_at)
+         VALUES (?, ?, ?, ?, NOW())`,
+        [product_id, user_id, safeRating, comment.trim()]
+      );
+    
+      res.status(201).json({
+        message: "✅ Review added successfully",
+        id: existing.insertId,
+      });
+    }
+
+    // const [result] = await db.query(
+    //   `INSERT INTO reviews (product_id, user_id, rating, comment, created_at)
+    //    VALUES (?, ?, ?, ?, NOW())`,
+    //   [product_id, user_id || null, safeRating, comment.trim()]
+    // );
+
+    
   } catch (err) {
     console.error("❌ Error creating review:", err);
     res.status(500).json({ message: "Failed to create review" });

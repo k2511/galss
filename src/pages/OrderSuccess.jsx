@@ -1,10 +1,17 @@
 import { useLocation, Link } from "react-router-dom";
 import { CheckCircle } from "react-feather";
-
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { OrderContext } from "../context/OrderContext";
 export default function OrderSuccess() {
   const { state } = useLocation();
-   console.log('order', state )
-  
+
+   const {order, setOrders} = useContext(OrderContext);
+
+  //  console.log('order', state.orders, state)
+  // setOrders(state);
+   const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="bg-white shadow-2xl rounded-xl p-8 max-w-md w-full text-center">
@@ -37,12 +44,15 @@ export default function OrderSuccess() {
             Go Home
           </Link>
 
-          <Link
-            to="/orders-success"
+          <button
+          onClick={() => {
+            navigate('/my-orders')
+          }}
+          
             className="border border-blue-600 text-blue-600 px-5 py-2 rounded-lg hover:bg-blue-50 transition"
           >
             View Orders
-          </Link>
+          </button>
         </div>
       </div>
     </div>

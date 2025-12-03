@@ -20,7 +20,7 @@ import EditUser from "./pages/EditUser";
 import ProductType from "./pages/ProductType";
 import ProductShape from "./pages/ProductShape";
 import PermissionManagement from "./pages/PermissionManagement";
-
+import CustomerList from "./pages/CustomerList";
 // ==========================
 // Auth Context
 // ==========================
@@ -147,6 +147,10 @@ const App = () => {
             <Route path="edit-user/:id" element={<EditUser />} />
             <Route path="product-type" element={<ProductType />} />
             <Route path="product-shape" element={<ProductShape />} />
+            
+            <Route path="customers" element={<CustomerList />} />
+            {/* <Route path="orders" element={<OrderList />} />
+            <Route path="payments" element={<PaymentDetails />} /> */}
 
             {/* ✅ Permission Management accessible to all authenticated users */}
             <Route path="permission-management" element={<PermissionManagement />} />

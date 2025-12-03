@@ -77,6 +77,27 @@ export const createProduct = async (req, res) => {
       ]
     );
 
+    let product_id = result.insertId;
+    let user_id =  1;
+    let comment = 'Good';
+    let rating = 0;
+    
+    // console.log( "backend", result.insertId ,  req.user );
+
+    // if (!product_id) {
+    //   return res.status(400).json({ message: "Product ID is required" });
+    // }
+    // if (!comment || comment.trim() === "") {
+    //   return res.status(400).json({ message: "Comment cannot be empty" });
+    // }
+
+    const safeRating = rating && rating >= 1 && rating <= 5 ? rating : 5;
+    const [answer] = await pool.query(
+      `INSERT INTO reviews (product_id, user_id, rating, comment, created_at)
+       VALUES (?, ?, ?, ?, NOW())`,
+      [product_id, user_id || null, safeRating, comment.trim()]
+    );
+
     res
       .status(201)
       .json({ id: result.insertId, message: "Product created successfully" });
@@ -124,16 +145,39 @@ export const getAllProducts = getAll;
 /**
  * Get single product by id
  */
+// export const getProductById = async (req, res) => {
+//   try {
+//     const [rows] = await pool.query(
+//       `SELECT p.*,
+//               b.name AS brand_name,
+//               c.name AS category_name
+//        FROM products p
+//        LEFT JOIN brands b ON p.brand_id = b.id
+//        LEFT JOIN categories c ON p.category_id = c.id
+//        WHERE p.id = ? LIMIT 1`,
+//       [req.params.id]
+//     );
+
+//     if (!rows.length)
+//       return res.status(404).json({ message: "Product not found" });
+
+//     const row = rows[0];
+//     row.image_url = row.image ? `${BASE_URL}/uploads/${row.image}` : null;
+
+    
+//     res.json(row);
+//   } catch (err) {
+//     console.error("getProductById error:", err);
+//     res.status(500).json({ error: err.message || "Internal Server Error" });
+//   }
+// };
+
 export const getProductById = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      `SELECT p.*,
-              b.name AS brand_name,
-              c.name AS category_name
-       FROM products p
-       LEFT JOIN brands b ON p.brand_id = b.id
-       LEFT JOIN categories c ON p.category_id = c.id
-       WHERE p.id = ? LIMIT 1`,
+      `SELECT *
+      FROM products as p
+       WHERE p.id = ? `,
       [req.params.id]
     );
 
@@ -150,7 +194,6 @@ export const getProductById = async (req, res) => {
     res.status(500).json({ error: err.message || "Internal Server Error" });
   }
 };
-
 /**
  * Update product (image replacement + cleanup)
  */

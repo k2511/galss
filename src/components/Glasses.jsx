@@ -50,7 +50,7 @@ const Glasses = () => {
             className="w-full object-contain"
           />
           <img onClick={() => {
-                   navigate('/colour-lenses/colour-contact-lenses');
+                   navigate('/colour-contact-lenses');
                 }}
             src={colorlense}
             alt=""
@@ -66,21 +66,27 @@ const Glasses = () => {
             </div>
 
             <div className="grid grid-cols-3 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
-            <div >
+            <div onClick={() => 
+                 navigate('/eyeglasses/men')
+            }>
                 <img
                 src={eyemen}
                 alt="Men"
                 className="w-full object-contain"
                 />
             </div>
-            <div>
+            <div onClick={() => 
+                 navigate('/eyeglasses/women')
+            }>
                 <img
                 src={eyewomen}
                 alt="Women"
                 className="w-full object-contain"
                 />
             </div>
-            <div>
+            <div onClick={() => 
+                 navigate('/eyeglasses/kids')
+            }> 
                 <img
                 src={eyekids}
                 alt="Kids"
@@ -96,7 +102,9 @@ const Glasses = () => {
             </div>
 
             <div className="grid grid-cols-3 lg:gap-6  gap-2 w-11/12 mx-auto text-center">
-            <div>
+            <div onClick={() => {
+                navigate('/sunglasses/men')
+            }}>
                 <img
                 src={sunmen}
                 alt="Men"
@@ -104,14 +112,18 @@ const Glasses = () => {
                 />
                
             </div>
-            <div>
+            <div onClick={() => {
+                navigate('/sunglasses/women')
+            }}>
                 <img
                 src={sunwomen}
                 alt="Women"
                 className="w-full object-contain"
                 />
             </div>
-            <div>
+            <div onClick={() => {
+                navigate('/sunglasses/kids')
+            }}>
                 <img
                 src={sunkids}
                 alt="Kids"

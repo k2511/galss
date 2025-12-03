@@ -13,12 +13,10 @@ export const addToCart = async (req, res) => {
 
     const token = req.headers.authorization?.split(" ")[1];
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET) || "mysecretkey";
+    const decoded = jwt.verify(token, process.env.JWT_SECRET) ;
 
     req.user = decoded;
-    // console.log('req',req.user);
     let client_id = req.user.id;
-
     // console.log('cart---', client_id, gender )
 
     if (
@@ -112,6 +110,13 @@ export const getAllCartItem = async (req, res) => {
         message: "Fetched item cart successfully",
       });
   } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({
+        success: false,
+        message: "Token expired",
+      });
+    }
+
     console.error("Error cart:", error);
     res.status(500).json({ error: "Failed to cart item" });
   }

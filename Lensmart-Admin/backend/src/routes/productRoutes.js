@@ -40,11 +40,11 @@ import {
 } from "../controllers/productController.js";
 
 import { uploadProductImages } from "../middleware/upload.js";
-
+import {verifyToken} from '../middleware/authMiddleware.js'
 const router = express.Router();
 
 // Create product (main image + gallery images)
-router.post("/", uploadProductImages, createProduct);
+router.post("/",verifyToken , uploadProductImages, createProduct);
 
 // Get all products
 router.get("/", getAllProducts);

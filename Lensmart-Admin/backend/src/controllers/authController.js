@@ -139,8 +139,8 @@ export async function register(req, res) {
  */
 export async function login(req, res) {
   try {
-    const { email, password } = req.body;
-
+    const { email, password , captchaToken } = req.body;
+    console.log(email, password, captchaToken )
     // Validate inputs
     if (!email || !password) {
       return res
@@ -268,7 +268,7 @@ export async function customerLogin(req, res) {
       return res.status(401).json({ message: "Invalid credentials." });
     } else {
       const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "2h",
       });
 
       const options = {

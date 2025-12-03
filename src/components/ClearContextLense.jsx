@@ -156,7 +156,7 @@ const ClearContextLense = () => {
          </div>  */}
         
          <div className="w-11/12 mx-auto py-6 flex flex-row sm:gap-8 gap-1">
-        <aside className="w-full lg:w-1/4 rounded-xl shadow-sm bg-white sm:p-4 p-0 h-fit border-2 border-black">
+        <aside className="w-full lg:w-1/4 rounded-xl shadow-sm bg-white sm:p-4 p-0 h-fit border">
           <h2 className="font-semibold text-lg mb-4 text-gray-800">
             Filter By
           </h2>
@@ -167,11 +167,11 @@ const ClearContextLense = () => {
                 key={range.label}
                 className={`cursor-pointer flex items-center gap-2 px-2 py-1 rounded-md text-sm  ${
                   selectedPrice?.label === range.label
-                    ? "bg-blue-500 text-white shadow-lg"
+                    ? "bg-teal-500 text-white shadow-lg"
                     : " text-gray-700"
                 }`}
               >
-                <input  className=" appearance-none w-4 h-4 border border-gray-400 rounded checked:bg-blue-500 checked:border-blue-500 relative
+                <input  className=" appearance-none w-4 h-4 border border-gray-400 rounded checked:bg-teal-500 checked:border-teal-500 relative
   after:content-[''] after:absolute after:top-[1px] after:left-[5px] after:w-[5px] after:h-[10px] after:border-r-2 after:border-b-2 after:border-white after:rotate-45 after:opacity-0 checked:after:opacity-100"
                   type="radio"
                   name="price"
@@ -186,14 +186,14 @@ const ClearContextLense = () => {
           {selectedPrice && (
             <button
               onClick={() => setSelectedPrice(null)}
-              className="mt-4 text-sm text-red-500 underline"
+              className="mt-4 text-sm text-teal-500 underline"
             >
               Clear Price Filter
             </button>
           )}
         </aside>
 
-        <main className="w-full lg:w-3/4 border-2 border-black">
+        <main className="w-full lg:w-3/4 ">
           <div className="flex justify-center gap-4 mb-6">
             {["spherical", "toric"].map((type) => (
               <button
@@ -201,7 +201,7 @@ const ClearContextLense = () => {
                 onClick={() => setSelectedType(type)}
                 className={`px-6 py-2  font-semibold text-sm transition ${
                   selectedType === type
-                    ? "bg-blue-500 text-white shadow-lg"
+                    ? "bg-teal-500 text-white shadow-lg"
                     : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                 }`}
               >
@@ -230,11 +230,11 @@ const ClearContextLense = () => {
                       <span className="text-gray-500 line-through">
                         ₹{item.price}
                       </span>
-                      <span className="text-green-600 font-bold">
+                      <span className="text-teal-600 font-bold">
                         ₹{offPrice}
                       </span>
                     </div>
-                    <p className="text-xs text-[#00bac6]">
+                    <p className="text-xs text-teal-600">
                       {item.discount}% off
                     </p>
                   </div>

@@ -95,7 +95,7 @@ export default function CouponCodes() {
     if (formData.discount_value === "" || formData.discount_value === null) return "Please enter discount value.";
     const dv = Number(formData.discount_value);
     if (!Number.isFinite(dv) || dv < 0) return "Discount value must be a non-negative number.";
-    if (!["percent", "flat"].includes(formData.discount_type)) return "Invalid discount type.";
+    if (!["percent", "fixed"].includes(formData.discount_type)) return "Invalid discount type.";
     return null;
   };
 
@@ -118,6 +118,7 @@ export default function CouponCodes() {
         status: formData.status === "Active" ? 1 : 0,                // numeric 1/0 in DB
       };
 
+      console.log('ddd', payload)
       if (editingId) {
         await api.put(`/api/coupons/${editingId}`, payload);
       } else {
@@ -188,7 +189,7 @@ export default function CouponCodes() {
           <label className="block text-sm font-medium">Discount Type</label>
           <select value={formData.discount_type} onChange={(e) => setFormData({ ...formData, discount_type: e.target.value })} className="border border-gray-200 w-full p-2 rounded">
             <option value="percent">Percent (%)</option>
-            <option value="flat">Flat (amount)</option>
+            <option value="fixed">Flat (amount)</option>
           </select>
 
           <label className="block text-sm font-medium">Discount Value</label>
@@ -217,7 +218,7 @@ export default function CouponCodes() {
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="p-2">ID</th>
+                {/* <th className="p-2">ID</th> */}
                 <th className="p-2">PID</th>
                 <th className="p2">Product</th>
                 <th className="p-2">Coupon</th>
@@ -234,12 +235,12 @@ export default function CouponCodes() {
               ) : (
                 coupons.map((c) => (
                   <tr key={c.cc_id ?? c.id} className="border-b border-gray-200 text-center">
-                    <td className="p-2">{c.cc_id ?? c.id}</td>
-                    <td className="p-2">{String(c.PID ?? "")}</td>
-                    <td className="p-2">{c.pname ?? "-"}</td>
+                    {/* <td className="p-2">{c.cc_id ?? c.id}</td> */}
+                    <td className="p-2">{String(c.product_id ?? "")}</td>
+                    <td className="p-2">{c.name ?? "-"}</td>
                     <td className="p-2">{c.code ?? c.cou_code}</td>
                     <td className="p-2">{c.discount_type ?? "-"}</td>
-                    <td className="p-2">{c.discount_value ?? c.dis_amt ?? 0}</td>
+                    <td className="p-2">{c.value}</td>
                     <td className="p-2">{c.expires_at ?? "-"}</td>
                     <td className="p-2"><span className={`px-2 py-1 rounded-full text-sm ${c.status === "Active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>{c.status}</span></td>
                     <td className="relative p-2"><ActionDropdown onEdit={() => handleEdit(c)} onDelete={() => handleDelete(c.cc_id ?? c.id)} /></td>

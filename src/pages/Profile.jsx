@@ -41,7 +41,7 @@ const Profile = () => {
             },
           }
       );
-      console.log("Address Saved:", res.data);
+      // console.log("Address Saved:", res.data);
       
       toast.success("Address Saved Successfully");
       navigate('/payment-gateway');

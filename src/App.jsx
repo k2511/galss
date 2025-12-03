@@ -140,8 +140,16 @@ import { CartContext } from "./context/CartContext.jsx";
 import { useContext } from "react";
 import Profile from "./pages/Profile.jsx";
 import MyOrders from "./pages/MyOrders.jsx";
+import EyeglassesMen from "./pages/EyeglassesMen.jsx";
+import EyeglassesWomen from "./pages/EyeglassesWomen.jsx";
+import EyeglassesKids from "./pages/EyeglassesKids.jsx";
 
-
+import SunglassesMen from "./pages/SunglassesMen.jsx";
+import SunglassesWomen from "./pages/SunglassesWomen.jsx";
+import SunglassesKids from "./pages/SunglassesKids.jsx";
+import SunProductName from "./pages/SunProductName.jsx";
+import ColourContactLens from "./pages/ColourContactLens.jsx";
+import ColourContactProductName from './pages/ColourContactProductName.jsx'
 
 function App() {
 
@@ -251,16 +259,29 @@ function App() {
         <Route path="/payment-gateway" element={<PaymentGateway />} />
 
         <Route path="/order-success" element={<OrderSuccess />} />
-        <Route path="/my-orders" element={<MyOrders />} />
+        <Route path="/my-orders" element={  <PrivateRoute>
+              <MyOrders />
+          </PrivateRoute> } />
        
         {/* eye glasses  */}
 
         <Route path="/eyeglasses" element={<Eyeglasses />} />
         <Route path="/eyeglasses/:id" element={<EyeProductName />} />
+        <Route path="/eyeglasses/men" element={<EyeglassesMen />} />
+        <Route path="/eyeglasses/women" element={<EyeglassesWomen />} />
+        <Route path="/eyeglasses/kids" element={<EyeglassesKids />} />
 
         {/* Sunglasses (Women) */}
         
         <Route path="/sunglasses" element={<Sunglasses />} />
+        <Route path="/sunglasses/:id" element={<SunProductName />} />
+        <Route path="/sunglasses/men" element={<SunglassesMen />} />
+        <Route path="/sunglasses/women" element={<SunglassesWomen />} />
+        <Route path="/sunglasses/kids" element={<SunglassesKids />} />
+
+
+
+
         <Route path="/sunglasses/women/bestseller" element={<BestSeller />} />
         <Route path="/sunglasses/women/sunglasses" element={<SunGlasses />} />
         <Route path="/sunglasses/women/onsale" element={<OnSale />} />
@@ -336,7 +357,9 @@ function App() {
         <Route path="/contacts/myday" element={<ContactLensShop />} />
 
         <Route path="/contact-lenses/clear-contact-lenses" element={<ClearContextLense />} />
-        <Route path="/colour-lenses/colour-contact-lenses" element={<ColourLens />} />
+
+        <Route path="/colour-contact-lenses" element={<ColourContactLens />} />
+        <Route path="/colour-contact-lenses/:id" element={<ColourContactProductName />} />
 
        
         {/* Popular Lenses */}

@@ -378,6 +378,7 @@ export default function AddProduct() {
                     <option value="">Select Gender</option>
                     <option value="men">Men</option>
                     <option value="women">Women</option>
+                    <option value="kids">Kids</option>
                     {/* <option value="kids">Kids</option> */}
               </select> </div>
        

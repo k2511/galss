@@ -54,7 +54,7 @@ async function detectCategoryColumns() {
     map.updatedAtCol = map.updatedAtCol || "updated_at";
 
     _colMap = map;
-    console.log("categoryController: detected columns ->", _colMap);
+    // console.log("categoryController: detected columns ->", _colMap);
     return _colMap;
   } catch (err) {
     console.error("detectCategoryColumns error:", err);

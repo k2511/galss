@@ -19,6 +19,7 @@ const Eyeglasses = () => {
   const [products, setProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [galImg, setGalImg] = useState([]);
+  const [showItem, setShowItem] = useState(6);
 
   const navigate = useNavigate()
   const priceRanges = [
@@ -187,7 +188,7 @@ const Eyeglasses = () => {
   const updatedRanges = priceRanges.map((range) => {
     const count = products.filter((lens) =>
       Number(
-        lens.category_name === "Eyeglasses" &&
+        lens.category_name === "Eyeglasses" &&  
           lens.sell_price >= range.min &&
           Number(lens.sell_price) <= range.max
       )
@@ -264,10 +265,14 @@ const Eyeglasses = () => {
   // console.log("prodddd----", filteredProducts);
 
   return (
-    <div className=" text-center  ">
+    <div className=" text-center  border-2 border-red-300 ">
       {!showFilter && (
-        <div className="w-full mx-auto flex flex-row justify-between sm:gap-2 gap-1 items-start">
-          <aside className=" hidden lg:block lg:sticky lg:top-0 lg:h-[85vh] lg:w-1/5 min-w-1/4  rounded-xl shadow-sm bg-white sm:p-4 p-0 border-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+        <div className="w-full  mx-auto flex flex-row    overflow-y-auto [&::-webkit-scrollbar]:hidden scrollbar-none
+        
+        justify-between sm:gap-2 gap-1 items-start ">
+          <aside className="  sticky lg:block hidden top-0 lg:h-[85vh] lg:w-1/5 min-w-1/4 
+           rounded-xl shadow-sm bg-white sm:p-4 p-0  overflow-y-auto border
+            scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100  ">
             <h2 className="font-semibold text-left text-[#605f5f]  text-lg mb-4 ">
               Filter By
             </h2>
@@ -329,21 +334,9 @@ const Eyeglasses = () => {
             )}
           </aside>
 
-          <main className="w-full lg:w-4/7  mx-auto">
+          <main className="w-full lg:w-4/7  mx-auto h-screen ">
             <div className="flex justify-center gap-4 mb-6">
-              {/* {["All", "Budget", "Premium"].map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setSelectedType(type)}
-                  className={`px-6 py-2 font-semibold text-sm transition ${
-                    selectedType === type
-                      ? "bg-blue-500 text-white shadow-lg"
-                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                  }`}
-                >
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </button>
-              ))} */}
+      
               {eyeglass.map((data, id) => (
                 <div className="">
                   <div className=" ">
@@ -371,11 +364,11 @@ const Eyeglasses = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 gap-3 ">
               {filteredProducts.length > 0 ? (
-                filteredProducts.map((item) => {
+                filteredProducts.slice(0,showItem).map((item) => {
                   const offPrice = Number(item.sell_price);
 
                   let matchedReview =
-                    item.category_name === "Eyeglasses" &&
+                    item.category_name === "Eyeglasses" && 
                     reviews.find((r) => r.product_id === item.id);
                  
 
@@ -393,7 +386,7 @@ const Eyeglasses = () => {
                   return (
                     <div
                       key={item.id}
-                      className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border group"
+                      className=" rounded-xl w-full shadow-sm hover:shadow-lg transition p-3 text-center bg-white border group "
                       // onClick={() => {
                       //   navigate(`/eyeglasses/${encodeURIComponent(item.name)}`, { state: item });
                       // }}
@@ -460,7 +453,18 @@ const Eyeglasses = () => {
                   No products found in this range 😕
                 </p>
               )}
+                
+   
             </div>
+            <div className="flex items-center justify-center font-semibold my-4 ">
+               {/* <button className="border rounded-md bg-teal-300 px-3 py-1"   onClick={() => setShowItem(showItem + 3)} >View more </button> */}
+               { filteredProducts.length > showItem && (   <button
+            className="border rounded-md bg-teal-300 px-3 py-1"
+            onClick={() => setShowItem(showItem + 3)}
+          >
+            View more{" "}
+          </button> )}
+              </div>
           </main>
         </div>
       )}
@@ -476,7 +480,7 @@ const Eyeglasses = () => {
               }}
             />
           </div>
-          <aside className="border-2 border-black  lg:sticky lg:top-0 lg:h-[90vh] w-full px-3 shadow-sm  sm:p-4 p-0  overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+          <aside className="  lg:sticky lg:top-0 lg:h-[90vh] w-full px-3 shadow-sm  sm:p-4 p-0  overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
             <div>
               <div
                 className="flex  items-center w-full justify-between "

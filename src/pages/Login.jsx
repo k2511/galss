@@ -94,7 +94,7 @@ const Login = () => {
       {step == 1 && (
         <div className="w-full lg:w-1/2 flex items-center justify-center mx-auto">
           <div className="max-w-md w-full space-y-6 ">
-            <h2 className="text-3xl font-bold text-center text-blue-700">
+            <h2 className="text-3xl font-bold text-center text-teal-500">
               Welcome Back
             </h2>
             <form className="space-y-4" onSubmit={handleLogin}>
@@ -116,13 +116,13 @@ const Login = () => {
               />
               <button
                 type="submit"
-                className="w-full cursor-pointer bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+                className="w-full cursor-pointer bg-teal-500 text-white p-2 rounded hover:bg-teal-700"
               >
                 Login
               </button>
             </form>
 
-            <div className="text-sky-600 font-semibold">
+            <div className="text-teal-600 font-semibold">
               <button onClick={handleReset} className="cursor-pointer">
                 Forget password
               </button>
@@ -142,7 +142,7 @@ const Login = () => {
 
             <p className="text-center text-sm">
               Don't have an account?{" "}
-              <Link to="/signup" className="text-blue-600">
+              <Link to="/signup" className="text-teal-600">
                 Sign up
               </Link>
             </p>
@@ -153,10 +153,10 @@ const Login = () => {
       {step == 2 && (
         <div className="w-full min-h-screen flex items-center justify-center bg-blue-50 p-4">
           <div className="w-full max-w-md p-6 bg-blue-100 rounded-xl shadow-lg">
-            <h2 className="text-2xl font-semibold text-blue-900 mb-6">
+            <h2 className="text-2xl font-semibold text-teal-900 mb-6">
               Forget Password
             </h2>
-            <p className="text-blue-600 mb-6">
+            <p className="text-teal-600 mb-6">
               Lost your password? Please enter your email address. You will
               receive a link to create a new password via email.
             </p>
@@ -164,14 +164,14 @@ const Login = () => {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="block text-blue-800 text-sm font-bold mb-2"
+                  className="block text-teal-800 text-sm font-bold mb-2"
                 >
                   Email Address
                 </label>
                 <input
                   type="email"
                   id="email"
-                  className="w-full p-2 border-2 border-blue-300 rounded-md bg-blue-50 text-blue-900 placeholder-blue-400 focus:outline-none focus:border-blue-500"
+                  className="w-full p-2 border-2 border-blue-300 rounded-md bg-blue-50 text-teal-900 placeholder-blue-400 focus:outline-none focus:border-teal-500"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -180,7 +180,7 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                className="w-full bg-teal-600 text-white p-2 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200"
               >
                 Reset
               </button>
@@ -191,8 +191,8 @@ const Login = () => {
 
       {step == 3 && (
         <div className="w-full min-h-screen flex items-center justify-center bg-blue-50 p-4">
-          <div className="w-full max-w-md space-y-6 border-2 border-blue-600 bg-blue-100 rounded-xl p-8 text-center shadow-md">
-            <p className="text-blue-900 text-lg font-semibold">
+          <div className="w-full max-w-md space-y-6 border-2 border-teal-600 bg-blue-100 rounded-xl p-8 text-center shadow-md">
+            <p className="text-teal-700 text-lg font-semibold">
               Success. Password reset request has been sent on your registered
               email.
             </p>

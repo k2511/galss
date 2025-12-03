@@ -9,7 +9,7 @@ import fastrack from "../assets/brands/fastrack.jpg";
 const EyewearGallery = () => {
   
   const brands = [
-    { image: rayban, path: "/brands/rayban" },
+    { image: rayban, path: "/brands/rayban"  },
     { image: oakley, path: "/brands/oakley" },
     { image: idee, path: "/brands/idee" },
     { image: titan, path: "/brands/titan" },
@@ -23,9 +23,9 @@ const EyewearGallery = () => {
         {/* Brand Filter Buttons */}
 
         <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {brands.map((brand, index) => (
+          {brands.map((brand, index) => ( 
             <Link key={index} to={brand.path}>
-              <button className="px-6 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:border-gray-400 hover:shadow-sm transition-all flex items-center gap-2">
+              <button className="px-6 py-2 rounded-full   text-sm font-medium text-gray-700 hover:border-gray-400 hover:shadow-sm transition-all flex items-center gap-2">
                 <img
                   src={brand.image}
                   alt={`Brand ${index + 1}`}
@@ -49,14 +49,14 @@ const EyewearGallery = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/prescriptionGlass"
-              className="px-8 py-3 rounded-full border-2 border-black bg-white text-black font-medium hover:bg-black hover:text-white transition-all text-center"
+              className="px-8 py-3 rounded-full  bg-white text-black font-medium hover:bg-black hover:text-white transition-all text-center"
             >
               Shop Eyeglasses
             </Link>
 
             <Link
               to="/sunglasses"
-              className="px-8 py-3 rounded-full border-2 border-black bg-white text-black font-medium hover:bg-black hover:text-white transition-all text-center"
+              className="px-8 py-3 rounded-full  bg-white text-black font-medium hover:bg-black hover:text-white transition-all text-center"
             >
               Shop Sunglasses
             </Link>

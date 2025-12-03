@@ -1,80 +1,213 @@
-// src/controllers/buyingCustController.js
+// src/controllers/buyingCustController.js  (Now for customers)
 import { pool } from "../config/db.js";
 
-// ✅ Get all buying customers
+/** Safe trim utility */
+const tv = (v) => {
+  if (v === undefined || v === null) return null;
+  const s = String(v).trim();
+  return s === "" ? null : s;
+};
+
+/* -------------------------------------------------------
+   GET ALL CUSTOMERS (Search + Pagination)
+-------------------------------------------------------- */
 export const getAllBuyingCustomers = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT * FROM buyingcust ORDER BY id DESC");
-    res.json(rows);
-  } catch (error) {
-    console.error("Error fetching customers:", error);
-    res.status(500).json({ error: "Failed to fetch customers" });
-  }
-};
+    const q = tv(req.query.q);
+    const page = Number(req.query.page) || 1;
+    const perPageRaw = req.query.perPage ?? req.query.limit ?? 25;
+    const perPage =
+      perPageRaw === "all" ? "all" : Math.max(1, Number(perPageRaw));
 
-// ✅ Create new buying customer
-export const createBuyingCustomer = async (req, res) => {
-  try {
-    const { name, email, mobile, city, product_id, pname, tprice, category_id, brand_id, status } =
-      req.body;
+    let baseSql = "SELECT * FROM customers";
+    const params = [];
 
-    if (!name || !product_id) {
-      return res.status(400).json({ error: "Name and Product are required" });
+    if (q) {
+      baseSql += " WHERE name LIKE ? OR email LIKE ? OR mobile LIKE ?";
+      const like = `%${q}%`;
+      params.push(like, like, like);
     }
 
+    baseSql += " ORDER BY id DESC";
+
+    if (perPage !== "all") {
+      const offset = (Math.max(1, page) - 1) * perPage;
+      baseSql += " LIMIT ? OFFSET ?";
+      params.push(perPage, offset);
+    }
+
+    const [rows] = await pool.query(baseSql, params);
+
+    if (perPage !== "all") {
+      let countSql = "SELECT COUNT(*) as total FROM customers";
+      const countParams = [];
+
+      if (q) {
+        countSql += " WHERE name LIKE ? OR email LIKE ? OR mobile LIKE ?";
+        const like = `%${q}%`;
+        countParams.push(like, like, like);
+      }
+
+      const [countRows] = await pool.query(countSql, countParams);
+      const total = countRows[0]?.total ?? 0;
+
+      return res.json({
+        success: true,
+        customers: rows,
+        meta: {
+          total,
+          page,
+          perPage,
+          totalPages: Math.ceil(total / perPage),
+        },
+      });
+    }
+
+    return res.json({ success: true, customers: rows });
+  } catch (error) {
+    console.error("getAllCustomers error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to fetch customers" });
+  }
+};
+
+/* -------------------------------------------------------
+   CREATE CUSTOMER
+-------------------------------------------------------- */
+export const createBuyingCustomer = async (req, res) => {
+  try {
+    const body = req.body || {};
+
+    const name = tv(body.name);
+    const email = tv(body.email);
+    const mobile = tv(body.mobile);
+    const city = tv(body.city);
+    const address = tv(body.address);
+
+    if (!name)
+      return res
+        .status(400)
+        .json({ success: false, message: "name is required" });
+
     const [result] = await pool.query(
-      `INSERT INTO buyingcust (name, email, mobile, city, product_id, pname, tprice, category_id, brand_id, status, cdate)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
-      [name, email, mobile, city, product_id, pname, tprice, category_id, brand_id, status]
+      `INSERT INTO customers (name, email, mobile, city, address, cdate)
+       VALUES (?, ?, ?, ?, ?, NOW())`,
+      [name, email || "", mobile || "", city || "", address || ""]
     );
 
-    const [created] = await pool.query("SELECT * FROM buyingcust WHERE id = ?", [result.insertId]);
-    res.status(201).json(created[0]);
+    const insertId = result.insertId;
+    const [created] = await pool.query("SELECT * FROM customers WHERE id = ?", [
+      insertId,
+    ]);
+
+    return res.status(201).json({ success: true, customer: created[0] });
   } catch (error) {
-    console.error("Error creating customer:", error);
-    res.status(500).json({ error: "Failed to create customer" });
+    console.error("createCustomer error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to create customer" });
   }
 };
 
-// ✅ Get one customer
+/* -------------------------------------------------------
+   GET SINGLE CUSTOMER
+-------------------------------------------------------- */
 export const getBuyingCustomerById = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT * FROM buyingcust WHERE id = ?", [req.params.id]);
-    if (!rows.length) return res.status(404).json({ error: "Customer not found" });
-    res.json(rows[0]);
+    const id = Number(req.params.id);
+    if (Number.isNaN(id))
+      return res.status(400).json({ success: false, message: "Invalid id" });
+
+    const [rows] = await pool.query("SELECT * FROM customers WHERE id = ?", [
+      id,
+    ]);
+
+    if (!rows.length)
+      return res
+        .status(404)
+        .json({ success: false, message: "Customer not found" });
+
+    return res.json({ success: true, customer: rows[0] });
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch customer" });
+    console.error("getCustomerById error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to fetch customer" });
   }
 };
 
-// ✅ Update customer
+/* -------------------------------------------------------
+   UPDATE CUSTOMER
+-------------------------------------------------------- */
 export const updateBuyingCustomer = async (req, res) => {
   try {
-    const { id } = req.params;
-    const fields = req.body;
+    const id = Number(req.params.id);
+    if (Number.isNaN(id))
+      return res.status(400).json({ success: false, message: "Invalid id" });
+
+    const fields = req.body || {};
+    delete fields.id;
+    delete fields.cdate;
+
     const keys = Object.keys(fields);
-    if (!keys.length) return res.status(400).json({ error: "No fields to update" });
+    if (!keys.length)
+      return res
+        .status(400)
+        .json({ success: false, message: "No fields provided to update" });
 
     const setClause = keys.map((k) => `${k} = ?`).join(", ");
-    const values = Object.values(fields);
+    const values = keys.map((k) => fields[k]);
 
-    await pool.query(`UPDATE buyingcust SET ${setClause} WHERE id = ?`, [...values, id]);
-    const [updated] = await pool.query("SELECT * FROM buyingcust WHERE id = ?", [id]);
-    res.json(updated[0]);
+    const [updateResult] = await pool.query(
+      `UPDATE customers SET ${setClause} WHERE id = ?`,
+      [...values, id]
+    );
+
+    if (updateResult.affectedRows === 0)
+      return res
+        .status(404)
+        .json({ success: false, message: "Customer not found" });
+
+    const [updated] = await pool.query("SELECT * FROM customers WHERE id = ?", [
+      id,
+    ]);
+
+    return res.json({ success: true, customer: updated[0] });
   } catch (error) {
-    console.error("Error updating customer:", error);
-    res.status(500).json({ error: "Failed to update customer" });
+    console.error("updateCustomer error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to update customer" });
   }
 };
 
-// ✅ Delete customer
+/* -------------------------------------------------------
+   DELETE CUSTOMER
+-------------------------------------------------------- */
 export const deleteBuyingCustomer = async (req, res) => {
   try {
-    const { id } = req.params;
-    await pool.query("DELETE FROM buyingcust WHERE id = ?", [id]);
-    res.json({ message: "Customer deleted successfully" });
+    const id = Number(req.params.id);
+    if (Number.isNaN(id))
+      return res.status(400).json({ success: false, message: "Invalid id" });
+
+    const [result] = await pool.query("DELETE FROM customers WHERE id = ?", [
+      id,
+    ]);
+
+    if (result.affectedRows === 0)
+      return res
+        .status(404)
+        .json({ success: false, message: "Customer not found" });
+
+    return res.json({
+      success: true,
+      message: "Customer deleted successfully",
+    });
   } catch (error) {
-    console.error("Error deleting customer:", error);
-    res.status(500).json({ error: "Failed to delete customer" });
+    console.error("deleteCustomer error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to delete customer" });
   }
 };

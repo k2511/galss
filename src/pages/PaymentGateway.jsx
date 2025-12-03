@@ -21,17 +21,24 @@
 // };
 
 
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { OrderContext } from "../context/OrderContext";
 
 
 const API = "http://localhost:5000/api/payment";
 
 const PaymentGateway = () => {
+  // const [order, setOrders] = useState([]);
+  const {order, setOrders} = useContext(OrderContext);
+
+
   const navigate = useNavigate();
   const location = useLocation();
-  const { items, subtotal, gstAmount, total } = location.state || {};
+  let { items, subtotal, gstAmount, total } = location.state || {};
+
+  gstAmount = Number((gstAmount ?? 0).toFixed(2));
 
   const loadRazorpay = () => {
     const script = document.createElement("script");
@@ -44,11 +51,10 @@ const PaymentGateway = () => {
     loadRazorpay();
   }, []);
 
-
   const makePayment = async () => {
+    
     const res = await axios.post(`${API}/create-order`, {
       userId: 1,
-     
       items,
       subtotal,
       gstAmount,
@@ -56,8 +62,9 @@ const PaymentGateway = () => {
       currency: "INR"
     });
 
-    const { order, localOrderId } = res.data;
-    // console.log(' order, localOrderId',  order, localOrderId)
+    let { order, localOrderId, myOrders } = res.data;
+    console.log(' order',  order,    )
+    setOrders(order)
 
     const options = {
       key: 'rzp_test_bzK53YGmR1lrbV',
@@ -74,9 +81,9 @@ const PaymentGateway = () => {
           localOrderId
         });
 
-        console.log('verity', verify)
+        // console.log('verity', verify)
         if (verify.data.success) {
-          navigate("/order-success", { state: { orderId: localOrderId } });
+          navigate("/order-success");
         } else {
           navigate("/");
         }
@@ -92,6 +99,9 @@ const PaymentGateway = () => {
 
   if (!items) return <h2 className="text-center mt-10">No items found</h2>;
 
+  //  if(subtotal <= 500){
+  //     total = total + 100;
+  //  }
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-10 flex justify-center">
       <div className="max-w-4xl w-full bg-white p-6 rounded-xl shadow-md">
@@ -134,19 +144,27 @@ const PaymentGateway = () => {
               <span>₹{subtotal}</span>
             </div>
 
-            <div className="flex justify-between text-gray-700 mb-2">
-              <span>GST (18%)</span>
-              <span>₹{gstAmount}</span>
-            </div>
+          
+           
 
             <div className="flex justify-between text-gray-900 text-lg font-semibold border-t pt-3">
               <span>Total Payable</span>
               <span className="text-teal-600">₹{total}</span>
             </div>
 
+            <div className="flex justify-between text-xs text-gray-700 mb-2">
+              <span>Delivery Charge</span>
+              <span>{subtotal > 500 ? 'Free Delivery' : `₹${100} `}</span>
+            </div> 
+
+            <div className="flex justify-between text-xs text-gray-700 mb-2">
+              <span>GST (18%)</span>
+              <span>₹{gstAmount}</span>
+            </div>
+
             <button
               onClick={makePayment}
-              className="w-full mt-6 bg-green-500 text-white py-3 rounded-full hover:bg-green-600 transition"
+              className="w-full mt-6 bg-teal-600 text-white py-3 rounded-full hover:bg-teal-600 transition"
             >
               Pay Now
             </button>

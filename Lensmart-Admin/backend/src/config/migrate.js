@@ -235,11 +235,13 @@ async function indexExists(conn, tableName, indexName) {
 }
 
 export async function migrate() {
+  
   const conn = await pool.getConnection();
   try {
     console.log("🛠️ Running migrations...");
     await conn.beginTransaction();
-
+    
+    
     // -------------------------------------------------
     // USERS TABLE (Updated with Super Admin role)
     // -------------------------------------------------
@@ -360,8 +362,8 @@ export async function migrate() {
         rating INT,
         comment TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
-      
+        updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
     // CONSTRAINT chk_rating CHECK (rating BETWEEN 1 AND 5),
@@ -386,8 +388,18 @@ export async function migrate() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS recently_views (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          user_id INT NOT NULL,
+          product_id INT NOT NULL,
+          viewed_at DATE NOT NULL,
+          UNIQUE KEY unique_view (user_id, product_id, viewed_at)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+    
       await conn.query(`
-              CREATE TABLE orders (
+              CREATE TABLE IF NOT EXISTS orders (
           id INT AUTO_INCREMENT PRIMARY KEY,
           user_id INT NOT NULL,
           items_json JSON NOT NULL,
@@ -404,7 +416,7 @@ export async function migrate() {
       );
      `);
 
-        await conn.query(`CREATE TABLE order_items (
+        await conn.query(`CREATE TABLE IF NOT EXISTS order_items (
           id INT AUTO_INCREMENT PRIMARY KEY,
           order_id INT NOT NULL,
           product_id INT NOT NULL,
